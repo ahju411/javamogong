@@ -11,7 +11,7 @@ public class MemberDB {
 	private static final String DRIVER = "oracle.jdbc.driver.OracleDriver";
 	private static final String URL = "jdbc:oracle:thin:@192.168.35.45:1521:xe";
 
-	private static final String USER = "admin";
+	private static final String USER = "comet";
 	private static final String PASS = "1234";
 	Member_List mList;
 
@@ -52,7 +52,7 @@ public class MemberDB {
 		try {
 
 			conn = getConnection();
-			String sql = "select * from member where id =?";
+			String sql = "select * from customer where id =?";
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, id);
 			rs = ps.executeQuery();
@@ -82,7 +82,7 @@ public class MemberDB {
 
 		try {
 			conn = getConnection();
-			String sql = "select * from member";
+			String sql = "select * from customer";
 			ps = conn.prepareStatement(sql);
 			rs = ps.executeQuery();
 
@@ -116,7 +116,7 @@ public class MemberDB {
 		PreparedStatement ps = null;
 		try {
 			conn = getConnection();
-			String sql = "insert into admin.member" + 
+			String sql = "insert into comet.customer" + 
 			"(id,pw,name,email,addr,tel,age)" + 
 					"values(?,?,?,?,?,?,?)";
 
@@ -151,7 +151,7 @@ public class MemberDB {
 		PreparedStatement ps = null;
 		try {
 			conn = getConnection();
-			String sql = "update admin.member set name=?,email=?,addr=?,tel=?,age=?" + "where id=? and pw=?";
+			String sql = "update comet.customer set name=?,email=?,addr=?,tel=?,age=?" + "where id=? and pw=?";
 			
 			
 			ps = conn.prepareStatement(sql);
@@ -184,7 +184,7 @@ public class MemberDB {
 		
 		try {
 			conn = getConnection();
-			String sql = "delete from member where id=? and pw=?";
+			String sql = "delete from customer where id=? and pw=?";
 			
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, id);
