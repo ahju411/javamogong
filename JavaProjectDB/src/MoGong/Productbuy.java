@@ -99,6 +99,7 @@ private JLabel jungga;
 		
 		
 		pan2.setOpaque(false);
+		
 	
 		
 		// 상품정보 pan3
