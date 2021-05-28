@@ -1,6 +1,6 @@
 package MoGong;
 
-//dto;//
+//dto;
 
 public class Member {
 	private String id;
