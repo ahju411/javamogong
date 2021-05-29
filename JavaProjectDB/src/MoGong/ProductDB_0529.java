@@ -30,21 +30,6 @@ public class ProductDB_0529 {
 	public static void main(String[] args) throws SQLException, IOException {
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		String name;
 		
 		try {
@@ -60,7 +45,7 @@ public class ProductDB_0529 {
 			
 			PreparedStatement ps = null;
 			
-	
+	// 크롤링 해보즈아아
 		URL url = new URL("https://search.shopping.naver.com/search/all?query=%EA%B5%AC%EC%B0%8C&cat_id=&frm=NVSHATC");
 
 		Document doc = Jsoup.connect("https://search.shopping.naver.com/search/all?query=%EA%B5%AC%EC%B0%8C&cat_id=&frm=NVSHATC").get();
@@ -110,8 +95,8 @@ public class ProductDB_0529 {
 	
 	// 추출한 상품 모든정보 DB에넣기
 	
-	String insertSQL = "INSERT INTO PRODUCTTYPE (ITEMID, ITEMNAME, PRICE, CLASS)"
-			+ "VALUES(?,?,?,?)";
+	String insertSQL = "INSERT INTO PRODUCTTYPE (ITEMID, ITEMNAME, PRICE)"
+			+ "VALUES(?,?,?)";
 
 	for(int p = 0 ; p<5 ; p++) {
 	ps = conn.prepareStatement(insertSQL);
@@ -120,6 +105,7 @@ public class ProductDB_0529 {
 	ps.setString(3, ITEMPRICE.get(p));
 	ps.executeUpdate();
 	}
+	
 	
 
 					
