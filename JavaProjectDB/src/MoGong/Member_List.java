@@ -59,6 +59,7 @@ public class Member_List extends JFrame implements MouseListener, ActionListener
 			String addr = list.get(i).getAddr();
 			String email = list.get(i).getEmail();
 			
+			
 			Object [] data = {id,pw,name,age,tel,addr,email};
 			
 			tModel.addRow(data);
