@@ -9,7 +9,7 @@ import java.util.Vector;
 
 public class MemberDB {
 	private static final String DRIVER = "oracle.jdbc.driver.OracleDriver";
-	private static final String URL = "jdbc:oracle:thin:@192.168.35.45:1521:xe";
+	private static final String URL = "jdbc:oracle:thin:@118.217.168.174:1521:xe";
 
 	private static final String USER = "comet";
 	private static final String PASS = "1234";
