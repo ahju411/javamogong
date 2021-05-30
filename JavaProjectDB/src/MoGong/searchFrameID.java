@@ -18,7 +18,7 @@ import javax.swing.border.EmptyBorder;
 
 public class searchFrameID extends JFrame implements ActionListener {
 
-	JTextField tfName, tfPhone;
+	JTextField tfName, tfPhone1, tfPhone2, tfPhone3;
 	JButton btn;
 	
 	public searchFrameID(String title, int width, int height) {
@@ -38,7 +38,7 @@ public class searchFrameID extends JFrame implements ActionListener {
 		
 		JPanel panMid = new JPanel();
 		panMid.setBackground(Color.white);
-		panMid.setBorder(new EmptyBorder(80, 0, 120, 50));
+		panMid.setBorder(new EmptyBorder(50, 0, 30, 10));
 		panMid.setLayout(new GridLayout(2,2,10,30));
 		add(panMid);
 		
@@ -51,8 +51,23 @@ public class searchFrameID extends JFrame implements ActionListener {
 		JLabel lblPhone = new JLabel("핸드폰 번호 : ", JLabel.RIGHT);
 		panMid.add(lblPhone);
 		
-		tfPhone = new JTextField(15);
-		panMid.add(tfPhone);
+		tfPhone1 = new JTextField(5);
+		tfPhone2 = new JTextField(7);
+		tfPhone3 = new JTextField(7);
+		
+		JPanel panPhone = new JPanel();
+		panPhone.setBackground(Color.white);
+		
+		JLabel lblPhone1 = new JLabel("-");
+		JLabel lblPhone2 = new JLabel("-");
+		
+		panPhone.add(tfPhone1);
+		panPhone.add(lblPhone1);
+		panPhone.add(tfPhone2);
+		panPhone.add(lblPhone2);
+		panPhone.add(tfPhone3);
+		
+		panMid.add(panPhone);
 		
 		
 		JPanel panSouth = new JPanel();
