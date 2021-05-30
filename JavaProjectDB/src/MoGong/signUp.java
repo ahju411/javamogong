@@ -27,7 +27,7 @@ public class signUp extends JFrame implements ActionListener {
 		setTitle(title);
 		setSize(width, height);
 		setLocationRelativeTo(this);
-		//
+		
 	
 		setLayout(new BorderLayout());
 		
