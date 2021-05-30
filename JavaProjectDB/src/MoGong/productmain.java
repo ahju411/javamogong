@@ -3,7 +3,7 @@ package MoGong;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class productdao {
+public class productmain {
 	
 
 	public static void main(String[] args) {

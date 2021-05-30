@@ -35,7 +35,7 @@ public class productcrawling {
 					Elements element = doc.select("div[class=\"section--inner_content_body\"]");
 					
 					for(int i = 0 ; i <5;i++) {
-						itemid =i;
+						itemid =i+1;
 						tmp = element.select("span.text--title"); // 상품이름
 						itemname=(tmp.get(i).text());
 						
