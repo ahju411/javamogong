@@ -125,7 +125,6 @@ public class loginPage extends JFrame implements ActionListener {
 		btnlogin.setOpaque(true);
 		btnlogin.setBackground(null);
 		btnlogin.setBorderPainted(false);
-		btnlogin.addActionListener(this);
 		plLog.add(btnlogin);
 		
 		btnlogin.addActionListener(this);

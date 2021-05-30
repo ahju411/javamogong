@@ -4,7 +4,6 @@ package MoGong;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -19,7 +18,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+
 
 public class signUp extends JFrame implements ActionListener {
 	
@@ -36,15 +37,30 @@ public class signUp extends JFrame implements ActionListener {
 		setLayout(new BorderLayout());
 		
 		
-//		JPanel leftpan = new JPanel();
-//		leftpan.setBackground(Color.white);
-//		leftpan.setBorder(new EmptyBorder(20, 30, 10, 30));
-//		leftpan.setLayout(new GridLayout(7, 1, 0 ,20));//같게 설정
+		JPanel leftpan = new JPanel();
+		leftpan.setBackground(Color.white);
+		leftpan.setBorder(new EmptyBorder(20, 30, 10, 30));
+		leftpan.setLayout(new GridLayout(7, 1, 0 ,20));//같게 설정
+		
 		
 		JPanel centerpan = new JPanel();
 		centerpan.setBackground(Color.white);
-		centerpan.setBorder(new EmptyBorder(20, 0, 10, 50));
-		centerpan.setLayout(new GridLayout(7, 2, 20, 20));//같게 설정
+		centerpan.setBorder(new EmptyBorder(20, 0, 10, 0));
+		centerpan.setLayout(new GridLayout(7, 1, 0, 20));//같게 설정
+		tfID = new JTextField(15);
+		btnConfirm = new JButton("아이디 중복확인");
+		btnConfirm.setHorizontalAlignment(SwingConstants.LEFT);
+		btnConfirm.setFocusPainted(false);
+		btnConfirm.setBorderPainted(false);
+		btnConfirm.setBackground(Color.LIGHT_GRAY);
+		btnConfirm.setFont(new Font("맑은 고딕",Font.BOLD,11));
+		btnConfirm.addActionListener(this);
+		JPanel idpan = new JPanel();
+		idpan.setLayout(new GridLayout(1,2,5,0));
+		idpan.setBackground(Color.white);
+		idpan.add(tfID);
+		idpan.add(btnConfirm);
+		
 		
 		
 		JPanel southpan = new JPanel();
@@ -77,8 +93,6 @@ public class signUp extends JFrame implements ActionListener {
 		JLabel lblPhone = new JLabel("핸드폰 번호 : ", JLabel.RIGHT);
 		JLabel lblMail = new JLabel("메일주소 : ", JLabel.RIGHT);
 		
-		tfID = new JTextField(10);
-		btnConfirm = new JButton("아이디 중복 확인");
 		tfPassword = new JPasswordField(15);
 		tfName = new JTextField(15);
 		tfAge = new JTextField(15);
@@ -110,25 +124,24 @@ public class signUp extends JFrame implements ActionListener {
 		panPhone.add(tfPhone3);
 		
 		
+		add(leftpan, BorderLayout.WEST);
+		leftpan.add(lblID);
+		leftpan.add(lblPassword);
+		leftpan.add(lblName);
+		leftpan.add(lblAge);
+		leftpan.add(lblAddress);
+		leftpan.add(lblPhone);
+		leftpan.add(lblMail);
 		
 		
-		centerpan.add(lblID);
-		centerpan.add(tfID);
-		centerpan.add(lblPassword);
-		centerpan.add(tfPassword);
-		centerpan.add(lblName);
-		centerpan.add(tfName);
-		centerpan.add(lblAge);
-		centerpan.add(tfAge);
-		centerpan.add(lblAddress);
-		centerpan.add(tfAddress);
-		centerpan.add(lblPhone);
-		centerpan.add(panPhone);
-		centerpan.add(lblMail);
-		centerpan.add(tfMail);
 		add(centerpan);
-		//centerpan.add(btnConfirm);
-		//centerpan.add(tfPhone);
+		centerpan.add(idpan);
+		centerpan.add(tfPassword);
+		centerpan.add(tfName);
+		centerpan.add(tfAge);
+		centerpan.add(tfAddress);
+		centerpan.add(panPhone);
+		centerpan.add(tfMail);
 		
 		add(southpan, BorderLayout.SOUTH);
 		southpan.add(btnSignUp);
@@ -144,9 +157,28 @@ public class signUp extends JFrame implements ActionListener {
 		if(obj == btnSignUp) {
 			insertMember();
 			dispose();
+		}else if(obj == btnConfirm) {
+			confirmid();
 		}
 		
+	}
+	private void confirmid() {
+		String id = tfID.getText();
+		MemberDB db = new MemberDB();
+		boolean ok = db.confrimid(id);
+		if(id.length()==0){ //길이가 0이면
+	           
+            JOptionPane.showMessageDialog(this, "아이디를 입력 해주세요");
+            return; //메소드 끝
+        }else {
 		
+		 if(ok == false) {
+			
+			JOptionPane.showMessageDialog(this, "아이디가 존재합니다.");
+		}else {
+			JOptionPane.showMessageDialog(this, "사용 가능한 아이디입니다.");
+		}
+        }
 	}
 	private void insertMember(){
 	       
@@ -154,6 +186,7 @@ public class signUp extends JFrame implements ActionListener {
         Member mem = getViewData();
         MemberDB db = new MemberDB();       
         int ok = db.insertMem(mem);
+        
        
         if(ok == 1){
            

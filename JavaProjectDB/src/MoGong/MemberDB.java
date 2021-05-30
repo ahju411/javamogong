@@ -1,6 +1,5 @@
 package MoGong;
 
-
 //dao;
 import java.sql.*;
 import java.util.ArrayList;
@@ -97,9 +96,6 @@ public class MemberDB {
 				mem.setEmail(rs.getString("Email"));
 				list.add(mem);
 
-				
-
-				
 			}
 			return list;
 
@@ -116,9 +112,7 @@ public class MemberDB {
 		PreparedStatement ps = null;
 		try {
 			conn = getConnection();
-			String sql = "insert into comet.customer" + 
-			"(id,pw,name,email,addr,tel,age)" + 
-					"values(?,?,?,?,?,?,?)";
+			String sql = "insert into comet.customer" + "(id,pw,name,email,addr,tel,age)" + "values(?,?,?,?,?,?,?)";
 
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, mem.getId());
@@ -130,7 +124,6 @@ public class MemberDB {
 			ps.setInt(7, mem.getAge());
 
 			int r = ps.executeUpdate();
-			
 
 			if (r > 0) {
 				System.out.println("가입성공");
@@ -144,68 +137,66 @@ public class MemberDB {
 		}
 		return -1;
 	}
-	//로그인 하기
+
+	// 로그인 하기
 	public int loginMemeber(String id, String pw) {
 		Connection conn = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		String pass = "";
 		int x = -1;
-		
+
 		try {
 			conn = getConnection();
 			String sql = "select pw from comet.customer" + " where id=?";
-			
+
 			ps = conn.prepareStatement(sql);
-			
+
 			ps.setString(1, id);
-			
+
 			rs = ps.executeQuery();
 
 			if (rs.next()) {
 				pass = rs.getString("pw");
-				if(pass.equals(pw))
-					x=1;
+				if (pass.equals(pw))
+					x = 1;
 				else {
-					x=0;
+					x = 0;
 				}
-					
-				
-			}else {
-				x=-1;
+
+			} else {
+				x = -1;
 			}
-			
+
 		} catch (SQLException e) {
 			e.getStackTrace();
 		}
-		return -1;
+		return x;
 	}
-	//아이디 중복확인
-	public int confrimid(String id) {
+
+	// 아이디 중복확인
+	public boolean confrimid(String id) {
 		Connection conn = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		int x = -1;
+		boolean ok = true;
 		try {
 			conn = getConnection();
-			String sql =  "select * from comet.customer" + "where id=?";
+			String sql = "select * from comet.customer" + " where id=?";
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, id);
 			rs = ps.executeQuery();
-			
-			if(rs.next())
-				x=1;
-			else {
-				x=-1;
+			if (rs.next()) {
+
+				System.out.println("아이디 존재");
+				ok = false;
 			}
-			
 		} catch (SQLException e) {
 			e.getStackTrace();
 		}
-		return -1;
+		return ok;
 	}
-	
-	
+
 //회원정보 수정하지
 	public int updateMember(Member vMem) {
 		System.out.println("data" + vMem.toString());
@@ -214,10 +205,9 @@ public class MemberDB {
 		try {
 			conn = getConnection();
 			String sql = "update comet.customer set name=?,email=?,addr=?,tel=?,age=?" + "where id=? and pw=?";
-			
-			
+
 			ps = conn.prepareStatement(sql);
-			
+
 			ps.setString(1, vMem.getName());
 			ps.setString(2, vMem.getEmail());
 			ps.setString(3, vMem.getAddr());
@@ -225,42 +215,42 @@ public class MemberDB {
 			ps.setInt(5, vMem.getAge());
 			ps.setString(6, vMem.getId());
 			ps.setString(7, vMem.getPw());
-			
-			int r =ps.executeUpdate();
-			
-			
-			
-			if(r>0) System.out.println("수정성공");
-			
+
+			int r = ps.executeUpdate();
+
+			if (r > 0)
+				System.out.println("수정성공");
+
 			return 1;
-			 
-		}catch (SQLException e) {
+
+		} catch (SQLException e) {
 			e.getStackTrace();
 		}
 		return -1;
 	}
-	public boolean deleteMember(String id,String pw) {
+
+	public boolean deleteMember(String id, String pw) {
 		boolean ok = false;
 		Connection conn = null;
 		PreparedStatement ps = null;
-		
+
 		try {
 			conn = getConnection();
 			String sql = "delete from customer where id=? and pw=?";
-			
+
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, id);
 			ps.setString(2, pw);
-			int r =ps.executeUpdate();
-			
-			if(r>0) {
+			int r = ps.executeUpdate();
+
+			if (r > 0) {
 				ok = true;
 			}
-		}catch (SQLException e) {
+		} catch (SQLException e) {
 			System.out.println(3 + "오류");
-		}return ok;
+		}
+		return ok;
 	}
-	
 
 	public static void main(String[] args) {
 		MemberDB mb = new MemberDB();
