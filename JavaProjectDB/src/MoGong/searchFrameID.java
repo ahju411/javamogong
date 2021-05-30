@@ -27,6 +27,8 @@ public class searchFrameID extends JFrame implements ActionListener {
 	JTextField tfName, tfPhone1, tfPhone2, tfPhone3;
 	JButton btn;
 	
+	String id;
+	
 	public searchFrameID(String title, int width, int height) {
 		setTitle(title);
 		setSize(width, height);
@@ -51,15 +53,15 @@ public class searchFrameID extends JFrame implements ActionListener {
 		JLabel lblName = new JLabel("이름 : ", JLabel.RIGHT);
 		panMid.add(lblName);
 		
-		tfName = new JTextField(15);
+		tfName = new JTextField("유은철");//15로 수정할것
 		panMid.add(tfName);
 		
 		JLabel lblPhone = new JLabel("핸드폰 번호 : ", JLabel.RIGHT);
 		panMid.add(lblPhone);
 		
-		tfPhone1 = new JTextField(3);
-		tfPhone2 = new JTextField(4);
-		tfPhone3 = new JTextField(4);
+		tfPhone1 = new JTextField("010");//3
+		tfPhone2 = new JTextField("1234");//4
+		tfPhone3 = new JTextField("5678");//4
 		
 		JPanel panPhone = new JPanel();
 		panPhone.setBackground(Color.white);
@@ -108,23 +110,14 @@ public class searchFrameID extends JFrame implements ActionListener {
 			String findName = tfName.getText();
 			String findPhone = tfPhone1.getText() + "-" + tfPhone2.getText() + "-" + tfPhone3.getText();
 			
-			System.out.println(findPhone);
-			ResultSet rs = stmt.executeQuery("SELECT * FROM customer where name = '" + findName + "'and tel = '" + findPhone + "'");
+			ResultSet rs = stmt.executeQuery("SELECT * FROM customer where name = '" + findName + "'");
 			
-			/*while(rs.next()) {
-				String id = rs.getString("id");
-				String pw = rs.getString("password");
-				int age = rs.getInt("age");
-				String name = rs.getString("name");
-				
-				System.out.println(id + " " + pw + " " + age + " " + name);
-				
-				/*System.out.println(rs.getString("id"));
-				System.out.println(rs.getString(2));
-				System.out.println(rs.getInt("age"));
-				System.out.println(rs.getString(4));
-				*/
-			/*}*/
+			System.out.println("밑줄이 오류");
+			
+			if(rs.next()) {
+				id = rs.getString("id");
+			}
+			
 			
 			System.out.println("OK");
 			conn.close();
@@ -137,7 +130,7 @@ public class searchFrameID extends JFrame implements ActionListener {
 		}
 		
 		if(obj == btn) {
-			JOptionPane.showInternalMessageDialog(null, "1", "2", ABORT);
+			JOptionPane.showInternalMessageDialog(null, id, "아이디 입니다", 1);
 			dispose();
 		}
 		
