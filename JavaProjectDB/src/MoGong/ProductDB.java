@@ -27,12 +27,13 @@ public class ProductDB {
 	private static final String USER = "comet";
 	private static final String PASS = "1234";
 
-	static ArrayList<Integer> ITEMID = new ArrayList<Integer>();
-	static ArrayList<String> ITEMNAME = new ArrayList<String>();
-	static ArrayList<String> ITEMPRICE = new ArrayList<String>();
-	static ArrayList<String> ITEMBRAND = new ArrayList<String>();
-	static ArrayList<String> ITEMCLASS = new ArrayList<String>();
-	
+	/*
+	 * static ArrayList<Integer> ITEMID = new ArrayList<Integer>(); static
+	 * ArrayList<String> ITEMNAME = new ArrayList<String>(); static
+	 * ArrayList<String> ITEMPRICE = new ArrayList<String>(); static
+	 * ArrayList<String> ITEMBRAND = new ArrayList<String>(); static
+	 * ArrayList<String> ITEMCLASS = new ArrayList<String>();
+	 */
 	static int i = 0;
 	
 	public ProductDB() {
@@ -61,66 +62,29 @@ public class ProductDB {
 		return conn;
 	}
 	
-	public int productcrawling(ArrayList<productdto> pl) throws IOException {
-		
-		// 1. 구찌시계 크롤링  사이트 : 옥션
-					String url = "http://browse.auction.co.kr/search?keyword=%EA%B5%AC%EC%B0%8C%EC%8B%9C%EA%B3%84";
-					Document doc = null;
-					Elements tmp;
-				
-					try {
-						doc = Jsoup.connect(url).get();
-					}catch (Exception e) {
-						e.printStackTrace();
-					}
-					
-					//
-					// 상위 7개정보 추출하여 DB에 넣기
-					
-					Elements element = doc.select("div[class=\"section--inner_content_body\"]");
-					
-					for(int i = 0 ; i <7;i++) {
-						ITEMID.add(i);
-						tmp = element.select("span.text--title"); // 상품이름
-						ITEMNAME.add(tmp.get(i).text());
-						
-						tmp = element.select("strong.text--price_seller"); //상품가격
-						ITEMPRICE.add(tmp.get(i).text());
-						
-						tmp = element.select("span.text--brand"); //상품브랜드
-						ITEMBRAND.add(tmp.get(i).text());
-						
-						tmp = element.select("span.text--brand"); //상품종류
-						ITEMBRAND.add(tmp.get(i).text());
-						
-						ITEMCLASS.add("시계");
-						
-
-					System.out.println(ITEMNAME + " " + ITEMPRICE + " " + ITEMBRAND + " " + ITEMCLASS);
-				
-					}
-					return 0;
-	}
 	
-
+	
 	// 추출한 상품 모든정보 DB에넣기
-	public int insertitem(productdto dto) {
+	public int insertitem(ArrayList<productdto> pl) {
+
 		
-		String insertSQL = "INSERT INTO ITEM (ITEMID, ITEMNAME, PRICE,BRAND,CLASS)"
-				+ "VALUES(?,?,?,?,?)";
 		Connection conn = null;
 		PreparedStatement ps = null;
 		try {
-			for(int p = 0 ; p<7 ; p++) {
+			conn = getConnection();
+			for(int p = 0 ; p<pl.size() ; p++) {
+				String insertSQL = "INSERT INTO ITEM (ITEMID, ITEMNAME, PRICE,BRAND,CLASS)"
+						+ "VALUES(?,?,?,?,?)";
 				ps = conn.prepareStatement(insertSQL);	
-			ps.setInt(1, ITEMID.get(p+1));
-			ps.setString(2, ITEMNAME.get(p));
-			ps.setString(3, ITEMPRICE.get(p));
-			ps.setString(4, ITEMBRAND.get(p));
-			ps.setString(5, ITEMCLASS.get(p));
+			ps.setInt(1, pl.get(i).getItemid());
+			ps.setString(2, pl.get(i).getItemname());
+			ps.setString(3, pl.get(i).getItemprice());
+			ps.setString(4, pl.get(i).getItembrand());
+			ps.setString(5, pl.get(i).getItemclass());
+			
 				
+			int r =ps.executeUpdate();
 				
-				int r =ps.executeUpdate();
 				if(r>0) {
 					System.out.println("성공");
 				}else {
@@ -140,6 +104,7 @@ public class ProductDB {
 	} 
 	public static void main(String[] args) {
 		ProductDB pdb = new ProductDB();
+		
 		pdb.getConnection();
 		
 	}

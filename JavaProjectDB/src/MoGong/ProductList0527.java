@@ -384,6 +384,7 @@ public class ProductList0527 extends JFrame implements MouseListener {
 		
 	}
 	
+	
 	public static void main(String[] args) {
 		new ProductList0527("상품목록",600,825);
 	}
