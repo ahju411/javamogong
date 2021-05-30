@@ -118,6 +118,7 @@ public class loginPage extends JFrame implements ActionListener {
 		btnlogin.setOpaque(true);
 		btnlogin.setBackground(null);
 		btnlogin.setBorderPainted(false);
+		btnlogin.addActionListener(this);
 		plLog.add(btnlogin);
 		
 		
@@ -175,7 +176,7 @@ public class loginPage extends JFrame implements ActionListener {
 		if(obj == btnSignUp) {
 			signUp su = new signUp("회원가입 창", 400, 600);
 		}else if(obj == btnlogin) {
-			
+			ProductList0527 pb = new ProductList0527("상품목록",600,825);
 		}else if(obj == btnSearchID) {
 			searchFrameID sfID = new searchFrameID("ID 찾기", 350, 400);
 		}else if(obj == btnSearchPW) {
