@@ -10,6 +10,11 @@ import java.awt.GridLayout;
 import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -120,6 +125,7 @@ public class loginPage extends JFrame implements ActionListener {
 		btnlogin.setOpaque(true);
 		btnlogin.setBackground(null);
 		btnlogin.setBorderPainted(false);
+		btnlogin.addActionListener(this);
 		plLog.add(btnlogin);
 		
 		btnlogin.addActionListener(this);
@@ -176,10 +182,12 @@ public class loginPage extends JFrame implements ActionListener {
 		
 		Object obj = e.getSource();
 		
+
+		
 		if(obj == btnSignUp) {
 			signUp su = new signUp("회원가입 창", 400, 600);
 		}else if(obj == btnlogin) {
-			
+			ProductList0527 pb = new ProductList0527("상품목록",600,825);
 		}else if(obj == btnSearchID) {
 			searchFrameID sfID = new searchFrameID("ID 찾기", 350, 400);
 		}else if(obj == btnSearchPW) {

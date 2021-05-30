@@ -7,11 +7,17 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
@@ -88,7 +94,52 @@ public class searchFrameID extends JFrame implements ActionListener {
 		
 		Object obj = e.getSource();
 		
+		try {
+			//오라클 드라이버 설치
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			
+			//오라클 드라이버 매니저 연결
+			Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@118.217.168.174:XE", "comet", "1234");
+			
+			Statement stmt = conn.createStatement();
+			
+			
+			//데이터 검색
+			String findName = tfName.getText();
+			String findPhone = tfPhone1.getText() + "-" + tfPhone2.getText() + "-" + tfPhone3.getText();
+			
+			//ResultSet rs = stmt.executeQuery("SELECT * FROM \"member\" where id = '" + findId + "'");
+			//ResultSet rs = stmt.executeQuery("SELECT * FROM \"customer\" where name = '" + findName + "', tel = '" + findPhone + "'");
+			System.out.println(findName);
+			ResultSet rs = stmt.executeQuery("SELECT * FROM customer where name = '" + findName + "'");
+			
+			/*while(rs.next()) {
+				String id = rs.getString("id");
+				String pw = rs.getString("password");
+				int age = rs.getInt("age");
+				String name = rs.getString("name");
+				
+				System.out.println(id + " " + pw + " " + age + " " + name);
+				
+				/*System.out.println(rs.getString("id"));
+				System.out.println(rs.getString(2));
+				System.out.println(rs.getInt("age"));
+				System.out.println(rs.getString(4));
+				*/
+			/*}*/
+			
+			System.out.println("OK");
+			conn.close();
+		} catch (ClassNotFoundException e1) {
+			System.out.println("JDBC드라이버 로드 에러");
+			e1.printStackTrace();
+		} catch (SQLException e1) {
+			System.err.println("DB연결 오류 또는 쿼리 오류 입니다.");
+			e1.printStackTrace();
+		}
+		
 		if(obj == btn) {
+			JOptionPane.showInternalMessageDialog(null, "1", "2", ABORT);
 			dispose();
 		}
 		
