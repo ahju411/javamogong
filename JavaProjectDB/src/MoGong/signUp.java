@@ -21,7 +21,7 @@ import javax.swing.border.EmptyBorder;
 public class signUp extends JFrame implements ActionListener {
 	
 	JTextField tfID, tfPassword, tfName, tfAge, tfAddress, tfPhone1, tfPhone2, tfPhone3, tfMail;
-	JButton btnSignUp;//
+	JButton btnSignUp;
 
 	public signUp(String title, int width, int height) {
 		setTitle(title);

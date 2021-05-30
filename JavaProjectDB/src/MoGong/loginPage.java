@@ -10,6 +10,11 @@ import java.awt.GridLayout;
 import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -172,6 +177,8 @@ public class loginPage extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		
 		Object obj = e.getSource();
+		
+
 		
 		if(obj == btnSignUp) {
 			signUp su = new signUp("회원가입 창", 400, 600);
