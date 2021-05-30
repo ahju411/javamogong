@@ -203,7 +203,6 @@ public class loginPage extends JFrame implements ActionListener {
 				JOptionPane.showMessageDialog(this, "로그인 성공");
 			}else {
 				JOptionPane.showMessageDialog(this, "로그인 실패");
-				
 			}
 		}
 		
