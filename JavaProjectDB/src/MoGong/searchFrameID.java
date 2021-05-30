@@ -107,16 +107,13 @@ public class searchFrameID extends JFrame implements ActionListener {
 			String findName = tfName.getText();
 			String findPhone = tfPhone1.getText() + "-" + tfPhone2.getText() + "-" + tfPhone3.getText();
 			
-			ResultSet rs = stmt.executeQuery("SELECT * FROM customer where name = '" + findName + "' and tel = " + findPhone + "'");
-			
-			System.out.println("밑줄이 오류");
+			ResultSet rs = stmt.executeQuery("SELECT * FROM customer where name = '" + findName + "' and tel = '" + findPhone + "'");
 			
 			if(rs.next()) {
 				id = rs.getString("id");
 			}
 			
 			
-			System.out.println("OK");
 			conn.close();
 		} catch (ClassNotFoundException e1) {
 			System.out.println("JDBC드라이버 로드 에러");

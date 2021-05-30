@@ -7,11 +7,17 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
@@ -20,6 +26,8 @@ public class searchFramePW extends JFrame implements ActionListener {
 
 	JTextField tfID, tfPhone1, tfPhone2, tfPhone3, tfName;
 	JButton btn;
+	
+	String pw;
 	
 	public searchFramePW(String title, int width, int height) {
 		setTitle(title);
@@ -93,7 +101,37 @@ public class searchFramePW extends JFrame implements ActionListener {
 		
 		Object obj = e.getSource();
 		
+		try {
+			//오라클 드라이버 설치
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			
+			//오라클 드라이버 매니저 연결
+			Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@118.217.168.174:1521:xe", "comet", "1234");
+			
+			Statement stmt = conn.createStatement();
+			
+			//데이터 검색
+			String findID = tfID.getText();
+			String findName = tfName.getText();
+			String findPhone = tfPhone1.getText() + "-" + tfPhone2.getText() + "-" + tfPhone3.getText();
+			
+			ResultSet rs = stmt.executeQuery("SELECT * FROM customer where name = '" + findName + "' and tel = '" + findPhone + "' and ID = '" + findID + "'");
+			
+			if(rs.next()) {
+				pw = rs.getString("PW");
+			}
+			
+			conn.close();
+		} catch (ClassNotFoundException e1) {
+			System.out.println("JDBC드라이버 로드 에러");
+			e1.printStackTrace();
+		} catch (SQLException e1) {
+			System.err.println("DB연결 오류 또는 쿼리 오류 입니다.");
+			e1.printStackTrace();
+		}
+		
 		if(obj == btn) {
+			JOptionPane.showInternalMessageDialog(null, pw, "비밀번호 입니다", 1);
 			dispose();
 		}
 		
