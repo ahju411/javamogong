@@ -38,8 +38,8 @@ public class searchFrameID extends JFrame implements ActionListener {
 		
 		JPanel panMid = new JPanel();
 		panMid.setBackground(Color.white);
-		panMid.setBorder(new EmptyBorder(50, 0, 30, 10));
-		panMid.setLayout(new GridLayout(2,2,10,30));
+		panMid.setBorder(new EmptyBorder(70, 0, 40, 10));
+		panMid.setLayout(new GridLayout(2, 2, 10, 30));
 		add(panMid);
 		
 		JLabel lblName = new JLabel("이름 : ", JLabel.RIGHT);
@@ -51,9 +51,9 @@ public class searchFrameID extends JFrame implements ActionListener {
 		JLabel lblPhone = new JLabel("핸드폰 번호 : ", JLabel.RIGHT);
 		panMid.add(lblPhone);
 		
-		tfPhone1 = new JTextField(5);
-		tfPhone2 = new JTextField(7);
-		tfPhone3 = new JTextField(7);
+		tfPhone1 = new JTextField(3);
+		tfPhone2 = new JTextField(4);
+		tfPhone3 = new JTextField(4);
 		
 		JPanel panPhone = new JPanel();
 		panPhone.setBackground(Color.white);
