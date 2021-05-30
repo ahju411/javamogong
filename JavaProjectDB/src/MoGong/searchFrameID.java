@@ -61,6 +61,7 @@ public class searchFrameID extends JFrame implements ActionListener {
 		JLabel lblPhone1 = new JLabel("-");
 		JLabel lblPhone2 = new JLabel("-");
 		
+		
 		panPhone.add(tfPhone1);
 		panPhone.add(lblPhone1);
 		panPhone.add(tfPhone2);
