@@ -21,28 +21,28 @@ import javax.swing.border.EmptyBorder;
 
 public class signUp extends JFrame implements ActionListener {
 	
-	JTextField tfID, tfPassword, tfName, tfAge, tfAddress, tfPhone, tfMail;
-	JButton btnSignUp;
-//
+	JTextField tfID, tfPassword, tfName, tfAge, tfAddress, tfPhone1, tfPhone2, tfPhone3, tfMail;
+	JButton btnSignUp;//
+
 	public signUp(String title, int width, int height) {
 		setTitle(title);
 		setSize(width, height);
 		setLocationRelativeTo(this);
-		//
+		
 	
 		setLayout(new BorderLayout());
 		
 		
 		JPanel leftpan = new JPanel();
 		leftpan.setBackground(Color.white);
-		leftpan.setBorder(new EmptyBorder(0, 30, 0, 30));
-		leftpan.setLayout(new GridLayout(7, 1, 0 ,40));//같게 설정
+		leftpan.setBorder(new EmptyBorder(20, 30, 10, 30));
+		leftpan.setLayout(new GridLayout(7, 1, 0 ,20));//같게 설정
 		
 		
 		JPanel centerpan = new JPanel();
 		centerpan.setBackground(Color.white);
-		centerpan.setBorder(new EmptyBorder(0, 0, 0, 0));
-		centerpan.setLayout(new GridLayout(7, 1, 0, 40));//같게 설정
+		centerpan.setBorder(new EmptyBorder(20, 0, 10, 0));
+		centerpan.setLayout(new GridLayout(7, 1, 0, 20));//같게 설정
 		
 		
 		JPanel southpan = new JPanel();
@@ -80,7 +80,9 @@ public class signUp extends JFrame implements ActionListener {
 		tfName = new JTextField(15);
 		tfAge = new JTextField(15);
 		tfAddress = new JTextField(15);
-		tfPhone = new JTextField(15);
+		tfPhone1 = new JTextField(5);
+		tfPhone2 = new JTextField(7);
+		tfPhone3 = new JTextField(7);
 		tfMail = new JTextField(15);
 		
 		ImageIcon iconSignUp = new ImageIcon("image\\signUpIcon.png");
@@ -91,6 +93,19 @@ public class signUp extends JFrame implements ActionListener {
 		btnSignUp.setBorderPainted(false);
 		btnSignUp.setFont(new Font("맑은 고딕", width, 20));
 		btnSignUp.addActionListener(this);
+		
+		JPanel panPhone = new JPanel();
+		panPhone.setBackground(Color.white);
+		
+		JLabel lblPhone1 = new JLabel("-");
+		JLabel lblPhone2 = new JLabel("-");
+		
+		panPhone.add(tfPhone1);
+		panPhone.add(lblPhone1);
+		panPhone.add(tfPhone2);
+		panPhone.add(lblPhone2);
+		panPhone.add(tfPhone3);
+		
 		
 		add(leftpan, BorderLayout.WEST);
 		leftpan.add(lblID);
@@ -108,7 +123,8 @@ public class signUp extends JFrame implements ActionListener {
 		centerpan.add(tfName);
 		centerpan.add(tfAge);
 		centerpan.add(tfAddress);
-		centerpan.add(tfPhone);
+		centerpan.add(panPhone);
+		//centerpan.add(tfPhone);
 		centerpan.add(tfMail);
 		
 		add(southpan, BorderLayout.SOUTH);

@@ -72,8 +72,8 @@ public class loginPage extends JFrame implements ActionListener {
 		
 		JPanel panInput = new JPanel();
 		panInput.setBackground(Color.white);
-		panInput.setBorder(new EmptyBorder(20, 50, 0, 200));
-		panInput.setLayout(new GridLayout(2, 2, 50, 30));
+		panInput.setBorder(new EmptyBorder(20, 0, 0, 80));
+		panInput.setLayout(new GridLayout(2, 2, 20, 30));
 		plMain.add(panInput);
 		
 		JLabel lblID = new JLabel("ID : ", JLabel.RIGHT);
@@ -96,7 +96,7 @@ public class loginPage extends JFrame implements ActionListener {
 		
 		JPanel plPasswordWest = new JPanel();
 		plPasswordWest.setBackground(Color.white);
-		plPasswordWest.setBorder(new EmptyBorder(0, 40, 0, 0));
+		plPasswordWest.setBorder(new EmptyBorder(0, 10, 0, 0));
 		plPassword.add(plPasswordWest, BorderLayout.WEST);
 		
 		JPanel plPasswordCenter = new JPanel();
@@ -116,9 +116,7 @@ public class loginPage extends JFrame implements ActionListener {
 		ImageIcon iconLogin = new ImageIcon("image\\loginButton.png");
 		
 		btnlogin = new JButton(iconLogin);
-		//btnlogin = new JButton("로그인");
-		//btnlogin.setFont(new Font("", 0, 15));
-		btnlogin.setPreferredSize(new Dimension(100, 40));
+		btnlogin.setPreferredSize(new Dimension(100, 45));
 		btnlogin.setOpaque(true);
 		btnlogin.setBackground(null);
 		btnlogin.setBorderPainted(false);
@@ -137,7 +135,7 @@ public class loginPage extends JFrame implements ActionListener {
 		btnSignUp.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		btnSignUp.setForeground(Color.white);
 		btnSignUp.setBackground(Color.gray);
-		btnSignUp.setPreferredSize(new Dimension(150, 40));
+		btnSignUp.setPreferredSize(new Dimension(150, 35));
 		plSignUP.add(btnSignUp);
 		
 		btnSignUp.addActionListener(this);
@@ -148,18 +146,18 @@ public class loginPage extends JFrame implements ActionListener {
 		pansouth.add(panSearch);
 		
 		btnSearchID = new JButton("ID 찾기");
-		btnSearchID.setFont(new Font("맑은 고딕", 0,12));
+		btnSearchID.setFont(new Font("맑은 고딕", 0,10));
 		btnSearchID.setForeground(Color.LIGHT_GRAY);
 		btnSearchID.setBackground(null);
-		btnSearchID.setPreferredSize(new Dimension(80, 30));
+		btnSearchID.setPreferredSize(new Dimension(75, 22));
 		panSearch.add(btnSearchID);
 		btnSearchID.addActionListener(this);
 		
 		btnSearchPW = new JButton("PW 찾기");
-		btnSearchPW.setFont(new Font("맑은 고딕", 0,12));
+		btnSearchPW.setFont(new Font("맑은 고딕", 0,10));
 		btnSearchPW.setForeground(Color.LIGHT_GRAY);
 		btnSearchPW.setBackground(null);
-		btnSearchPW.setPreferredSize(new Dimension(80, 30));
+		btnSearchPW.setPreferredSize(new Dimension(75, 22));
 		panSearch.add(btnSearchPW);
 		btnSearchPW.addActionListener(this);
 		
@@ -167,7 +165,7 @@ public class loginPage extends JFrame implements ActionListener {
 	}
 	
 	public static void main(String[] args) {
-		new loginPage("로그인 화면", 700, 500);
+		new loginPage("로그인 화면", 450, 500);
 		
 	}
 
@@ -177,7 +175,7 @@ public class loginPage extends JFrame implements ActionListener {
 		Object obj = e.getSource();
 		
 		if(obj == btnSignUp) {
-			signUp su = new signUp("회원가입 창", 500, 700);
+			signUp su = new signUp("회원가입 창", 400, 600);
 		}else if(obj == btnlogin) {
 			
 		}else if(obj == btnSearchID) {
