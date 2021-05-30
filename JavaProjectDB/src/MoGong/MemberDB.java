@@ -144,6 +144,68 @@ public class MemberDB {
 		}
 		return -1;
 	}
+	//로그인 하기
+	public int loginMemeber(String id, String pw) {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String pass = "";
+		int x = -1;
+		
+		try {
+			conn = getConnection();
+			String sql = "select pw from comet.customer" + " where id=?";
+			
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, id);
+			
+			rs = ps.executeQuery();
+
+			if (rs.next()) {
+				pass = rs.getString("pw");
+				if(pass.equals(pw))
+					x=1;
+				else {
+					x=0;
+				}
+					
+				
+			}else {
+				x=-1;
+			}
+			
+		} catch (SQLException e) {
+			e.getStackTrace();
+		}
+		return x;
+	}
+	//아이디 중복확인
+	public int confrimid(String id) {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		int x = -1;
+		try {
+			conn = getConnection();
+			String sql =  "select * from comet.customer" + "where id=?";
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, id);
+			rs = ps.executeQuery();
+			
+			if(rs.next())
+				x=1;
+			else {
+				x=-1;
+			}
+			
+		} catch (SQLException e) {
+			e.getStackTrace();
+		}
+		return x;
+	}
+	
+	
 //회원정보 수정하지
 	public int updateMember(Member vMem) {
 		System.out.println("data" + vMem.toString());

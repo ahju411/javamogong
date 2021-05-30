@@ -122,6 +122,8 @@ public class loginPage extends JFrame implements ActionListener {
 		btnlogin.setBorderPainted(false);
 		plLog.add(btnlogin);
 		
+		btnlogin.addActionListener(this);
+		
 		
 		JPanel plSignUP = new JPanel();
 		plSignUP.setBackground(Color.white);
@@ -182,6 +184,18 @@ public class loginPage extends JFrame implements ActionListener {
 			searchFrameID sfID = new searchFrameID("ID 찾기", 350, 400);
 		}else if(obj == btnSearchPW) {
 			searchFramePW sfPW = new searchFramePW("패스워드 찾기", 350, 400);
+		}
+		if(obj == btnlogin) {
+			String id = tfID.getText();
+			String pw = tfPassword.getText();
+			MemberDB db = new MemberDB();
+			int ok = db.loginMemeber(id, pw);
+			
+			if(ok == 1) {
+				JOptionPane.showMessageDialog(this, "로그인 성공");
+			}else {
+				JOptionPane.showMessageDialog(this, "로그인 실패");
+			}
 		}
 		
 		//if(obj == jmiteam) {
