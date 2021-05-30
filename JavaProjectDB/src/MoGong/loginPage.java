@@ -186,9 +186,8 @@ public class loginPage extends JFrame implements ActionListener {
 		
 		if(obj == btnSignUp) {
 			signUp su = new signUp("회원가입 창", 400, 600);
-		}else if(obj == btnlogin) {
-			ProductList0527 pb = new ProductList0527("상품목록",600,825);
-		}else if(obj == btnSearchID) {
+		}
+		else if(obj == btnSearchID) {
 			searchFrameID sfID = new searchFrameID("ID 찾기", 350, 400);
 		}else if(obj == btnSearchPW) {
 			searchFramePW sfPW = new searchFramePW("패스워드 찾기", 350, 400);
@@ -200,9 +199,10 @@ public class loginPage extends JFrame implements ActionListener {
 			int ok = db.loginMemeber(id, pw);
 			
 			if(ok == 1) {
-				JOptionPane.showMessageDialog(this, "로그인 성공");
+				ProductList0527 pd = new ProductList0527("상품목록", 600, 825);
+				dispose();
 			}else {
-				JOptionPane.showMessageDialog(this, "로그인 실패");
+				JOptionPane.showMessageDialog(this, "아이디나 비밀번호를 확인해보세요");
 			}
 		}
 		
