@@ -178,7 +178,7 @@ public class MemberDB {
 		} catch (SQLException e) {
 			e.getStackTrace();
 		}
-		return x;
+		return -1;
 	}
 	//아이디 중복확인
 	public int confrimid(String id) {
@@ -202,7 +202,7 @@ public class MemberDB {
 		} catch (SQLException e) {
 			e.getStackTrace();
 		}
-		return x;
+		return -1;
 	}
 	
 	
