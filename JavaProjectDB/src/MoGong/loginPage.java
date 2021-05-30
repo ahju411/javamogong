@@ -173,7 +173,7 @@ public class loginPage extends JFrame implements ActionListener {
 		Object obj = e.getSource();
 		
 		if(obj == btnSignUp) {
-			signUp su = new signUp("회원가입 창", 500, 700);
+			signUp su = new signUp("회원가입 창", 400, 600);
 		}else if(obj == btnlogin) {
 			
 		}else if(obj == btnSearchID) {
