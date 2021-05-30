@@ -25,6 +25,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
@@ -89,7 +90,8 @@ public class loginPage extends JFrame implements ActionListener {
 		JLabel lblPassword = new JLabel("Password : ", JLabel.RIGHT);
 		panInput.add(lblPassword);
 		
-		tfPassword = new JTextField(20);
+		tfPassword = new JPasswordField(20);
+
 		panInput.add(tfPassword);
 		
 		
@@ -125,6 +127,8 @@ public class loginPage extends JFrame implements ActionListener {
 		btnlogin.setBorderPainted(false);
 		btnlogin.addActionListener(this);
 		plLog.add(btnlogin);
+		
+		btnlogin.addActionListener(this);
 		
 		
 		JPanel plSignUP = new JPanel();
@@ -188,6 +192,18 @@ public class loginPage extends JFrame implements ActionListener {
 			searchFrameID sfID = new searchFrameID("ID 찾기", 350, 400);
 		}else if(obj == btnSearchPW) {
 			searchFramePW sfPW = new searchFramePW("패스워드 찾기", 350, 400);
+		}
+		if(obj == btnlogin) {
+			String id = tfID.getText();
+			String pw = tfPassword.getText();
+			MemberDB db = new MemberDB();
+			int ok = db.loginMemeber(id, pw);
+			
+			if(ok == 1) {
+				JOptionPane.showMessageDialog(this, "로그인 성공");
+			}else {
+				JOptionPane.showMessageDialog(this, "로그인 실패");
+			}
 		}
 		
 		//if(obj == jmiteam) {

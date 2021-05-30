@@ -14,7 +14,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
@@ -26,6 +28,7 @@ public class signUp extends JFrame implements ActionListener {
 	public signUp(String title, int width, int height) {
 		setTitle(title);
 		setSize(width, height);
+		setResizable(false);
 		setLocationRelativeTo(this);
 		
 	
@@ -75,13 +78,13 @@ public class signUp extends JFrame implements ActionListener {
 		JLabel lblMail = new JLabel("메일주소 : ", JLabel.RIGHT);
 		
 		tfID = new JTextField(15);
-		tfPassword = new JTextField(15);
+		tfPassword = new JPasswordField(15);
 		tfName = new JTextField(15);
 		tfAge = new JTextField(15);
 		tfAddress = new JTextField(15);
 		tfPhone1 = new JTextField(5);
-		tfPhone2 = new JTextField(7);
-		tfPhone3 = new JTextField(7);
+		tfPhone2 = new JTextField(6);
+		tfPhone3 = new JTextField(6);
 		tfMail = new JTextField(15);
 		
 		ImageIcon iconSignUp = new ImageIcon("image\\signUpIcon.png");
@@ -138,12 +141,55 @@ public class signUp extends JFrame implements ActionListener {
 		Object obj = e.getSource();
 		
 		if(obj == btnSignUp) {
-			//DB로 보내고 창 닫기
+			insertMember();
 			dispose();
 		}
 		
 		
 	}
-
+	private void insertMember(){
+	       
+        //화면에서 사용자가 입력한 내용을 얻는다.
+        Member mem = getViewData();
+        MemberDB db = new MemberDB();       
+        int ok = db.insertMem(mem);
+       
+        if(ok == 1){
+           
+            JOptionPane.showMessageDialog(this, "가입이 완료되었습니다.");
+            dispose();
+           
+        }else{
+           
+            JOptionPane.showMessageDialog(this, "가입이 정상적으로 처리되지 않았습니다.");
+        }
+	}
+        
+	 public Member getViewData(){
+	       
+	        //화면에서 사용자가 입력한 내용을 얻는다.
+	        Member mem = new Member();
+	        String id = tfID.getText();
+	        String pw =tfPassword.getText();
+	        String name = tfName.getText();
+	        String tel1 = tfPhone1.getText();
+	        String tel2 = tfPhone2.getText();
+	        String tel3 = tfPhone3.getText();
+	        String tel = tel1+"-"+tel2+"-"+tel3;
+	        String addr = tfAddress.getText();
+	        int age = Integer.parseInt(tfAge.getText()); 
+	        String email = tfMail.getText();
+	       
+	        //dto에 담는다.
+	        mem.setId(id);
+	        mem.setPw(pw);
+	        mem.setName(name);
+	        mem.setTel(tel);
+	        mem.setAddr(addr);
+	        mem.setEmail(email);
+	        mem.setAge(age);
+	       
+	        return mem;
+	    }
 
 }
