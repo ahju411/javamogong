@@ -27,7 +27,7 @@ public class searchFramePW extends JFrame implements ActionListener {
 	JTextField tfID, tfPhone1, tfPhone2, tfPhone3, tfName;
 	JButton btn;
 	
-	String pw;
+	String pw;//
 	
 	public searchFramePW(String title, int width, int height) {
 		setTitle(title);
