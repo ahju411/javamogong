@@ -98,7 +98,7 @@ public class searchFrameID extends JFrame implements ActionListener {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			
 			//오라클 드라이버 매니저 연결
-			Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@118.217.168.174:XE", "comet", "1234");
+			Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@118.217.168.174:1521:xe", "comet", "1234");
 			
 			Statement stmt = conn.createStatement();
 			
@@ -107,10 +107,8 @@ public class searchFrameID extends JFrame implements ActionListener {
 			String findName = tfName.getText();
 			String findPhone = tfPhone1.getText() + "-" + tfPhone2.getText() + "-" + tfPhone3.getText();
 			
-			//ResultSet rs = stmt.executeQuery("SELECT * FROM \"member\" where id = '" + findId + "'");
-			//ResultSet rs = stmt.executeQuery("SELECT * FROM \"customer\" where name = '" + findName + "', tel = '" + findPhone + "'");
-			System.out.println(findName);
-			ResultSet rs = stmt.executeQuery("SELECT * FROM customer where name = '" + findName + "'");
+			System.out.println(findPhone);
+			ResultSet rs = stmt.executeQuery("SELECT * FROM customer where name = '" + findName + "'and tel = '" + findPhone + "'");
 			
 			/*while(rs.next()) {
 				String id = rs.getString("id");
