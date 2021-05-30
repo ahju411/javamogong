@@ -97,20 +97,17 @@ public class searchFrameID extends JFrame implements ActionListener {
 		Object obj = e.getSource();
 		
 		try {
-			//오라클 드라이버 설치
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			
-			//오라클 드라이버 매니저 연결
 			Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@118.217.168.174:1521:xe", "comet", "1234");
 			
 			Statement stmt = conn.createStatement();
 			
 			
-			//데이터 검색
 			String findName = tfName.getText();
 			String findPhone = tfPhone1.getText() + "-" + tfPhone2.getText() + "-" + tfPhone3.getText();
 			
-			ResultSet rs = stmt.executeQuery("SELECT * FROM customer where name = '" + findName + "'");
+			ResultSet rs = stmt.executeQuery("SELECT * FROM customer where name = '" + findName + "' and tel = " + findPhone + "'");
 			
 			System.out.println("밑줄이 오류");
 			
