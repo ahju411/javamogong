@@ -8,6 +8,8 @@ import java.awt.Graphics;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -18,7 +20,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
-public class Productbuy extends JFrame {
+public class Productbuy extends JFrame implements ActionListener {
 
 	
 private JPanel backpan;
@@ -30,14 +32,15 @@ private JLabel name,price,info,wait;
 private ImageIcon img,back,infoimg;
 private JScrollPane scrollpane;
 private JLabel jungga;
+private ProductbuyBackgroundVersion pbv;
 	
 	
 
 	public Productbuy(String title , int width , int height) {
 		setTitle(title);
 		setSize(width,height);
-		setLocationRelativeTo(this);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLocation(250, 150);
+		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		
 	
@@ -88,6 +91,8 @@ private JLabel jungga;
 		subpan2_1 = new JPanel();
 		
 		but1= new JButton("구매예약");
+		but1.addActionListener(this);
+		
 		but2= new JButton("예약취소");
 		but2.setEnabled(false);
 
@@ -138,10 +143,24 @@ private JLabel jungga;
 
 
 
-ImageIcon imageSetSize(ImageIcon icon, int i, int j) {
-	Image ximg = icon.getImage();
-	Image yimg = ximg.getScaledInstance(i, j, java.awt.Image.SCALE_SMOOTH);
-	ImageIcon xyimg = new ImageIcon(yimg);
-	return xyimg;
-}
+	ImageIcon imageSetSize(ImageIcon icon, int i, int j) {
+		Image ximg = icon.getImage();
+		Image yimg = ximg.getScaledInstance(i, j, java.awt.Image.SCALE_SMOOTH);
+		ImageIcon xyimg = new ImageIcon(yimg);
+		return xyimg;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		
+		Object obj = e.getSource();
+		
+		if(obj == but1) {
+			pbv = new ProductbuyBackgroundVersion("구매화면",650,800,this);
+			pbv.setLocation(900, 150);
+		}
+		
+	}
+
+
 }

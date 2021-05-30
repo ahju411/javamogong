@@ -30,14 +30,15 @@ private JLabel name,price,info,wait;
 private ImageIcon img,back,infoimg;
 private JScrollPane scrollpane;
 private JLabel jungga;
+private ProductbuyBackgroundVersion productbuyBackgroundVersion;
 	
 	
 
-	public ProductbuyBackgroundVersion(String title , int width , int height) {
+	public ProductbuyBackgroundVersion(String title , int width , int height, Productbuy productbuy) {
 		setTitle(title);
 		setSize(width,height);
 		setLocationRelativeTo(this);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		
 		back = new ImageIcon("images/ProductListBackGround.png");
@@ -134,9 +135,7 @@ private JLabel jungga;
 		
 	}
 	
-	public static void main(String[] args) {
-		new ProductbuyBackgroundVersion("구매화면",650,800);
-	}
+	
 
 
 
