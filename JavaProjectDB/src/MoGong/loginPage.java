@@ -187,24 +187,17 @@ public class loginPage extends JFrame implements ActionListener {
 		if(obj == btnSignUp) {
 			signUp su = new signUp("회원가입 창", 400, 600);
 		}
+		
 		else if(obj == btnSearchID) {
 			searchFrameID sfID = new searchFrameID("ID 찾기", 350, 400);
-		}else if(obj == btnSearchPW) {
+		}
+		else if(obj == btnSearchPW) {
 			searchFramePW sfPW = new searchFramePW("패스워드 찾기", 350, 400);
 		}
-		if(obj == btnlogin) {
-			String id = tfID.getText();
-			String pw = tfPassword.getText();
-			MemberDB db = new MemberDB();
-			int ok = db.loginMemeber(id, pw);
-			
-			if(ok == 1) {
-				ProductList0527 pd = new ProductList0527("상품목록", 600, 825);
-				dispose();
-			}else {
-				JOptionPane.showMessageDialog(this, "아이디나 비밀번호를 확인해보세요");
-			}
+		else if(obj == btnlogin) {
+			loginMember();
 		}
+		
 		
 		//if(obj == jmiteam) {
 		//	JOptionPane.showMessageDialog(null, "!", "2", ABORT);
@@ -214,6 +207,19 @@ public class loginPage extends JFrame implements ActionListener {
 			JOptionPane.showMessageDialog(null, "e", "getTitle()", JOptionPane.INFORMATION_MESSAGE);
 		}*/
 		
+	}
+	private void loginMember(){
+		String id = tfID.getText();
+		String pw = tfPassword.getText();
+		MemberDB db = new MemberDB();
+		int ok = db.loginMemeber(id, pw);
+		
+		if(ok == 1) {
+			ProductList0527 pd = new ProductList0527("상품목록", 600, 825);
+			dispose();
+		}else {
+			JOptionPane.showMessageDialog(this, "아이디나 비밀번호를 확인해보세요");
+		}
 	}
 
 }

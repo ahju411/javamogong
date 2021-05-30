@@ -4,6 +4,7 @@ package MoGong;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -23,7 +24,7 @@ import javax.swing.border.EmptyBorder;
 public class signUp extends JFrame implements ActionListener {
 	
 	JTextField tfID, tfPassword, tfName, tfAge, tfAddress, tfPhone1, tfPhone2, tfPhone3, tfMail;
-	JButton btnSignUp;
+	JButton btnSignUp,btnConfirm;
 
 	public signUp(String title, int width, int height) {
 		setTitle(title);
@@ -35,16 +36,15 @@ public class signUp extends JFrame implements ActionListener {
 		setLayout(new BorderLayout());
 		
 		
-		JPanel leftpan = new JPanel();
-		leftpan.setBackground(Color.white);
-		leftpan.setBorder(new EmptyBorder(20, 30, 10, 30));
-		leftpan.setLayout(new GridLayout(7, 1, 0 ,20));//같게 설정
-		
+//		JPanel leftpan = new JPanel();
+//		leftpan.setBackground(Color.white);
+//		leftpan.setBorder(new EmptyBorder(20, 30, 10, 30));
+//		leftpan.setLayout(new GridLayout(7, 1, 0 ,20));//같게 설정
 		
 		JPanel centerpan = new JPanel();
 		centerpan.setBackground(Color.white);
-		centerpan.setBorder(new EmptyBorder(20, 0, 10, 0));
-		centerpan.setLayout(new GridLayout(7, 1, 0, 20));//같게 설정
+		centerpan.setBorder(new EmptyBorder(20, 0, 10, 50));
+		centerpan.setLayout(new GridLayout(7, 2, 20, 20));//같게 설정
 		
 		
 		JPanel southpan = new JPanel();
@@ -77,7 +77,8 @@ public class signUp extends JFrame implements ActionListener {
 		JLabel lblPhone = new JLabel("핸드폰 번호 : ", JLabel.RIGHT);
 		JLabel lblMail = new JLabel("메일주소 : ", JLabel.RIGHT);
 		
-		tfID = new JTextField(15);
+		tfID = new JTextField(10);
+		btnConfirm = new JButton("아이디 중복 확인");
 		tfPassword = new JPasswordField(15);
 		tfName = new JTextField(15);
 		tfAge = new JTextField(15);
@@ -109,25 +110,25 @@ public class signUp extends JFrame implements ActionListener {
 		panPhone.add(tfPhone3);
 		
 		
-		add(leftpan, BorderLayout.WEST);
-		leftpan.add(lblID);
-		leftpan.add(lblPassword);
-		leftpan.add(lblName);
-		leftpan.add(lblAge);
-		leftpan.add(lblAddress);
-		leftpan.add(lblPhone);
-		leftpan.add(lblMail);
 		
 		
-		add(centerpan);
+		centerpan.add(lblID);
 		centerpan.add(tfID);
+		centerpan.add(lblPassword);
 		centerpan.add(tfPassword);
+		centerpan.add(lblName);
 		centerpan.add(tfName);
+		centerpan.add(lblAge);
 		centerpan.add(tfAge);
+		centerpan.add(lblAddress);
 		centerpan.add(tfAddress);
+		centerpan.add(lblPhone);
 		centerpan.add(panPhone);
-		//centerpan.add(tfPhone);
+		centerpan.add(lblMail);
 		centerpan.add(tfMail);
+		add(centerpan);
+		//centerpan.add(btnConfirm);
+		//centerpan.add(tfPhone);
 		
 		add(southpan, BorderLayout.SOUTH);
 		southpan.add(btnSignUp);
