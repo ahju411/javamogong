@@ -30,7 +30,9 @@ public class ProductDB {
 	static ArrayList<Integer> ITEMID = new ArrayList<Integer>();
 	static ArrayList<String> ITEMNAME = new ArrayList<String>();
 	static ArrayList<String> ITEMPRICE = new ArrayList<String>();
+	static ArrayList<String> ITEMBRAND = new ArrayList<String>();
 	static ArrayList<String> ITEMCLASS = new ArrayList<String>();
+	
 	static int i = 0;
 	
 	public ProductDB() {
@@ -61,80 +63,61 @@ public class ProductDB {
 	
 	public int productcrawling(ArrayList<productdto> pl) throws IOException {
 		
-		try {
-		URL	url = new URL("https://search.shopping.naver.com/search/all?query=%EA%B5%AC%EC%B0%8C&cat_id=&frm=NVSHATC");
-			Document doc = Jsoup.connect("https://search.shopping.naver.com/search/all?query=%EA%B5%AC%EC%B0%8C&cat_id=&frm=NVSHATC")
-					.get();
-		
-		BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
-		StringBuffer sourceCode = new StringBuffer();
-		
-		
-		String sourceLine = "";
-		while ((sourceLine = br.readLine()) != null) {
-			sourceCode.append(sourceLine + "\n");
-		}
+		// 1. 구찌시계 크롤링  사이트 : 옥션
+					String url = "http://browse.auction.co.kr/search?keyword=%EA%B5%AC%EC%B0%8C%EC%8B%9C%EA%B3%84";
+					Document doc = null;
+					Elements tmp;
+				
+					try {
+						doc = Jsoup.connect(url).get();
+					}catch (Exception e) {
+						e.printStackTrace();
+					}
+					
+					//
+					// 상위 7개정보 추출하여 DB에 넣기
+					
+					Elements element = doc.select("div[class=\"section--inner_content_body\"]");
+					
+					for(int i = 0 ; i <7;i++) {
+						ITEMID.add(i);
+						tmp = element.select("span.text--title"); // 상품이름
+						ITEMNAME.add(tmp.get(i).text());
+						
+						tmp = element.select("strong.text--price_seller"); //상품가격
+						ITEMPRICE.add(tmp.get(i).text());
+						
+						tmp = element.select("span.text--brand"); //상품브랜드
+						ITEMBRAND.add(tmp.get(i).text());
+						
+						tmp = element.select("span.text--brand"); //상품종류
+						ITEMBRAND.add(tmp.get(i).text());
+						
+						ITEMCLASS.add("시계");
+						
 
-		// 상품이름및 아이디 변수저장
-		Elements elem = doc.select("div[class=\"style_inner__18zZX\"]");
-
-		// 상품이름및 아이디 변수저장
-		for (Element e : elem.select("a")) {
-			if (e.className().equals("basicList_link__1MaTN")) {
-
-				ITEMID.add(i);
-				ITEMNAME.add(e.text());
-				i++;
-
-			}
-
-			else
-				continue;
-		}
-
-		int i = 0;
-
-		for (Element e : elem.select("span")) {
-			if (e.className().equals("price_num__2WUXn")) {
-
-				ITEMPRICE.add(e.text());
-				i++;
-			}
-
-			else
-				continue;
-		}
-		
-		}
-		
-		
-		
-		catch (MalformedURLException e1) {
-			e1.printStackTrace();
-		}
-
-		
-		return 1;
+					System.out.println(ITEMNAME + " " + ITEMPRICE + " " + ITEMBRAND + " " + ITEMCLASS);
+				
+					}
+					return 0;
 	}
 	
 
 	// 추출한 상품 모든정보 DB에넣기
 	public int insertitem(productdto dto) {
 		
-		String insertSQL = "INSERT INTO ITEMTEST (ITEMID, ITEMNAME, PRICE)" + "VALUES(?,?,?)";
+		String insertSQL = "INSERT INTO ITEM (ITEMID, ITEMNAME, PRICE,BRAND,CLASS)"
+				+ "VALUES(?,?,?,?,?)";
 		Connection conn = null;
 		PreparedStatement ps = null;
 		try {
-			for (int p = 0; p < 5; p++) {
-				ps = conn.prepareStatement(insertSQL);
-				
-				/*
-				 * ps.setInt(1, ITEMID.get(p+1)); ps.setString(2, ITEMNAME.get(p));
-				 * ps.setString(3, ITEMPRICE.get(p));
-				 */
-				ps.setInt(1,dto.getItemid());
-				ps.setString(2, dto.getItemname());
-				ps.setString(3, dto.getItemprice());
+			for(int p = 0 ; p<7 ; p++) {
+				ps = conn.prepareStatement(insertSQL);	
+			ps.setInt(1, ITEMID.get(p+1));
+			ps.setString(2, ITEMNAME.get(p));
+			ps.setString(3, ITEMPRICE.get(p));
+			ps.setString(4, ITEMBRAND.get(p));
+			ps.setString(5, ITEMCLASS.get(p));
 				
 				
 				int r =ps.executeUpdate();
