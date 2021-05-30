@@ -19,6 +19,7 @@ public class productdao {
 		db.insertitem(pl);
 		
 		
+		
 
 	}
 

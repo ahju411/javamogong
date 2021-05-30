@@ -73,25 +73,21 @@ public class ProductDB {
 		try {
 			conn = getConnection();
 			for(int p = 0 ; p<pl.size() ; p++) {
-				String insertSQL = "INSERT INTO ITEM (ITEMID, ITEMNAME, PRICE,BRAND,CLASS)"
+				String insertSQL = "INSERT INTO ITEM (ITEMID,ITEMNAME,PRICE,BRAND,CLASS)"
 						+ "VALUES(?,?,?,?,?)";
 				ps = conn.prepareStatement(insertSQL);	
-			ps.setInt(1, pl.get(i).getItemid());
-			ps.setString(2, pl.get(i).getItemname());
-			ps.setString(3, pl.get(i).getItemprice());
-			ps.setString(4, pl.get(i).getItembrand());
-			ps.setString(5, pl.get(i).getItemclass());
+			ps.setInt(1, pl.get(p).getItemid());
+			ps.setString(2, pl.get(p).getItemname());
+			ps.setString(3, pl.get(p).getItemprice());
+			ps.setString(4, pl.get(p).getItembrand());
+			ps.setString(5, pl.get(p).getItemclass());
 			
 				
-			int r =ps.executeUpdate();
+			ps.executeUpdate();
 				
-				if(r>0) {
-					System.out.println("성공");
-				}else {
-					System.out.println("실패");
-				}
-				return 1;
 			}
+				
+				return 1;
 			
 		} catch (SQLException e) {
 			e.getStackTrace();
