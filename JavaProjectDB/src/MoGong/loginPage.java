@@ -20,6 +20,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
@@ -84,7 +85,8 @@ public class loginPage extends JFrame implements ActionListener {
 		JLabel lblPassword = new JLabel("Password : ", JLabel.RIGHT);
 		panInput.add(lblPassword);
 		
-		tfPassword = new JTextField(20);
+		tfPassword = new JPasswordField(20);
+
 		panInput.add(tfPassword);
 		
 		

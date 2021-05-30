@@ -15,6 +15,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
@@ -75,7 +76,7 @@ public class signUp extends JFrame implements ActionListener {
 		JLabel lblMail = new JLabel("메일주소 : ", JLabel.RIGHT);
 		
 		tfID = new JTextField(15);
-		tfPassword = new JTextField(15);
+		tfPassword = new JPasswordField(15);
 		tfName = new JTextField(15);
 		tfAge = new JTextField(15);
 		tfAddress = new JTextField(15);
