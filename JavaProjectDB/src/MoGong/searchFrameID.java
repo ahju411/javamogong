@@ -53,15 +53,15 @@ public class searchFrameID extends JFrame implements ActionListener {
 		JLabel lblName = new JLabel("이름 : ", JLabel.RIGHT);
 		panMid.add(lblName);
 		
-		tfName = new JTextField("유은철");//15로 수정할것
+		tfName = new JTextField(15);
 		panMid.add(tfName);
 		
 		JLabel lblPhone = new JLabel("핸드폰 번호 : ", JLabel.RIGHT);
 		panMid.add(lblPhone);
 		
-		tfPhone1 = new JTextField("010");//3
-		tfPhone2 = new JTextField("1234");//4
-		tfPhone3 = new JTextField("5678");//4
+		tfPhone1 = new JTextField(3);
+		tfPhone2 = new JTextField(4);
+		tfPhone3 = new JTextField(4);
 		
 		JPanel panPhone = new JPanel();
 		panPhone.setBackground(Color.white);
