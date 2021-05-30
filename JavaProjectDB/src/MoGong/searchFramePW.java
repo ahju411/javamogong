@@ -18,7 +18,7 @@ import javax.swing.border.EmptyBorder;
 
 public class searchFramePW extends JFrame implements ActionListener {
 
-	JTextField tfID, tfPhone, tfName;
+	JTextField tfID, tfPhone1, tfPhone2, tfPhone3, tfName;
 	JButton btn;
 	
 	public searchFramePW(String title, int width, int height) {
@@ -38,8 +38,8 @@ public class searchFramePW extends JFrame implements ActionListener {
 		
 		JPanel panMid = new JPanel();
 		panMid.setBackground(Color.white);
-		panMid.setBorder(new EmptyBorder(50, 0, 100, 50));
-		panMid.setLayout(new GridLayout(3,2,10,30));
+		panMid.setBorder(new EmptyBorder(30, 0, 30, 15));
+		panMid.setLayout(new GridLayout(3, 2, 10, 25));
 		add(panMid);
 		
 		JLabel lblID = new JLabel("ID : ", JLabel.RIGHT);
@@ -57,8 +57,23 @@ public class searchFramePW extends JFrame implements ActionListener {
 		JLabel lblPhone = new JLabel("핸드폰 번호 : ", JLabel.RIGHT);
 		panMid.add(lblPhone);
 		
-		tfPhone = new JTextField(15);
-		panMid.add(tfPhone);
+		tfPhone1 = new JTextField(3);
+		tfPhone2 = new JTextField(4);
+		tfPhone3 = new JTextField(4);
+		
+		JPanel panPhone = new JPanel();
+		panPhone.setBackground(Color.white);
+		
+		JLabel lblPhone1 = new JLabel("-");
+		JLabel lblPhone2 = new JLabel("-");
+		
+		panPhone.add(tfPhone1);
+		panPhone.add(lblPhone1);
+		panPhone.add(tfPhone2);
+		panPhone.add(lblPhone2);
+		panPhone.add(tfPhone3);
+		
+		panMid.add(panPhone);
 		
 		
 		JPanel panSouth = new JPanel();
