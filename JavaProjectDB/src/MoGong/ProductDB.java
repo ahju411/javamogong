@@ -43,6 +43,7 @@ public class ProductDB {
 	 * }
 	 */
 	public Connection getConnection() {
+		
 		Connection conn = null;
 		try {
 			Class.forName(DRIVER);
