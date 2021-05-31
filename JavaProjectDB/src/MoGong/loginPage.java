@@ -191,10 +191,10 @@ public class loginPage extends JFrame implements ActionListener {
 		}
 		
 		else if(obj == btnSearchID) {
-			searchFrameID sfID = new searchFrameID("ID 찾기", 350, 400);
+			searchFrameID sfID = new searchFrameID("ID 찾기", 380, 420);
 		}
 		else if(obj == btnSearchPW) {
-			searchFramePW sfPW = new searchFramePW("패스워드 찾기", 350, 400);
+			searchFramePW sfPW = new searchFramePW("패스워드 찾기", 380, 420);
 		}
 		else if(obj == btnlogin) {
 			loginMember();
