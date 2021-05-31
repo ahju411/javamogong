@@ -155,17 +155,29 @@ public class MemberDB {
 			ps.setString(1, id);
 
 			rs = ps.executeQuery();
-
-			if (rs.next()) {
-				pass = rs.getString("pw");
-				if (pass.equals(pw))
-					x = 1;
-				else {
-					x = 0;
+			if(id.equals("admin")) {
+				if(rs.next()) {
+					pass = rs.getString("pw");
+					if(pass.equals(pw)) {
+						
+						x=2;
+					}
 				}
+			}
 
-			} else {
-				x = -1;
+			else {
+				
+				if (rs.next()) {
+					pass = rs.getString("pw");
+					if (pass.equals(pw))
+						x = 1;
+					else {
+						x = 0;
+					}
+					
+				} else {
+					x = -1;
+				}
 			}
 
 		} catch (SQLException e) {

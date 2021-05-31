@@ -28,11 +28,14 @@ public class buySomething extends JFrame implements ActionListener {
 	private JComboBox<String> cb;
 	private JTextArea taAdd, taReq;
 	
+	loginPage loginPage;
+	
 	public buySomething(String title, int width, int height) {
 		setTitle(title);
 		setSize(width, height);
 		setLocationRelativeTo(this);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.loginPage = loginPage;
 		
 		//맨 뒤에 오는 패널
 		JPanel pan = new JPanel();

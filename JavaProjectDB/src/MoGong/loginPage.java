@@ -219,7 +219,12 @@ public class loginPage extends JFrame implements ActionListener {
 			pd.setTitle("상품목록"+"("+id+")");
 			logid = id;
 			dispose();
-		}else {
+		}else if(ok == 2){
+			Member_List mem = new Member_List("회원관리창", 700, 500);
+			dispose();
+		}
+		
+		else {
 			JOptionPane.showMessageDialog(this, "아이디나 비밀번호를 확인해보세요");
 		}
 	}
