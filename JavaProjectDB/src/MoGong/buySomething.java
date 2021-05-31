@@ -31,7 +31,6 @@ public class buySomething extends JFrame implements ActionListener {
 	private JComboBox<String> cb;
 	private JTextArea taAdd, taReq;
 	
-	loginPage loginPage;
 	
 	public buySomething(String title, int width, int height) {
 		setTitle(title);
