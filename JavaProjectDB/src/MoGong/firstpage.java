@@ -75,7 +75,7 @@ public class firstpage extends JFrame implements ActionListener{
 		Object obj = e.getSource();
 		
 		if(obj == btnstart) {
-			loginPage lp = new loginPage("로그인 페이지", 450, 500);
+			loginPage lp = new loginPage();
 			dispose();
 		}
 		

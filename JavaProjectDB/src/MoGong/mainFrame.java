@@ -9,6 +9,8 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -26,7 +28,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
-public class mainFrame extends JFrame implements MouseListener {
+public class mainFrame extends JFrame implements MouseListener, ActionListener {
 
 	private ImageIcon background,img1,buyimg;
 	private JLabel lblimg1;
@@ -40,12 +42,14 @@ public class mainFrame extends JFrame implements MouseListener {
 	
 	private JMenu menuUser;
 	private JMenuItem BuyList,basket,MyInfo,Reservation;
+	loginPage loginPage;
 	
-	public mainFrame(String title , int width , int height) {
+	public mainFrame(String title , int width , int height, loginPage loginPage) {
 		setTitle(title);
 		setSize(width,height);
 		setLocationRelativeTo(this);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.loginPage =loginPage;
 		
 		JMenuBar menubar = new JMenuBar();
 		menubar.setBackground(Color.PINK);
@@ -77,6 +81,7 @@ public class mainFrame extends JFrame implements MouseListener {
 		menuProduct.add(Accessory);
 		menuUser = new JMenu("My");
 		MyInfo = new JMenuItem("나의 정보");
+		MyInfo.addActionListener(this);
 		Reservation = new JMenuItem("예약현황");
 		basket = new JMenuItem("장바구니");
 		BuyList = new JMenuItem("구매목록");
@@ -384,10 +389,6 @@ public class mainFrame extends JFrame implements MouseListener {
 		
 	}
 	
-	
-	public static void main(String[] args) {
-		new mainFrame("상품목록",600,825);
-	}
 
 
 	ImageIcon imageSetSize(ImageIcon icon, int i, int j) {
@@ -430,4 +431,19 @@ public class mainFrame extends JFrame implements MouseListener {
 		// TODO Auto-generated method stub
 	
 	}
+
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		Object obj = e.getSource();
+		if(obj == MyInfo){
+			String id =loginPage.getLogid();
+			signUp su = new signUp();
+			su.signUp(id, this);
+			su.setTitle("회원정보");
+			
+		}
+		
+	}
+	
 }

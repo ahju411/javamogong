@@ -36,10 +36,10 @@ public class loginPage extends JFrame implements ActionListener {
 	JButton btnlogin, btnSignUp, btnSearchID, btnSearchPW;
 	JTextField tfID, tfPassword;
 	JMenuItem jmiteam;
-
-	public loginPage(String title, int width, int height) {
-		setTitle(title);
-		setSize(width, height);
+	public String logid ="";
+	public loginPage() {
+		setTitle("로그인 화면");
+		setSize(450, 500);
 		setLocationRelativeTo(this);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -172,7 +172,7 @@ public class loginPage extends JFrame implements ActionListener {
 	}
 	
 	public static void main(String[] args) {
-		new loginPage("로그인 화면", 450, 500);
+		new loginPage();
 		
 	}
 
@@ -184,7 +184,8 @@ public class loginPage extends JFrame implements ActionListener {
 
 		
 		if(obj == btnSignUp) {
-			signUp su = new signUp("회원가입 창", 400, 600);
+			signUp su = new signUp();
+			su.signUp();
 		}
 		
 		else if(obj == btnSearchID) {
@@ -214,11 +215,22 @@ public class loginPage extends JFrame implements ActionListener {
 		int ok = db.loginMemeber(id, pw);
 		
 		if(ok == 1) {
-			mainFrame pd = new mainFrame("상품목록", 600, 825);
+			mainFrame pd = new mainFrame("상품목록", 600, 825,this);
+			pd.setTitle("상품목록"+"("+id+")");
+			logid = id;
 			dispose();
 		}else {
 			JOptionPane.showMessageDialog(this, "아이디나 비밀번호를 확인해보세요");
 		}
 	}
+
+	public String getLogid() {
+		return logid;
+	}
+
+	public void setLogid(String logid) {
+		this.logid = logid;
+	}
+	
 
 }

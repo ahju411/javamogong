@@ -25,11 +25,45 @@ import javax.swing.border.EmptyBorder;
 public class signUp extends JFrame implements ActionListener {
 	
 	JTextField tfID, tfPassword, tfName, tfAge, tfAddress, tfPhone1, tfPhone2, tfPhone3, tfMail;
-	JButton btnSignUp,btnConfirm;
+	JButton btnSignUp,btnConfirm,btnUpdate,btnDelete;
+	mainFrame mainFrame;
 
-	public signUp(String title, int width, int height) {
-		setTitle(title);
-		setSize(width, height);
+	
+	public void signUp() {
+		signUpUI();
+		
+		btnUpdate.setEnabled(false);
+		btnUpdate.setVisible(false);
+		btnDelete.setEnabled(false);
+		btnDelete.setVisible(false);
+		
+	}
+	public void signUp(String id,mainFrame mainFrame) {
+		signUpUI();
+		btnConfirm.setEnabled(false);
+		btnConfirm.setVisible(false);
+		btnSignUp.setEnabled(false);
+		btnSignUp.setVisible(false);
+		
+		this.mainFrame = mainFrame;
+		MemberDB db = new MemberDB();
+		Member mem = db.getMember(id);
+		viewData(mem);
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	private void signUpUI() {
+		this.setTitle("회원가입");
+		setSize(400,600);
 		setResizable(false);
 		setLocationRelativeTo(this);
 		
@@ -66,7 +100,7 @@ public class signUp extends JFrame implements ActionListener {
 		JPanel southpan = new JPanel();
 		southpan.setBackground(Color.white);
 		southpan.setBorder(new EmptyBorder(0, 0, 30, 0));
-		southpan.setLayout(new FlowLayout());
+		southpan.setLayout(new FlowLayout(FlowLayout.CENTER,10,20));
 		
 		
 		
@@ -108,8 +142,22 @@ public class signUp extends JFrame implements ActionListener {
 		btnSignUp.setBackground(Color.gray);
 		btnSignUp.setForeground(Color.white);
 		btnSignUp.setBorderPainted(false);
-		btnSignUp.setFont(new Font("맑은 고딕", width, 20));
+		btnSignUp.setFont(new Font("맑은 고딕", 0, 20));
 		btnSignUp.addActionListener(this);
+		
+		btnUpdate = new JButton("수정");
+		btnUpdate.setFocusPainted(false);
+		btnUpdate.setBorderPainted(false);
+		btnUpdate.setBackground(Color.LIGHT_GRAY);
+		btnUpdate.setFont(new Font("맑은 고딕",Font.BOLD,11));
+		btnUpdate.addActionListener(this);
+		
+		btnDelete = new JButton("탈퇴");
+		btnDelete.setFocusPainted(false);
+		btnDelete.setBorderPainted(false);
+		btnDelete.setBackground(Color.LIGHT_GRAY);
+		btnDelete.setFont(new Font("맑은 고딕",Font.BOLD,11));
+		btnDelete.addActionListener(this);
 		
 		JPanel panPhone = new JPanel();
 		panPhone.setBackground(Color.white);
@@ -145,8 +193,13 @@ public class signUp extends JFrame implements ActionListener {
 		
 		add(southpan, BorderLayout.SOUTH);
 		southpan.add(btnSignUp);
+		southpan.add(btnUpdate);
+		southpan.add(btnDelete);
 		
 		setVisible(true);
+	}
+	public static void main(String[] args) {
+		new signUp();
 	}
 
 	@Override
@@ -159,6 +212,15 @@ public class signUp extends JFrame implements ActionListener {
 			dispose();
 		}else if(obj == btnConfirm) {
 			confirmid();
+		}else if(obj == btnDelete) {
+			int x = JOptionPane.showConfirmDialog(this, "정말 탈퇴하시겠습니까?", "탈퇴", JOptionPane.YES_NO_OPTION);
+			if(x == JOptionPane.OK_OPTION) {
+				deleteMember();
+			}else {
+				JOptionPane.showMessageDialog(this, "탙퇴 취소");
+			}
+		}else if(obj == btnUpdate) {
+			UpdateMember();
 		}
 		
 	}
@@ -180,6 +242,43 @@ public class signUp extends JFrame implements ActionListener {
 		}
         }
 	}
+	private void UpdateMember() {
+	       
+        //1. 화면의 정보를 얻는다.
+        Member mem = getViewData();     
+        //2. 그정보로 DB를 수정
+        MemberDB db = new MemberDB();
+        int ok = db.updateMember(mem);
+       
+        if(ok == 1){
+            JOptionPane.showMessageDialog(this, "수정되었습니다.");
+            this.dispose();
+        }else{
+            JOptionPane.showMessageDialog(this, "수정실패: 값을 확인하세요");   
+        }
+    }
+	 private void deleteMember() {
+	        String id = tfID.getText();
+	        String pw = tfPassword.getText();
+	        if(pw.length()==0){ //길이가 0이면
+	           
+	            JOptionPane.showMessageDialog(this, "탈퇴하려면 비밀번호가 필요합니다");
+	            return; //메소드 끝
+	        }
+	        //System.out.println(mList);
+	        MemberDB db = new MemberDB();
+	        boolean ok = db.deleteMember(id, pw);
+	       
+	        if(ok){
+	            JOptionPane.showMessageDialog(this, "삭제완료");
+	            dispose();         
+	           
+	        }else{
+	            JOptionPane.showMessageDialog(this, "삭제실패");
+	           
+	        }          
+	       
+	    }
 	private void insertMember(){
 	       
         //화면에서 사용자가 입력한 내용을 얻는다.
@@ -199,6 +298,31 @@ public class signUp extends JFrame implements ActionListener {
         }
 	}
         
+	private void viewData(Member vMem){
+	       
+        String id = vMem.getId();
+        String pw = vMem.getPw();
+        String name = vMem.getName();
+        String tel = vMem.getTel();
+        String addr = vMem.getAddr();
+        String email= vMem.getEmail();
+        int age = vMem.getAge();   
+       
+        //화면에 세팅
+        tfID.setText(id);
+        tfID.setEditable(false); //편집 안되게
+        tfPassword.setText(""); //비밀번호는 안보여준다.
+        tfName.setText(name);
+        String[] tels = tel.split("-");
+        tfPhone1.setText(tels[0]);
+        tfPhone2.setText(tels[1]);
+        tfPhone3.setText(tels[2]);
+        tfAddress.setText(addr);
+        tfAge.setText(Integer.toString(age));
+        tfMail.setText(email);
+   
+       
+    }
 	 public Member getViewData(){
 	       
 	        //화면에서 사용자가 입력한 내용을 얻는다.
