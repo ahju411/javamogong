@@ -26,7 +26,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
-public class ProductList0527 extends JFrame implements MouseListener {
+public class mainFrame extends JFrame implements MouseListener {
 
 	private ImageIcon background,img1,buyimg;
 	private JLabel lblimg1;
@@ -41,7 +41,7 @@ public class ProductList0527 extends JFrame implements MouseListener {
 	private JMenu menuUser;
 	private JMenuItem BuyList,basket,MyInfo,Reservation;
 	
-	public ProductList0527(String title , int width , int height) {
+	public mainFrame(String title , int width , int height) {
 		setTitle(title);
 		setSize(width,height);
 		setLocationRelativeTo(this);
@@ -386,7 +386,7 @@ public class ProductList0527 extends JFrame implements MouseListener {
 	
 	
 	public static void main(String[] args) {
-		new ProductList0527("상품목록",600,825);
+		new mainFrame("상품목록",600,825);
 	}
 
 

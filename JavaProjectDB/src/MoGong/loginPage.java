@@ -214,7 +214,7 @@ public class loginPage extends JFrame implements ActionListener {
 		int ok = db.loginMemeber(id, pw);
 		
 		if(ok == 1) {
-			ProductList0527 pd = new ProductList0527("상품목록", 600, 825);
+			mainFrame pd = new mainFrame("상품목록", 600, 825);
 			dispose();
 		}else {
 			JOptionPane.showMessageDialog(this, "아이디나 비밀번호를 확인해보세요");
