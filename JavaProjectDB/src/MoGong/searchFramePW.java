@@ -4,6 +4,7 @@ package MoGong;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -71,6 +72,7 @@ public class searchFramePW extends JFrame implements ActionListener {
 		
 		JPanel panPhone = new JPanel();
 		panPhone.setBackground(Color.white);
+		panPhone.setLayout(new FlowLayout(FlowLayout.LEFT));
 		
 		JLabel lblPhone1 = new JLabel("-");
 		JLabel lblPhone2 = new JLabel("-");
