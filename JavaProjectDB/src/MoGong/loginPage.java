@@ -31,7 +31,7 @@ import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
 
-public class loginPage extends JFrame implements ActionListener {
+public class loginPage extends JFrame implements ActionListener {//
 	
 	JButton btnlogin, btnSignUp, btnSearchID, btnSearchPW;
 	JTextField tfID, tfPassword;
