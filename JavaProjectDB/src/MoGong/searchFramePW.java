@@ -46,8 +46,8 @@ public class searchFramePW extends JFrame implements ActionListener {
 		
 		JPanel panMid = new JPanel();
 		panMid.setBackground(Color.white);
-		panMid.setBorder(new EmptyBorder(30, 0, 30, 15));
-		panMid.setLayout(new GridLayout(3, 2, 10, 25));
+		panMid.setBorder(new EmptyBorder(30, 0, 30, 10));
+		panMid.setLayout(new GridLayout(3, 2, 5, 25));
 		add(panMid);
 		
 		JLabel lblID = new JLabel("ID : ", JLabel.RIGHT);
