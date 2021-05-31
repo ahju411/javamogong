@@ -17,6 +17,7 @@ public class productcrawling {
 				String itemprice = null;
 				String itembrand = null;
 				String itemclass = null;
+				ArrayList<String> itemimage = new ArrayList<String>();
 		
 		// 1. 구찌시계 크롤링  사이트 : 옥션
 					String url = "http://browse.auction.co.kr/search?keyword=%EA%B5%AC%EC%B0%8C%EC%8B%9C%EA%B3%84";
@@ -48,7 +49,6 @@ public class productcrawling {
 						
 						itemclass = "시계";
 						
-
 						pl.add(new productdto(itemid,itemname,itemprice,itembrand,itemclass));
 				
 					}

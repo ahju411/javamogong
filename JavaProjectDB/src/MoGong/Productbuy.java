@@ -32,6 +32,7 @@ private JLabel name,price,info,wait;
 private ImageIcon img,back,infoimg;
 private JScrollPane scrollpane;
 private JLabel jungga;
+private Productbuy pbv;
 	
 	
 
@@ -155,6 +156,8 @@ private JLabel jungga;
 		Object obj = e.getSource();
 		
 		if(obj == but1) {
+			pbv = new Productbuy("구매화면",650,800);
+			pbv.setLocation(900, 150);
 		}
 		
 	}
