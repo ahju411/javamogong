@@ -21,8 +21,11 @@ import javax.swing.border.EmptyBorder;
 
 public class buySomething extends JFrame implements ActionListener {
 
+	loginPage loginPage;
+	
 	private String[] payment = {"카드 결제", "무통장 입금"};
 	private String address = "인천시 미추홀구";//나중에 삭제할것
+	//private String id = loginPage.getLogid();
 	
 	private JButton btn;
 	private JComboBox<String> cb;
@@ -49,7 +52,7 @@ public class buySomething extends JFrame implements ActionListener {
 
 		
 		JPanel panContents = new JPanel();//메인 콘텐츠 가 붙는 패널
-		panContents.setLayout(new GridLayout(4, 1));
+		panContents.setLayout(new GridLayout(5, 1));
 		panContents.setBackground(Color.pink);
 		panContents.setBorder(new EmptyBorder(30, 10, 30, 10));
 		pan.add(panContents);
@@ -59,53 +62,66 @@ public class buySomething extends JFrame implements ActionListener {
 		panCon1.setBackground(Color.pink);
 		panContents.add(panCon1);
 		
-		JLabel lblPriceLeft = new JLabel("총 ");
-		lblPriceLeft.setFont(new Font("맑은 고딕", 0, 30));
-		panCon1.add(lblPriceLeft);
+		JLabel lblProduct = new JLabel("구찌");//상품명 가져오기
+		lblProduct.setFont(new Font("맑은 고딕", 0, 30));
+		panCon1.add(lblProduct);
 		
-		JLabel lblprice = new JLabel("2998880");//가격 표시할 레이블
-		lblprice.setFont(new Font("맑은 고딕", 0, 30));
-		panCon1.add(lblprice);
+		JLabel lblProductRight = new JLabel("상품 결제입니다.");
+		panCon1.add(lblProductRight);
 		
-		JLabel lblprice2 = new JLabel("원 입니다.");
-		lblprice2.setFont(new Font("맑은 고딕", 0, 30));
-		panCon1.add(lblprice2);
 		
 		//2번째 줄
 		JPanel panCon2 = new JPanel();
 		panCon2.setBackground(Color.pink);
 		panContents.add(panCon2);
 		
-		cb = new JComboBox<String>(payment);
-		panCon2.add(cb);
+		JLabel lblPriceLeft = new JLabel("총 ");
+		lblPriceLeft.setFont(new Font("맑은 고딕", 0, 30));
+		panCon2.add(lblPriceLeft);
 		
-		JLabel lblpay = new JLabel("으로 결제합니다");
-		panCon2.add(lblpay);
+		JLabel lblprice = new JLabel("2998880");//가격 표시할 레이블
+		lblprice.setFont(new Font("맑은 고딕", 0, 30));
+		panCon2.add(lblprice);
+		
+		JLabel lblprice2 = new JLabel("원 입니다.");
+		lblprice2.setFont(new Font("맑은 고딕", 0, 30));
+		panCon2.add(lblprice2);
 		
 		//3번째 줄
 		JPanel panCon3 = new JPanel();
 		panCon3.setBackground(Color.pink);
 		panContents.add(panCon3);
 		
-		JLabel lbladd = new JLabel("배송은");
-		panCon3.add(lbladd);
-		//기본 주소 불러오기 		
-		taAdd = new JTextArea(address, 3, 20);
+		cb = new JComboBox<String>(payment);
+		panCon3.add(cb);
 		
-		panCon3.add(taAdd);
-		JLabel lbladdcheck = new JLabel("로 하겠습니다.");
-		panCon3.add(lbladdcheck);
+		JLabel lblpay = new JLabel("으로 결제합니다");
+		panCon3.add(lblpay);
 		
 		//4번째 줄
 		JPanel panCon4 = new JPanel();
 		panCon4.setBackground(Color.pink);
 		panContents.add(panCon4);
 		
+		JLabel lbladd = new JLabel("배송은");
+		panCon4.add(lbladd);
+		//기본 주소 불러오기 		
+		taAdd = new JTextArea(address, 3, 20);
+		
+		panCon4.add(taAdd);
+		JLabel lbladdcheck = new JLabel("로 하겠습니다.");
+		panCon4.add(lbladdcheck);
+		
+		//5번째 줄
+		JPanel panCon5 = new JPanel();
+		panCon5.setBackground(Color.pink);
+		panContents.add(panCon5);
+		
 		JLabel lblrequest = new JLabel("요청사항을 입력해주세요");
-		panCon4.add(lblrequest);
+		panCon5.add(lblrequest);
 		
 		taReq = new JTextArea(6,30);
-		panCon4.add(taReq);
+		panCon5.add(taReq);
 		
 		JPanel panPayment = new JPanel();
 		panPayment.setBackground(Color.pink);

@@ -31,12 +31,14 @@ import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
 
-public class loginPage extends JFrame implements ActionListener {//
+public class loginPage extends JFrame implements ActionListener {
 	
 	JButton btnlogin, btnSignUp, btnSearchID, btnSearchPW;
 	JTextField tfID, tfPassword;
 	JMenuItem jmiteam;
+	
 	public String logid ="";
+	
 	public loginPage() {
 		setTitle("로그인 화면");
 		setSize(450, 500);
@@ -196,6 +198,8 @@ public class loginPage extends JFrame implements ActionListener {//
 		}
 		else if(obj == btnlogin) {
 			loginMember();
+		}else if(obj == jmiteam) {
+			JOptionPane.showMessageDialog(null, "201845020 유은철\n201845024 이태현\n201845026 이혜성", "개발자 소개", 1);
 		}
 		
 		
