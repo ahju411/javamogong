@@ -32,7 +32,7 @@ private JLabel name,price,info,wait;
 private ImageIcon img,back,infoimg;
 private JScrollPane scrollpane;
 private JLabel jungga;
-private ProductbuyBackgroundVersion pbv;
+private Productbuy pbv;
 	
 	
 
@@ -156,7 +156,7 @@ private ProductbuyBackgroundVersion pbv;
 		Object obj = e.getSource();
 		
 		if(obj == but1) {
-			pbv = new ProductbuyBackgroundVersion("구매화면",650,800,this);
+			pbv = new Productbuy("구매화면",650,800);
 			pbv.setLocation(900, 150);
 		}
 		
