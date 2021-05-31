@@ -403,7 +403,7 @@ public class mainFrame extends JFrame implements MouseListener {
 		
 		if(obj == price1) {
 			System.out.println("TEst");
-			new Productbuy("상품정보화면",650,800);
+			
 		}
 		
 	}
