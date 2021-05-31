@@ -8,13 +8,16 @@ public class productdto {
 	private String itemprice;
 	private String itembrand;
 	private String itemclass;
+	private String itemimage;
 	
-	public productdto(int itemid, String itemname, String itemprice, String itembrand, String itemclass) {
+	
+	public productdto(int itemid, String itemname, String itemprice, String itembrand, String itemclass, String itemimage) {
 		this.itemid =itemid;
 		this.itemname = itemname;
 		this.itemprice = itemprice;
 		this.itembrand = itembrand;
 		this.itemclass = itemclass;
+		this.itemimage = itemimage;
 	}
 	public String getItembrand() {
 		return itembrand;
@@ -45,6 +48,12 @@ public class productdto {
 	}
 	public void setItemprice(String itemprice) {
 		this.itemprice = itemprice;
+	}
+	public String getItemimage() {
+		return itemimage;
+	}
+	public void setItemimage(String itemimage) {
+		this.itemimage = itemimage;
 	}
 	
 	

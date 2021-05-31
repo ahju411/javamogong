@@ -73,14 +73,15 @@ public class ProductDB {
 		try {
 			conn = getConnection();
 			for(int p = 0 ; p<pl.size() ; p++) {
-				String insertSQL = "INSERT INTO ITEM (ITEMID,ITEMNAME,PRICE,BRAND,CLASS)"
-						+ "VALUES(?,?,?,?,?)";
+				String insertSQL = "INSERT INTO ITEM (ITEMID,ITEMNAME,PRICE,BRAND,CLASS,ITEMIMAGE)"
+						+ "VALUES(?,?,?,?,?,?)";
 				ps = conn.prepareStatement(insertSQL);	
 			ps.setInt(1, pl.get(p).getItemid());
 			ps.setString(2, pl.get(p).getItemname());
 			ps.setString(3, pl.get(p).getItemprice());
 			ps.setString(4, pl.get(p).getItembrand());
 			ps.setString(5, pl.get(p).getItemclass());
+			ps.setString(6, pl.get(p).getItemimage());
 			
 				
 			ps.executeUpdate();
