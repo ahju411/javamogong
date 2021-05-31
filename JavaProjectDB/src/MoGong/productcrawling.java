@@ -8,54 +8,85 @@ import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
 public class productcrawling {
-	
+	static int itemid = 0;
+	static String itemname = null;
+	static String itemprice = null;
+	static String itembrand = null;
+	static String itemclass = null;
+	static String itemimage = null;
 	
 	static int i = 0;
 			static void Crawling(ArrayList<productdto> pl) throws IOException {
-				int itemid = 0;
-				String itemname = null;
-				String itemprice = null;
-				String itembrand = null;
-				String itemclass = null;
-				String itemimage = null;
+			
+		crawlingproduct(pl,
+				"https://www.coupang.com/np/search?rocketAll=false&q=%EA%B5%AC%EC%B0%8C+%EC%8B%9C%EA%B3%84&brand=&offerCondition=&filter=&availableDeliveryFilter=&filterType=&isPriceRange=false&priceRange=&minPrice=&maxPrice=&page=1&trcid=&traid=&filterSetByUser=true&channel=user&backgroundColor=&component=&rating=0&sorter=salePriceDesc&listSize=36",
+				"구찌",
+				"시계"
+				);
+		crawlingproduct(pl,
+				"https://www.coupang.com/np/search?rocketAll=false&q=%EA%B5%AC%EC%B0%8C+%EA%B0%80%EB%B0%A9&brand=&offerCondition=&filter=&availableDeliveryFilter=&filterType=&isPriceRange=false&priceRange=&minPrice=&maxPrice=&page=1&trcid=&traid=&filterSetByUser=true&channel=user&backgroundColor=&component=&rating=0&sorter=salePriceDesc&listSize=36",
+				"구찌",
+				"가방"
+				);
+		crawlingproduct(pl,
+				"https://www.coupang.com/np/search?rocketAll=false&q=%EA%B5%AC%EC%B0%8C+%EC%A7%80%EA%B0%91&brand=&offerCondition=&filter=&availableDeliveryFilter=&filterType=&isPriceRange=false&priceRange=&minPrice=&maxPrice=&page=1&trcid=&traid=&filterSetByUser=true&channel=user&backgroundColor=&component=&rating=0&sorter=salePriceDesc&listSize=36",
+				"구찌",
+				"지갑"
+				);
+		crawlingproduct(pl,
+				"https://www.coupang.com/np/search?rocketAll=false&q=%EA%B5%AC%EC%B0%8C+%EB%AA%A9%EA%B1%B8%EC%9D%B4&brand=&offerCondition=&filter=&availableDeliveryFilter=&filterType=&isPriceRange=false&priceRange=&minPrice=&maxPrice=&page=1&trcid=&traid=&filterSetByUser=true&channel=user&backgroundColor=&component=&rating=0&sorter=salePriceDesc&listSize=36",
+				"구찌",
+				"목걸이"
+				);
+			
 		
-		// 1. 구찌시계 크롤링  사이트 : 쿠팡
-					String url = "https://www.coupang.com/np/search?rocketAll=false&q=%EA%B5%AC%EC%B0%8C+%EC%8B%9C%EA%B3%84&brand=&offerCondition=&filter=&availableDeliveryFilter=&filterType=&isPriceRange=false&priceRange=&minPrice=&maxPrice=&page=1&trcid=&traid=&filterSetByUser=true&channel=user&backgroundColor=&component=&rating=0&sorter=salePriceDesc&listSize=36";
-					Document doc = null;
-					Elements tmp;
 				
-					try {
-						doc = Jsoup.connect(url).get();
-					}catch (Exception e) {
-						e.printStackTrace();
-					}
-					
-					//
-					// 상위 7개정보 추출하여 DB에 넣기
-					
-					Elements element = doc.select("ul[id=\"productList\"]");
-					Elements images = 
-				             element.select("img[class=\"search-product-wrap-img\"]");  
-				 
-					for(int i = 0 ; i <5;i++) {
-						itemid =i+1;
-						tmp = element.select("div.name"); // 상품이름
-						itemname=(tmp.get(i).text());
-						
-						tmp = element.select("strong.price-value"); //상품가격
-						itemprice=(tmp.get(i).text());
-						
-						
-						itembrand="구찌";
-					
-						itemclass = "시계";
-						
-						itemimage  = images.get(i).attr("src");
-						
-					
-						
-						pl.add(new productdto(itemid,itemname,itemprice,itembrand,itemclass,itemimage));
-				
-					}
 	}
+			private static void crawlingproduct(ArrayList<productdto> pl,String cURL,String selectBrand,String selectClass) {
+				String url = cURL;
+				Document doc = null;
+				Elements tmp;
+			
+				try {
+					doc = Jsoup.connect(url).get();
+				}catch (Exception e) {
+					e.printStackTrace();
+				}
+				
+				//
+				// 
+				
+				Elements element = doc.select("ul[id=\"productList\"]");
+				Elements images = 
+			             element.select("img[class=\"search-product-wrap-img\"]");  
+			
+				// 1. 구찌 시계 ( 이름 , 가격 , 이미지 ) 크롤링 및 브랜드,종류 지정
+				for(int i = 0 ; i <5;i++) {
+					itemid =itemid+1;
+					tmp = element.select("div.name"); // 상품이름
+					itemname=(tmp.get(i).text());
+					
+					tmp = element.select("strong.price-value"); //상품가격
+					itemprice=(tmp.get(i).text());
+					
+					
+					itembrand=selectBrand;
+				
+					itemclass =selectClass;
+					
+					itemimage  = images.get(i).attr("src");
+				
+					pl.add(new productdto(itemid,itemname,itemprice,itembrand,itemclass,itemimage));
+				}
+				
+			}
 }
+
+
+
+
+
+
+
+
+
