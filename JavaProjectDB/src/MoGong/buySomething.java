@@ -5,6 +5,8 @@ package MoGong;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -34,7 +36,7 @@ public class buySomething extends JFrame implements ActionListener {
 		
 		//맨 뒤에 오는 패널
 		JPanel pan = new JPanel();
-		pan.setBackground(Color.white);
+		pan.setBackground(Color.pink);
 		pan.setLayout(new BorderLayout());
 		
 		add(pan);
@@ -47,52 +49,66 @@ public class buySomething extends JFrame implements ActionListener {
 
 		
 		JPanel panContents = new JPanel();//메인 콘텐츠 가 붙는 패널
-		panContents.setBackground(Color.white);
-		panContents.setBorder(new EmptyBorder(10, 10, 10, 10));
+		panContents.setLayout(new GridLayout(4, 1));
+		panContents.setBackground(Color.pink);
+		panContents.setBorder(new EmptyBorder(30, 10, 30, 10));
 		pan.add(panContents);
 		
 		//1번째 줄
+		JPanel panCon1 = new JPanel();
+		panCon1.setBackground(Color.pink);
+		panContents.add(panCon1);
+		
 		JLabel lblPriceLeft = new JLabel("총 ");
 		lblPriceLeft.setFont(new Font("맑은 고딕", 0, 30));
-		panContents.add(lblPriceLeft);
+		panCon1.add(lblPriceLeft);
 		
 		JLabel lblprice = new JLabel("2998880");//가격 표시할 레이블
 		lblprice.setFont(new Font("맑은 고딕", 0, 30));
-		panContents.add(lblprice);
+		panCon1.add(lblprice);
 		
 		JLabel lblprice2 = new JLabel("원 입니다.");
 		lblprice2.setFont(new Font("맑은 고딕", 0, 30));
-		panContents.add(lblprice2);
+		panCon1.add(lblprice2);
 		
 		//2번째 줄
+		JPanel panCon2 = new JPanel();
+		panCon2.setBackground(Color.pink);
+		panContents.add(panCon2);
+		
 		cb = new JComboBox<String>(payment);
-		panContents.add(cb);
+		panCon2.add(cb);
 		
 		JLabel lblpay = new JLabel("으로 결제합니다");
-		panContents.add(lblpay);
+		panCon2.add(lblpay);
 		
 		//3번째 줄
-		JLabel lbladd = new JLabel("배송은");
-		panContents.add(lbladd);
-		//기본 주소 불러오기 		
-		taAdd = new JTextArea(address, 3, 25);
-		taAdd.setBackground(Color.gray);
+		JPanel panCon3 = new JPanel();
+		panCon3.setBackground(Color.pink);
+		panContents.add(panCon3);
 		
-		panContents.add(taAdd);
-		JLabel lbladdcheck = new JLabel("주소로 하겠습니다.");
-		panContents.add(lbladdcheck);
+		JLabel lbladd = new JLabel("배송은");
+		panCon3.add(lbladd);
+		//기본 주소 불러오기 		
+		taAdd = new JTextArea(address, 3, 20);
+		
+		panCon3.add(taAdd);
+		JLabel lbladdcheck = new JLabel("로 하겠습니다.");
+		panCon3.add(lbladdcheck);
 		
 		//4번째 줄
-		JLabel lblrequest = new JLabel("요청사항을 입력해주세요");
-		panContents.add(lblrequest);
+		JPanel panCon4 = new JPanel();
+		panCon4.setBackground(Color.pink);
+		panContents.add(panCon4);
 		
-		//5번째 줄?
+		JLabel lblrequest = new JLabel("요청사항을 입력해주세요");
+		panCon4.add(lblrequest);
+		
 		taReq = new JTextArea(6,30);
-		panContents.add(taReq);
-		taReq.setBackground(Color.gray);
+		panCon4.add(taReq);
 		
 		JPanel panPayment = new JPanel();
-		panPayment.setBackground(Color.white);
+		panPayment.setBackground(Color.pink);
 		add(panPayment, BorderLayout.SOUTH);
 		
 		btn = new JButton("결제");
