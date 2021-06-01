@@ -23,7 +23,7 @@ import javax.swing.SwingConstants;
 
 public class Productbuy extends JFrame implements ActionListener {
 
-	private int res = 3;
+	private int res = 10;
 	
 	private JButton btnBuy,btnres;
 	private JLabel lblimg,lblinfoimg;
@@ -31,7 +31,6 @@ public class Productbuy extends JFrame implements ActionListener {
 
 	JLabel wait;
 	private JLabel jungga;
-	//private Productbuy pbv;
 	
 
 	public Productbuy(String title , int width , int height) {
@@ -39,7 +38,6 @@ public class Productbuy extends JFrame implements ActionListener {
 		setSize(width,height);
 		setLocationRelativeTo(this);
 		//setLocation(250, 150);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	
 		
 		JPanel backpan = new JPanel();
@@ -151,8 +149,7 @@ public class Productbuy extends JFrame implements ActionListener {
 			btnBuy.setEnabled(false);
 			res--;
 			wait.setText(" 남은 구매 예약자 : " + res + "명 ");
-			//pbv = new Productbuy("구매화면",650,800);
-			//pbv.setLocation(900, 150);
+			buySomething bs = new buySomething();
 			/*if(res > 1) {
 				res--;
 				wait.setText(" 남은 구매 예약자 : " + res + "명 ");

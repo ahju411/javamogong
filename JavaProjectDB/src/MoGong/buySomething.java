@@ -176,7 +176,7 @@ public class buySomething extends JFrame implements ActionListener {
 		
 		 
 		 
-		 
+		 dispose();
 		
 		System.out.println("결제 완료");
 		
