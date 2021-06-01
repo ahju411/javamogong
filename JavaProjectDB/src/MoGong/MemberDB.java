@@ -43,7 +43,6 @@ public class MemberDB {
 //한사람의 회원정보 메소드
 	public Member getMember(String id) {
 		Member mem = new Member();
-
 		Connection conn = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;

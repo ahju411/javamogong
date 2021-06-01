@@ -1,6 +1,7 @@
 package MoGong;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -34,6 +35,7 @@ public class Member_List extends JFrame implements MouseListener, ActionListener
 		
 		pan = new JPanel(new BorderLayout());
 		pan.setBorder(new EmptyBorder(5,5,5,5));
+		pan.setBackground(Color.pink);
 		setContentPane(pan);
 		
 		lbl = new JLabel("회원 목록");
@@ -77,6 +79,11 @@ public class Member_List extends JFrame implements MouseListener, ActionListener
 		pan.add(scrollPane,BorderLayout.CENTER);
 		
 		btnback = new JButton("나가기");
+		btnback.setFont(new Font("맑은 고딕",Font.BOLD,15));
+		btnback.setOpaque(false);
+		btnback.setFocusPainted(false);
+		btnback.setBorderPainted(false);
+		btnback.setContentAreaFilled(false);
 		btnback.addActionListener(this);
 		pan.add(btnback,BorderLayout.SOUTH);
 		

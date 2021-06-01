@@ -21,7 +21,6 @@ import javax.swing.border.EmptyBorder;
 
 public class buySomething extends JFrame implements ActionListener {
 
-	static loginPage loginPage;
 	
 	private String[] payment = {"카드 결제", "무통장 입금"};
 	private String address = "인천시 미추홀구";//나중에 삭제할것
@@ -31,12 +30,32 @@ public class buySomething extends JFrame implements ActionListener {
 	private JComboBox<String> cb;
 	private JTextArea taAdd, taReq;
 	
+	loginPage loginPage;
+	public buySomething() {
+		buyUI();
+	}
 	
-	public buySomething(String title, int width, int height) {
-		setTitle(title);
-		setSize(width, height);
+	public buySomething(loginPage loginPage) {
+		
+		buyUI();
+		this.loginPage = loginPage;
+		
+		MemberDB db = new MemberDB();
+		 
+		 String id = loginPage.getLogid();
+		 signUp su = new signUp();
+		 
+		 db.getMember(id);
+		 su.signUp(id, this);
+	}
+	
+	private void buyUI() {
+		setTitle("결제창");
+		setSize(400, 500);
 		setLocationRelativeTo(this);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		 
 		
 		//맨 뒤에 오는 패널
 		JPanel pan = new JPanel();
@@ -137,30 +156,34 @@ public class buySomething extends JFrame implements ActionListener {
 	
 	public static void main(String[] args) {
 		
-		buySomething bs = new buySomething("결제창", 400, 500);
+		new buySomething();
 		
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
-		 MemberDB db = new MemberDB();
-		 
-		 String id = loginPage.getLogid();
-		 signUp su = new signUp();
-		 
-		 db.getMember(id);
-		 signUp su = new signUp();
-		 su.signUp(id, this);
+		
 		 
 		 
 		 
-		 String add;
-		 
-		 su.setTitle("22");
 		
 		System.out.println("결제 완료");
 		
+	}
+	private void viewData(Member vMem) {
+		String addr = vMem.getAddr();
+	}
+	
+	
+	public Member getviewData() {
+		Member mem = new Member();
+		
+		String addr = taAdd.getText();
+		
+		
+		
+		return mem;
 	}
 
 }
