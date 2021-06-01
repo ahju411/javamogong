@@ -58,12 +58,15 @@ public class mainFrame extends JFrame implements MouseListener, ActionListener {
 	private JLabel lbl;
 
 	private JMenuBar menubar;
+	private JButton btn1;
+	private JButton btn2;
 	
 	public mainFrame(String title , int width , int height, loginPage loginPage) {
 		setTitle(title);
 		setSize(width,height);
 		setLocationRelativeTo(this);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLayout(new FlowLayout());
 		this.loginPage =loginPage;
 		
 		menubar = new JMenuBar();
@@ -140,55 +143,14 @@ public class mainFrame extends JFrame implements MouseListener, ActionListener {
 		//
 		//
 		//
+		btn1 = new JButton("구찌시계");
+		btn1.addActionListener(this);
+		add(btn1);
 		
-		pan = new JPanel(new BorderLayout());
-		pan.setBorder(new EmptyBorder(5,5,5,5));
-		setContentPane(pan);
-		
-		lbl = new JLabel("회원 목록");
-		lbl.setFont(new Font("맑은 고딕",Font.BOLD,30));
-		lbl.setHorizontalAlignment(SwingConstants.CENTER);
-		lbl.setPreferredSize(new Dimension(400,80));
-		
-		pan.add(lbl,BorderLayout.NORTH);
-		
-        ProductDB db = new ProductDB();
-		List<productdto> list = db.getProductList();
-		
-		String header[] = {"상품번호","상품이름","상품가격","상품브랜드","상품종류","상품URL"};
-		
-		tModel = new DefaultTableModel(header,0);
-		
-		for(int i = 0; i<list.size(); i++) {
-			int itemid = list.get(i).getItemid();
-			String itemname = list.get(i).getItemname();
-			String itemprice = list.get(i).getItemprice();
-			String itembrand = list.get(i).getItembrand();
-			String itemclass = list.get(i).getItemclass();
-			String itemimage = list.get(i).getItemimage();
-		
-			
-			
-			
-			Object [] data = {itemid,itemname,itemprice,itembrand,itemclass,itemimage};
-			
-			tModel.addRow(data);
-		}
-		
-		table = new JTable(tModel);
-		table.setFont(new Font("맑온 고딕", Font.PLAIN, 15));
-		table.setRowHeight(30);
-		table.getColumn("상품이름").setPreferredWidth(10);
-		table.setCellSelectionEnabled(false);
-		table.addMouseListener(this);
-		
-		JScrollPane scrollPane = new JScrollPane(table);
-		pan.add(scrollPane,BorderLayout.CENTER);
-		
-		btnback = new JButton("나가기");
-		btnback.addActionListener(this);
-		pan.add(btnback,BorderLayout.SOUTH);
-		
+		btn2 = new JButton("구찌가방");
+		btn2.addActionListener(this);
+		add(btn2);
+	
 		setVisible(true);
 	}
 	
@@ -216,7 +178,7 @@ public class mainFrame extends JFrame implements MouseListener, ActionListener {
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-	 
+	
 	}
 
 	@Override
@@ -251,10 +213,19 @@ public class mainFrame extends JFrame implements MouseListener, ActionListener {
 			loginPage lg = new loginPage();
 			dispose();
 		}
-	
-		if(btnback == obj) {
-			System.exit(0);
-		}
+	if(obj == btn1) {
+		// 0일때 구찌 시계출력
+		int n = 0;
+		ProductListUI ui = new ProductListUI("목록", 700, 600,n);
+		dispose();
+	}
+	if(obj == btn2) {
+		// 5일때 구찌 가방 출력
+		int n = 5;
+		ProductListUI ui = new ProductListUI("목록", 700, 600,n);
+		dispose();
+	}
+		
 		
 	}
 	

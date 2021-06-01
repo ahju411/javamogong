@@ -59,7 +59,7 @@ public class ProductListUI extends JFrame implements MouseListener, ActionListen
 
 	private JMenuBar menubar;
 	// , loginPage loginPage 넣어야합니다 int height 오른쪽에  프레임 연결시  !!!! -은철-
-	public ProductListUI(String title , int width , int height) {
+	public ProductListUI(String title , int width , int height,int n) {
 		setTitle(title);
 		setSize(width,height);
 		setLocationRelativeTo(this);
@@ -84,8 +84,16 @@ public class ProductListUI extends JFrame implements MouseListener, ActionListen
 		menuUser.add(basket);
 		menuUser.add(BuyList);
 		menuUser.add(Logout);
-	
+	//
 		
+		
+		
+	
+		outputProductList(n);
+		
+		
+		
+		//
 		menubar.add(menuUser);
 		setJMenuBar(menubar);	
 		
@@ -99,9 +107,60 @@ public class ProductListUI extends JFrame implements MouseListener, ActionListen
 	}
 	
 
+	private void outputProductList(int n) {
+		pan = new JPanel(new BorderLayout());
+		pan.setBorder(new EmptyBorder(5,5,5,5));
+		setContentPane(pan);
+		
+		lbl = new JLabel("회원 목록");
+		lbl.setFont(new Font("맑은 고딕",Font.BOLD,30));
+		lbl.setHorizontalAlignment(SwingConstants.CENTER);
+		lbl.setPreferredSize(new Dimension(400,80));
+		
+		pan.add(lbl,BorderLayout.NORTH);
+		
+        ProductDB db = new ProductDB();
+		List<productdto> list = db.getProductList();
+		
+		String header[] = {"상품번호","상품이름","상품가격","상품브랜드","상품종류","상품URL"};
+		
+		tModel = new DefaultTableModel(header,0);
+		// i는 5의배수로 넣을예정. 총 16개
+		for(int i = n+0; i<n+5; i++) {
+			int itemid = list.get(i).getItemid();
+			String itemname = list.get(i).getItemname();
+			String itemprice = list.get(i).getItemprice();
+			String itembrand = list.get(i).getItembrand();
+			String itemclass = list.get(i).getItemclass();
+			String itemimage = list.get(i).getItemimage();
+		
+			
+			
+			
+			Object [] data = {itemid,itemname,itemprice,itembrand,itemclass,itemimage};
+			
+			tModel.addRow(data);
+		}
+		
+		table = new JTable(tModel);
+		table.setFont(new Font("맑온 고딕", Font.PLAIN, 15));
+		table.setRowHeight(30);
+		table.getColumn("상품이름").setPreferredWidth(10);
+		table.setCellSelectionEnabled(false);
+		table.addMouseListener(this);
+		
+		JScrollPane scrollPane = new JScrollPane(table);
+		pan.add(scrollPane,BorderLayout.CENTER);
+		
+		btnback = new JButton("나가기");
+		btnback.addActionListener(this);
+		pan.add(btnback,BorderLayout.SOUTH);
+		
+	}
+
+
 	public static void main(String[] args) {
-		 new ProductListUI("구찌상품",700,500);
-		 
+		
 
 	}
 
