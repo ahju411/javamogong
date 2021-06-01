@@ -20,41 +20,37 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
+
 public class Productbuy extends JFrame implements ActionListener {
 
+	private int res = 3;
 	
-private JPanel backpan;
-private JPanel pan1,pan2,pan3,pan4;
-private JPanel subpan2_1;
-private JButton but1,but2;
-private JLabel lblimg,lblinfoimg;
-private JLabel name,price,info,wait;
-private ImageIcon img,back,infoimg;
-private JScrollPane scrollpane;
-private JLabel jungga;
-private Productbuy pbv;
-	
+	private JButton btnBuy,btnres;
+	private JLabel lblimg,lblinfoimg;
+	private ImageIcon img, back, infoimg;
+
+	JLabel wait;
+	private JLabel jungga;
+	//private Productbuy pbv;
 	
 
 	public Productbuy(String title , int width , int height) {
 		setTitle(title);
 		setSize(width,height);
-		setLocation(250, 150);
-		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		
+		setLocationRelativeTo(this);
+		//setLocation(250, 150);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	
 		
-		backpan = new JPanel();
+		JPanel backpan = new JPanel();
 		backpan.setBackground(Color.WHITE);
-		scrollpane = new JScrollPane(backpan);
+		JScrollPane scrollpane = new JScrollPane(backpan);
 		
 		backpan.setLayout(new BorderLayout());
 		
 		
-		// 첫번째 팬 ( 사진넣기)
-		
-		pan1 = new JPanel();
+		// 첫번째 팬 (사진넣기)
+		JPanel pan1 = new JPanel();
 		img = new ImageIcon("images/gucci.png");
 		img = imageSetSize(img, 200, 200);
 		lblimg = new JLabel(img);
@@ -63,17 +59,14 @@ private Productbuy pbv;
 		backpan.add(pan1,BorderLayout.NORTH);
 		
 		// 두번째 팬 ( 가격정보 및 상품정보)
-		
-		pan2 = new JPanel();
+		JPanel pan2 = new JPanel();
 		pan2.setLayout(new GridLayout(6,1));
-		
-		
 	
-		name = new JLabel("[GG 마몽] 스몰 마틀라세 숄더백",SwingConstants.CENTER);
-		jungga = new JLabel(" 정가 : 3,090,000",SwingConstants.CENTER);
-		price = new JLabel("2,781,000 (10% SALE)",SwingConstants.CENTER);
+		JLabel name = new JLabel("[GG 마몽] 스몰 마틀라세 숄더백",SwingConstants.CENTER);
+		JLabel jungga = new JLabel(" 정가 : 3,090,000",SwingConstants.CENTER);
+		JLabel price = new JLabel("2,781,000 (10% SALE)",SwingConstants.CENTER);
 		
-		wait = new JLabel(" 남은 구매 예약자 : 3명 ",SwingConstants.CENTER);
+		wait = new JLabel(" 남은 구매 예약자 : " + res + "명 ",SwingConstants.CENTER);
 		pan2.add(name);
 		pan2.add(jungga);
 		pan2.add(price);
@@ -88,17 +81,18 @@ private Productbuy pbv;
 		wait.setFont(new Font("맑은 고딕",Font.BOLD,20));
 		wait.setForeground(Color.RED);
 		
-		subpan2_1 = new JPanel();
+		JPanel subpan2_1 = new JPanel();
 		
-		but1= new JButton("구매예약");
-		but1.addActionListener(this);
+		btnBuy= new JButton("구매예약");
+		btnBuy.addActionListener(this);
 		
-		but2= new JButton("예약취소");
-		but2.setEnabled(false);
+		btnres= new JButton("예약취소");
+		btnres.addActionListener(this);
+		btnres.setEnabled(false);
 
 		
-		subpan2_1.add(but1);
-        subpan2_1.add(but2);
+		subpan2_1.add(btnBuy);
+        subpan2_1.add(btnres);
 		subpan2_1.setOpaque(false);
 		pan2.add(subpan2_1);
 		
@@ -109,8 +103,7 @@ private Productbuy pbv;
 	
 		
 		// 상품정보 pan3
-		
-		pan3 = new JPanel();
+		JPanel pan3 = new JPanel();
 		pan3.setLayout(new GridLayout());
 		
 		infoimg = new ImageIcon("images/info2.png");
@@ -124,8 +117,6 @@ private Productbuy pbv;
         
 		backpan.add(pan2);
 		backpan.add(pan3,BorderLayout.SOUTH);
-		
-		
 		
 		
 		
@@ -155,9 +146,27 @@ private Productbuy pbv;
 		
 		Object obj = e.getSource();
 		
-		if(obj == but1) {
-			pbv = new Productbuy("구매화면",650,800);
-			pbv.setLocation(900, 150);
+		if(obj == btnBuy) {
+			btnres.setEnabled(true);
+			btnBuy.setEnabled(false);
+			res--;
+			wait.setText(" 남은 구매 예약자 : " + res + "명 ");
+			//pbv = new Productbuy("구매화면",650,800);
+			//pbv.setLocation(900, 150);
+			/*if(res > 1) {
+				res--;
+				wait.setText(" 남은 구매 예약자 : " + res + "명 ");
+			}else if(res == 1) {
+				res--;
+				wait.setText(" 남은 구매 예약자 : " + res + "명 ");
+				btnres.setEnabled(true);
+				btnBuy.setEnabled(false);
+			}*/
+		}else if(obj == btnres) {
+			btnres.setEnabled(false);
+			btnBuy.setEnabled(true);
+			res++;
+			wait.setText(" 남은 구매 예약자 : " + res + "명 ");
 		}
 		
 	}
