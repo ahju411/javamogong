@@ -41,7 +41,7 @@ public class mainFrame extends JFrame implements MouseListener, ActionListener {
 	private JMenuItem ManWear,WomanWear,ManShoes,WomanShoes,Accessory;
 	
 	private JMenu menuUser;
-	private JMenuItem BuyList,basket,MyInfo,Reservation;
+	private JMenuItem BuyList,basket,MyInfo,Reservation,Logout;
 	loginPage loginPage;
 	
 	public mainFrame(String title , int width , int height, loginPage loginPage) {
@@ -85,11 +85,14 @@ public class mainFrame extends JFrame implements MouseListener, ActionListener {
 		Reservation = new JMenuItem("예약현황");
 		basket = new JMenuItem("장바구니");
 		BuyList = new JMenuItem("구매목록");
+		Logout = new JMenuItem("로그아웃");
+		Logout.addActionListener(this);
 	
 		menuUser.add(MyInfo);
 		menuUser.add(Reservation);
 		menuUser.add(basket);
 		menuUser.add(BuyList);
+		menuUser.add(Logout);
 	
 		menubar.add(menuProduct);
 		menubar.add(menuUser);
@@ -442,6 +445,9 @@ public class mainFrame extends JFrame implements MouseListener, ActionListener {
 			su.signUp(id, this);
 			su.setTitle("회원정보");
 			
+		}if(obj == Logout) {
+			loginPage lg = new loginPage();
+			dispose();
 		}
 		
 	}

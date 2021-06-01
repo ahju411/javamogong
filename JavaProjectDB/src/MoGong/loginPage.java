@@ -10,6 +10,8 @@ import java.awt.GridLayout;
 import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -31,7 +33,7 @@ import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
 
-public class loginPage extends JFrame implements ActionListener {
+public class loginPage extends JFrame implements ActionListener, KeyListener {
 	
 	JButton btnlogin, btnSignUp, btnSearchID, btnSearchPW;
 	JTextField tfID, tfPassword;
@@ -93,6 +95,7 @@ public class loginPage extends JFrame implements ActionListener {
 		panInput.add(lblPassword);
 		
 		tfPassword = new JPasswordField(20);
+		tfPassword.addKeyListener(this);
 
 		panInput.add(tfPassword);
 		
@@ -130,6 +133,7 @@ public class loginPage extends JFrame implements ActionListener {
 		plLog.add(btnlogin);
 		
 		btnlogin.addActionListener(this);
+		btnlogin.addKeyListener(this);
 		
 		
 		JPanel plSignUP = new JPanel();
@@ -239,6 +243,27 @@ public class loginPage extends JFrame implements ActionListener {
 
 	public void setLogid(String logid) {
 		this.logid = logid;
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		int key = e.getKeyCode();
+		if(key==KeyEvent.VK_ENTER) {
+			btnlogin.doClick();
+		}
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 
