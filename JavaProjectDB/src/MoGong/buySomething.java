@@ -21,18 +21,18 @@ import javax.swing.border.EmptyBorder;
 
 public class buySomething extends JFrame implements ActionListener {
 
-	loginPage loginPage;
+	static loginPage loginPage;
 	
 	private String[] payment = {"카드 결제", "무통장 입금"};
 	private String address = "인천시 미추홀구";//나중에 삭제할것
-	//private String id = loginPage.getLogid();
+	private String id = loginPage.getLogid();
 	
 	private JButton btn;
 	private JComboBox<String> cb;
 	private JTextArea taAdd, taReq;
 	
 	
-	public buySomething(String title, int width, int height) {
+	public buySomething(String title, int width, int height, MoGong.loginPage loginPage) {
 		setTitle(title);
 		setSize(width, height);
 		setLocationRelativeTo(this);
@@ -137,13 +137,17 @@ public class buySomething extends JFrame implements ActionListener {
 	}
 	
 	public static void main(String[] args) {
-		new buySomething("결제창", 400, 500);
+		new buySomething("결제창", 400, 500, loginPage);
 		
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
+		 MemberDB db = new MemberDB();
+		 
+		 db.getMember(id);
+		
 		System.out.println("결제 완료");
 		
 	}
