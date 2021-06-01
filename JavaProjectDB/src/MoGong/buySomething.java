@@ -23,7 +23,7 @@ public class buySomething extends JFrame implements ActionListener {
 
 	
 	private String[] payment = {"카드 결제", "무통장 입금"};
-	private String address = "인천시 미추홀구";//나중에 삭제할것
+	private String address = "인천시 미추홀구";//나중에 삭제
 	private String name;
 	
 	private JButton btn;
