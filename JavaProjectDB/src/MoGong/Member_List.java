@@ -73,6 +73,7 @@ public class Member_List extends JFrame implements MouseListener, ActionListener
 		table.setRowHeight(30);
 		table.getColumn("나이").setPreferredWidth(10);
 		table.setCellSelectionEnabled(false);
+		table.setDragEnabled(false);
 		table.addMouseListener(this);
 		
 		JScrollPane scrollPane = new JScrollPane(table);
