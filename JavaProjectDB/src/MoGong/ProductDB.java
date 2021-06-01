@@ -143,7 +143,7 @@ public class ProductDB {
 
 		try {
 			conn = getConnection();
-			String sql = "select * from item";
+			String sql = "select * from item order by itemid asc";
 			ps = conn.prepareStatement(sql);
 			rs = ps.executeQuery();
 

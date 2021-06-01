@@ -143,7 +143,7 @@ public class mainFrame extends JFrame implements MouseListener, ActionListener {
 			
 			
 			
-			Object [] data = {itemid,itemname,itemprice,itembrand,itemimage};
+			Object [] data = {itemid,itemname,itemprice,itembrand,itemclass,itemimage};
 			
 			tModel.addRow(data);
 		}
