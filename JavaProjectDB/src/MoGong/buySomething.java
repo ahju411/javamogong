@@ -24,11 +24,11 @@ public class buySomething extends JFrame implements ActionListener {
 	
 	private String[] payment = {"카드 결제", "무통장 입금"};
 	private String address = "인천시 미추홀구";//나중에 삭제할것
-	
+	private String name;
 	
 	private JButton btn;
 	private JComboBox<String> cb;
-	private JTextArea taAdd, taReq;
+	private JTextArea taAdd, taReq, taName;
 	
 	loginPage loginPage;
 	public buySomething() {
@@ -72,7 +72,7 @@ public class buySomething extends JFrame implements ActionListener {
 
 		
 		JPanel panContents = new JPanel();//메인 콘텐츠 가 붙는 패널
-		panContents.setLayout(new GridLayout(5, 1));
+		panContents.setLayout(new GridLayout(6, 1));
 		panContents.setBackground(Color.pink);
 		panContents.setBorder(new EmptyBorder(30, 10, 30, 10));
 		pan.add(panContents);
@@ -112,36 +112,46 @@ public class buySomething extends JFrame implements ActionListener {
 		panCon3.setBackground(Color.pink);
 		panContents.add(panCon3);
 		
-		cb = new JComboBox<String>(payment);
-		panCon3.add(cb);
+		JLabel lblName = new JLabel("상품 수신자 : ");
+		taName = new JTextArea(name, 1, 5);
 		
-		JLabel lblpay = new JLabel("으로 결제합니다");
-		panCon3.add(lblpay);
+		panCon3.add(lblName);
+		panCon3.add(taName);
 		
 		//4번째 줄
 		JPanel panCon4 = new JPanel();
 		panCon4.setBackground(Color.pink);
 		panContents.add(panCon4);
 		
-		JLabel lbladd = new JLabel("배송은");
+		JLabel lbladd = new JLabel("배송지 : ");
 		panCon4.add(lbladd);
 		//기본 주소 불러오기 		
 		taAdd = new JTextArea(address, 3, 20);
 		
 		panCon4.add(taAdd);
-		JLabel lbladdcheck = new JLabel("로 하겠습니다.");
-		panCon4.add(lbladdcheck);
 		
 		//5번째 줄
 		JPanel panCon5 = new JPanel();
 		panCon5.setBackground(Color.pink);
 		panContents.add(panCon5);
 		
+		JLabel lblpay = new JLabel("결제수단 : ");
+		panCon5.add(lblpay);
+		
+		cb = new JComboBox<String>(payment);
+		panCon5.add(cb);
+		
+		
+		//6번째 줄
+		JPanel panCon6 = new JPanel();
+		panCon6.setBackground(Color.pink);
+		panContents.add(panCon6);
+				
 		JLabel lblrequest = new JLabel("요청사항을 입력해주세요");
-		panCon5.add(lblrequest);
+		panCon6.add(lblrequest);
 		
 		taReq = new JTextArea(6,30);
-		panCon5.add(taReq);
+		panCon6.add(taReq);
 		
 		JPanel panPayment = new JPanel();
 		panPayment.setBackground(Color.pink);
