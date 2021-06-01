@@ -27,6 +27,7 @@ public class signUp extends JFrame implements ActionListener {
 	JTextField tfID, tfPassword, tfName, tfAge, tfAddress, tfPhone1, tfPhone2, tfPhone3, tfMail;
 	JButton btnSignUp,btnConfirm,btnUpdate,btnDelete;
 	mainFrame mainFrame;
+	buySomething buySomething;
 
 	
 	public void signUp() {
@@ -54,7 +55,29 @@ public class signUp extends JFrame implements ActionListener {
 	
 	
 	
+	public void signUp(String id, buySomething buySomething) {
+		signUpUI();
+		btnConfirm.setEnabled(false);
+		btnConfirm.setVisible(false);
+		btnSignUp.setEnabled(false);
+		btnSignUp.setVisible(false);
+		
+		this.buySomething = buySomething;
+		MemberDB db = new MemberDB();
+		Member mem = db.getMember(id);
+		viewAddress(mem);
+		
+	}
 	
+	private String viewAddress(Member vMem){
+	       
+        String addr = vMem.getAddr();
+       
+        //화면에 세팅
+        //taAdd.setText(addr);
+        return addr;
+        
+    }
 	
 	
 	
