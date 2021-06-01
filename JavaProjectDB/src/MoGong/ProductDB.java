@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 
@@ -61,7 +62,35 @@ public class ProductDB {
 		}
 		return conn;
 	}
-	
+	public productdto getproduct(int id) {
+		productdto pro = new productdto();
+
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		try {
+
+			conn = getConnection();
+			String sql = "select * from ITEM where ITEMID =?";
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, id);
+			rs = ps.executeQuery();
+
+			if (rs.next()) {
+				pro.setItemid(rs.getInt("ITEMID"));
+				pro.setItemname(rs.getString("ITEMNAME"));
+				pro.setItemprice(rs.getString("PRICE"));
+				pro.setItembrand(rs.getString("BRAND"));
+				pro.setItemclass(rs.getString("CLASS"));
+				pro.setItemimage(rs.getString("ITEMIMAGE"));
+			
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return pro;
+	}
 	
 	
 	// 추출한 상품 모든정보 DB에넣기
@@ -105,7 +134,39 @@ public class ProductDB {
 		pdb.getConnection();
 		
 	}
+	public List<productdto> getProductList() {
+		List<productdto> list = new ArrayList<productdto>();
 
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+
+		try {
+			conn = getConnection();
+			String sql = "select * from item";
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				productdto pro = new productdto();
+				pro.setItemid(rs.getInt("itemid"));
+				pro.setItemname(rs.getString("itemname"));
+				pro.setItemprice(rs.getString("price"));
+				pro.setItembrand(rs.getString("brand"));
+				pro.setItemclass(rs.getString("class"));
+				pro.setItemimage(rs.getString("itemimage"));
+
+				list.add(pro);
+
+			}
+			return list;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }
+
 
 

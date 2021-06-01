@@ -2,15 +2,19 @@ package MoGong;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Container;
 import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -22,9 +26,12 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableModel;
 
 public class mainFrame extends JFrame implements MouseListener, ActionListener {
 
@@ -33,7 +40,11 @@ public class mainFrame extends JFrame implements MouseListener, ActionListener {
 	private JLabel price1;
 	private JScrollPane scrollpane;
 	private JLabel buy1,buy2,buy3,buy4,buy5;
-	
+	private JTable table;
+	private DefaultTableModel tModel;
+	private JButton btnback;
+
+
 	private JMenu menuProduct;
 	private JMenu  Man,Woman,Child;
 	private JMenuItem ManWear,WomanWear,ManShoes,WomanShoes,Accessory;
@@ -41,6 +52,8 @@ public class mainFrame extends JFrame implements MouseListener, ActionListener {
 	private JMenu menuUser;
 	private JMenuItem BuyList,basket,MyInfo,Reservation,Logout;
 	loginPage loginPage;
+	private JPanel pan;
+	private JLabel lbl;
 	
 	public mainFrame(String title , int width , int height, loginPage loginPage) {
 		setTitle(title);
@@ -96,298 +109,60 @@ public class mainFrame extends JFrame implements MouseListener, ActionListener {
 		menubar.add(menuUser);
 		setJMenuBar(menubar);	
 		
-		
-		JPanel backpan = new JPanel();
-		backpan.setBackground(Color.white);
-		backpan.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
-		backpan.setLayout(new GridLayout(15,1));
-		scrollpane = new JScrollPane(backpan);
-		
-		
-		
-		// 첫번째 상품
-		
-		TitledBorder oneTb= new TitledBorder(new LineBorder(Color.black));
-	
-		JPanel Panel1 = new JPanel();
-        Panel1.setBorder(oneTb);
-		Panel1.setLayout(new BorderLayout());
-	 
-		// 사진
-		img1 = new ImageIcon("images/gucci.png");
-		img1 = imageSetSize(img1, 150, 150);
-		lblimg1 = new JLabel(img1);
-        
-		// 텍스트
-		JPanel PanelSub1_1 = new JPanel();
-	
-		PanelSub1_1.setLayout(new GridLayout(3,1));
-		JLabel name1 = new JLabel("[GG 마몽] 스몰 마틀라세 숄더백",SwingConstants.CENTER);
-		price1 = new JLabel("2,781,000 (10% SALE)",SwingConstants.CENTER);
-		price1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		price1.addMouseListener(this);
-		JLabel info1 = new JLabel("GUCCI",SwingConstants.CENTER);
-		
-		name1.setFont(new Font("맑은 고딕",Font.BOLD,15));
-		price1.setFont(new Font("맑은 고딕",Font.BOLD,20));
-		price1.setForeground(Color.RED);
-		info1.setFont(new Font("맑은 고딕",Font.BOLD,15));
-		
-		PanelSub1_1.add(name1);
-		PanelSub1_1.add(price1);
-		PanelSub1_1.add(info1);
-		
-		PanelSub1_1.setOpaque(false);
-		
-		
-		// 버튼
-		JPanel PanelSub1_2 = new JPanel();
-	
-		PanelSub1_2.setLayout(new FlowLayout(0,0,60));
-
-		
-		buyimg = new ImageIcon("images/buyicon.png");
-		JLabel buy1 = new JLabel(buyimg);
-		
-		PanelSub1_2.setOpaque(false);
-		PanelSub1_2.add(buy1);
-		
-		// 붙이기
-		Panel1.add(lblimg1,BorderLayout.WEST);
-		Panel1.add(PanelSub1_1);
-		Panel1.add(PanelSub1_2,BorderLayout.EAST);
-		
-		Panel1.setOpaque(false);
-		
-	    backpan.add(Panel1);
-		
-	    
-	    // 두번째
-	    JPanel Panel2 = new JPanel();
-	    Panel2.setBorder(oneTb);
-		Panel2.setLayout(new BorderLayout());
-	    
-		// 사진
-		img1 = new ImageIcon("images/Tom.png");
-		img1 = imageSetSize(img1, 150, 150);
-		lblimg1 = new JLabel(img1);
-	
-		// 텍스트
-		JPanel PanelSub2_1 = new JPanel();
-		
-		PanelSub2_1.setLayout(new GridLayout(3,1));
-		JLabel name2 = new JLabel("다크 그레이 코튼 부클레 수팅 엔지니어 암밴드 클래식 재킷",SwingConstants.CENTER);
-		JLabel price2 = new JLabel("2,368,000 (20% SALE)",SwingConstants.CENTER);
-		price2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		JLabel info2 = new JLabel("THOM BROWNE",SwingConstants.CENTER);
-				
-		name2.setFont(new Font("맑은 고딕",Font.BOLD,12));
-		price2.setFont(new Font("맑은 고딕",Font.BOLD,20));
-		price2.setForeground(Color.RED);
-		info2.setFont(new Font("맑은 고딕",Font.BOLD,15));
-				
-				
-				
-		PanelSub2_1.add(name2);
-		PanelSub2_1.add(price2);
-		PanelSub2_1.add(info2);
-	
-		PanelSub2_1.setOpaque(false);
-		
-		// 버튼
-		JPanel PanelSub2_2 = new JPanel();
-	
-		PanelSub2_2.setLayout(new FlowLayout(0,0,60));
-
-		
-		JLabel buy2 = new JLabel(buyimg);
-		
-		PanelSub2_2.setOpaque(false);
-		PanelSub2_2.add(buy2);
-		
-		
-		// 붙이기
-		Panel2.add(lblimg1,BorderLayout.WEST);
-		Panel2.add(PanelSub2_1);
-		Panel2.add(PanelSub2_2,BorderLayout.EAST);
-		
-		Panel2.setOpaque(false);
-		
-	    backpan.add(Panel2);
-		
-	    
-	    // 세번째
-	    JPanel Panel3 = new JPanel();
-	    Panel3.setBorder(oneTb);
-		Panel3.setLayout(new BorderLayout());
-	    
-		// 사진
-		img1 = new ImageIcon("images/TOm2.png");
-		img1 = imageSetSize(img1, 150, 150);
-		lblimg1 = new JLabel(img1);
-        
-		// 텍스트
-		JPanel PanelSub3_1 = new JPanel();
-		
-		PanelSub3_1.setLayout(new GridLayout(3,1));
-		JLabel name3 = new JLabel("네추럴 코튼 캔버스 소프트 MRS. THOM 백",SwingConstants.CENTER);
-		JLabel price3 = new JLabel("4,572,400 (12% SALE)",SwingConstants.CENTER);
-		price3.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		JLabel info3 = new JLabel("THOM BROWNE",SwingConstants.CENTER);
-		
-		name3.setFont(new Font("맑은 고딕",Font.BOLD,15));
-		price3.setFont(new Font("맑은 고딕",Font.BOLD,20));
-		price3.setForeground(Color.RED);
-		info3.setFont(new Font("맑은 고딕",Font.BOLD,15));
-		
-		
-		
-		PanelSub3_1.add(name3);
-		PanelSub3_1.add(price3);
-		PanelSub3_1.add(info3);
-		
-		PanelSub3_1.setOpaque(false);
-		
-		// 버튼
-		JPanel PanelSub3_2 = new JPanel();
-	
-		PanelSub3_2.setLayout(new FlowLayout(0,0,60));
-
-		
-		
-		 buy3 = new JLabel(buyimg);
-		
-		PanelSub3_2.setOpaque(false);
-		PanelSub3_2.add(buy3);
-		
-		
-		// 붙이기
-		
-		Panel3.add(lblimg1,BorderLayout.WEST);
-		Panel3.add(PanelSub3_1);
-		Panel3.add(PanelSub3_2,BorderLayout.EAST);
-		
-		Panel1.setOpaque(false);
-		
-	    backpan.add(Panel3);
-		
-	    
-	    // 네번째
-	    JPanel Panel4 = new JPanel();
-	    Panel4.setBorder(oneTb);
-		Panel4.setLayout(new BorderLayout());
-	    
-		// 사진
-		img1 = new ImageIcon("images/Sha.jpg");
-		img1 = imageSetSize(img1, 150, 150);
-		lblimg1 = new JLabel(img1);
-        
-		// 텍스트
-		JPanel PanelSub4_1 = new JPanel();
-		
-		PanelSub4_1.setLayout(new GridLayout(3,1));
-		JLabel name4 = new JLabel("AB6125 B05546 NC156 네크리스",SwingConstants.CENTER);
-		JLabel price4 = new JLabel("1,239,300 (10% SALE)",SwingConstants.CENTER);
-		price4.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		JLabel info4 = new JLabel("CHANEL",SwingConstants.CENTER);
-		
-		name4.setFont(new Font("맑은 고딕",Font.BOLD,15));
-		price4.setFont(new Font("맑은 고딕",Font.BOLD,20));
-		price4.setForeground(Color.RED);
-		info4.setFont(new Font("맑은 고딕",Font.BOLD,15));
-		
-		
-		PanelSub4_1.add(name4);
-		PanelSub4_1.add(price4);
-		PanelSub4_1.add(info4);
-		
-		PanelSub4_1.setOpaque(false);
-		
-		// 버튼
-		JPanel PanelSub4_2 = new JPanel();
-	
-		PanelSub4_2.setLayout(new FlowLayout(0,0,60));
-
-		
-		buy4 = new JLabel(buyimg);
-		
-		PanelSub4_2.setOpaque(false);
-		PanelSub4_2.add(buy4);
-		
-		
-		// 붙이기
-		Panel4.add(lblimg1,BorderLayout.WEST);
-		Panel4.add(PanelSub4_1);
-		Panel4.add(PanelSub4_2,BorderLayout.EAST);
-		
-		Panel4.setOpaque(false);
-		
-	    backpan.add(Panel4);
-	    
-		
-	    // -------------------------------------------------------
-	    
-	    // 다섯번째
-	    JPanel Panel5 = new JPanel();
-	    Panel5.setBorder(oneTb);
-		Panel5.setLayout(new BorderLayout());
-	
-	    
-		// 사진
-		img1 = new ImageIcon("images/gucci2.jpg");
-		img1 = imageSetSize(img1, 150, 150);
-		lblimg1 = new JLabel(img1);
-        
-	
-		
-		// 텍스트
-		JPanel PanelSub5_1 = new JPanel();
-		
-		PanelSub5_1.setLayout(new GridLayout(3,1));
-		JLabel name5 = new JLabel("[GG 마몽] 스몰 마틀라세 숄더백",SwingConstants.CENTER);
-		JLabel price5 = new JLabel("2,781,000 (10% SALE)",SwingConstants.CENTER);
-		price5.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		JLabel info5 = new JLabel("GUCCI",SwingConstants.CENTER);
-		
-		name5.setFont(new Font("맑은 고딕",Font.BOLD,15));
-		price5.setFont(new Font("맑은 고딕",Font.BOLD,20));
-		price5.setForeground(Color.RED);
-		info5.setFont(new Font("맑은 고딕",Font.BOLD,15));
-		
-		
-		PanelSub5_1.add(name5);
-		PanelSub5_1.add(price5);
-		PanelSub5_1.add(info5);
-		
-		PanelSub5_1.setOpaque(false);
-		
-		// 버튼
-		JPanel PanelSub5_2 = new JPanel();
-	
-		PanelSub5_2.setLayout(new FlowLayout(0,0,60));
-		
-		
-		 buy5 = new JLabel(buyimg);
-		
-		PanelSub5_2.setOpaque(false);
-		PanelSub5_2.add(buy5);
-		
-		// 붙이기
-		Panel5.add(lblimg1,BorderLayout.WEST);
-		Panel5.add(PanelSub5_1);
-		Panel5.add(PanelSub5_2,BorderLayout.EAST);
-		
-		Panel1.setOpaque(false);
-		
-	    backpan.add(Panel5);
-	    
-	    
-		add(scrollpane);
-
+		//
+		//
+		//
+		//
+		
+		pan = new JPanel(new BorderLayout());
+		pan.setBorder(new EmptyBorder(5,5,5,5));
+		setContentPane(pan);
+		
+		lbl = new JLabel("회원 목록");
+		lbl.setFont(new Font("맑은 고딕",Font.BOLD,30));
+		lbl.setHorizontalAlignment(SwingConstants.CENTER);
+		lbl.setPreferredSize(new Dimension(400,80));
+		
+		pan.add(lbl,BorderLayout.NORTH);
+		
+        ProductDB db = new ProductDB();
+		List<productdto> list = db.getProductList();
+		
+		String header[] = {"상품번호","상품이름","상품가격","상품브랜드","상품종류","상품URL"};
+		
+		tModel = new DefaultTableModel(header,0);
+		
+		for(int i = 0; i<list.size(); i++) {
+			int itemid = list.get(i).getItemid();
+			String itemname = list.get(i).getItemname();
+			String itemprice = list.get(i).getItemprice();
+			String itembrand = list.get(i).getItembrand();
+			String itemclass = list.get(i).getItemclass();
+			String itemimage = list.get(i).getItemimage();
+		
+			
+			
+			
+			Object [] data = {itemid,itemname,itemprice,itembrand,itemimage};
+			
+			tModel.addRow(data);
+		}
+		
+		table = new JTable(tModel);
+		table.setFont(new Font("맑온 고딕", Font.PLAIN, 15));
+		table.setRowHeight(30);
+		table.getColumn("상품이름").setPreferredWidth(10);
+		table.setCellSelectionEnabled(false);
+		table.addMouseListener(this);
+		
+		JScrollPane scrollPane = new JScrollPane(table);
+		pan.add(scrollPane,BorderLayout.CENTER);
+		
+		btnback = new JButton("나가기");
+		btnback.addActionListener(this);
+		pan.add(btnback,BorderLayout.SOUTH);
 		
 		setVisible(true);
-		
-		
 	}
 	
 
@@ -446,6 +221,10 @@ public class mainFrame extends JFrame implements MouseListener, ActionListener {
 		}if(obj == Logout) {
 			loginPage lg = new loginPage();
 			dispose();
+		}
+	
+		if(btnback == obj) {
+			System.exit(0);
 		}
 		
 	}

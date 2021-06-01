@@ -3,12 +3,16 @@ package MoGong;
 import java.util.ArrayList;
 
 public class productdto {
+	
 	private int itemid;
 	private String itemname;
 	private String itemprice;
 	private String itembrand;
 	private String itemclass;
 	private String itemimage;
+	
+	public productdto() {};
+	
 	
 	
 	public productdto(int itemid, String itemname, String itemprice, String itembrand, String itemclass, String itemimage) {
