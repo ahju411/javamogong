@@ -58,12 +58,16 @@ public class ProductListUI extends JFrame implements MouseListener, ActionListen
 	private JLabel lbl;
 
 	private JMenuBar menubar;
+	
+	
+	mainFrame mainFrame;
 	// , loginPage loginPage 넣어야합니다 int height 오른쪽에  프레임 연결시  !!!! -은철-
-	public ProductListUI(String title , int width , int height,int n) {
+	public ProductListUI(String title , int width , int height,int n,mainFrame mainFrame) {
 		setTitle(title);
 		setSize(width,height);
 		setLocationRelativeTo(this);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.mainFrame = mainFrame;
 	//	this.loginPage =loginPage; 이것도 풀어주셔야합니다 -은철-
 		
 		// 메뉴 
@@ -152,7 +156,7 @@ public class ProductListUI extends JFrame implements MouseListener, ActionListen
 		JScrollPane scrollPane = new JScrollPane(table);
 		pan.add(scrollPane,BorderLayout.CENTER);
 		
-		btnback = new JButton("나가기");
+		btnback = new JButton("뒤로가기");
 		btnback.addActionListener(this);
 		pan.add(btnback,BorderLayout.SOUTH);
 		
@@ -161,7 +165,6 @@ public class ProductListUI extends JFrame implements MouseListener, ActionListen
 
 	public static void main(String[] args) {
 		
-
 	}
 
 
@@ -210,7 +213,11 @@ public class ProductListUI extends JFrame implements MouseListener, ActionListen
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
+		Object obj = e.getSource();
+		if(obj == btnback) {
+			mainFrame.setVisible(true);
+			dispose();
+			}
 		
 	}
 	

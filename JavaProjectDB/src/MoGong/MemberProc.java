@@ -33,16 +33,16 @@ public class MemberProc extends JFrame implements ActionListener {
        
     }//생성자
    
-    public MemberProc(Member_List mList){ //가입용 생성자
-       
-        createUI(); // UI작성해주는 메소드
-        btnUpdate.setEnabled(false);
-        btnUpdate.setVisible(false);
-        btnDelete.setEnabled(false);
-        btnDelete.setVisible(false);
-        this.mList = mList;
-       
-    }//생성자
+//    public MemberProc(Member_List mList){ //가입용 생성자
+//       
+//        createUI(); // UI작성해주는 메소드
+//        btnUpdate.setEnabled(false);
+//        btnUpdate.setVisible(false);
+//        btnDelete.setEnabled(false);
+//        btnDelete.setVisible(false);
+//        this.mList = mList;
+//       
+//    }//생성자
     public MemberProc(String id,Member_List mList){ // 수정/삭제용 생성자
         createUI();
         btnInsert.setEnabled(false);
