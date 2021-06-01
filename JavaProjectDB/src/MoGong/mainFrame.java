@@ -46,14 +46,18 @@ public class mainFrame extends JFrame implements MouseListener, ActionListener {
 
 
 	private JMenu menuProduct;
-	private JMenu  Man,Woman,Child;
-	private JMenuItem ManWear,WomanWear,ManShoes,WomanShoes,Accessory;
+	private JMenu  MENUBRAND;
+	private JMenuItem WATCH,BAG,WALLET,NECKLACE;
+	
+
 	
 	private JMenu menuUser;
 	private JMenuItem BuyList,basket,MyInfo,Reservation,Logout;
 	loginPage loginPage;
 	private JPanel pan;
 	private JLabel lbl;
+
+	private JMenuBar menubar;
 	
 	public mainFrame(String title , int width , int height, loginPage loginPage) {
 		setTitle(title);
@@ -62,34 +66,57 @@ public class mainFrame extends JFrame implements MouseListener, ActionListener {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.loginPage =loginPage;
 		
-		JMenuBar menubar = new JMenuBar();
+		menubar = new JMenuBar();
 		menubar.setBackground(Color.PINK);
 	
 		JMenu menuProduct = new JMenu("상품목록");
-	
-		JMenu Man = new JMenu("남성");
-		ManWear = new JMenuItem("의류");
-		ManShoes = new JMenuItem("신발");
+		// 구찌 탭 // 시계 가방 지갑 목걸이
+		MENUBRAND = new JMenu("구찌");
+		WATCH = new JMenuItem("시계");
+		BAG = new JMenuItem("가방");
+		WALLET = new JMenuItem("지갑");
+		NECKLACE = new JMenuItem("목걸이");
+		MENUBRAND.add(WATCH);
+		MENUBRAND.add(BAG);
+		MENUBRAND.add(WALLET);
+		MENUBRAND.add(NECKLACE);
+		menuProduct.add(MENUBRAND);
+		
+		MENUBRAND = new JMenu("샤넬");
+		WATCH = new JMenuItem("시계");
+		BAG = new JMenuItem("가방");
+		WALLET = new JMenuItem("지갑");
+		NECKLACE = new JMenuItem("목걸이");
+		MENUBRAND.add(WATCH);
+		MENUBRAND.add(BAG);
+		MENUBRAND.add(WALLET);
+		MENUBRAND.add(NECKLACE);
+		menuProduct.add(MENUBRAND);
+		
+		MENUBRAND = new JMenu("에르메스");
+		WATCH = new JMenuItem("시계");
+		BAG = new JMenuItem("가방");
+		WALLET = new JMenuItem("지갑");
+		NECKLACE = new JMenuItem("목걸이");
+		MENUBRAND.add(WATCH);
+		MENUBRAND.add(BAG);
+		MENUBRAND.add(WALLET);
+		MENUBRAND.add(NECKLACE);
+		menuProduct.add(MENUBRAND);
+		
+		MENUBRAND = new JMenu("디올");
+		WATCH = new JMenuItem("시계");
+		BAG = new JMenuItem("가방");
+		WALLET = new JMenuItem("지갑");
+		NECKLACE = new JMenuItem("목걸이");
+		MENUBRAND.add(WATCH);
+		MENUBRAND.add(BAG);
+		MENUBRAND.add(WALLET);
+		MENUBRAND.add(NECKLACE);
+		menuProduct.add(MENUBRAND);
+		
 
 
-		Man.add(ManWear);
-		Man.add(ManShoes);
-	
-		menuProduct.add(Man);
-	
-	
-		JMenu Woman = new JMenu("여성");
-		WomanWear = new JMenuItem("의류");
-		WomanShoes = new JMenuItem("신발");
-
-
-		Woman.add(WomanWear);
-		Woman.add(WomanShoes);
-
-		menuProduct.add(Woman);
-
-		Accessory = new JMenuItem("악세서리 / 가방");
-		menuProduct.add(Accessory);
 		menuUser = new JMenu("My");
 		MyInfo = new JMenuItem("나의 정보");
 		MyInfo.addActionListener(this);
@@ -165,6 +192,8 @@ public class mainFrame extends JFrame implements MouseListener, ActionListener {
 		setVisible(true);
 	}
 	
+
+
 
 
 	ImageIcon imageSetSize(ImageIcon icon, int i, int j) {
