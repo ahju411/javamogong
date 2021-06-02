@@ -5,27 +5,23 @@ package MoGong;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.ScrollPane;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 
 public class reservation extends JFrame {
 
-	loginPage login;
-	
-	public reservation(String title, int width, int height, loginPage log) {
+	public reservation(String title, int width, int height, String Id) {
 		setTitle(title);
 		setSize(width, height);
 		setLocationRelativeTo(this);
@@ -48,19 +44,16 @@ public class reservation extends JFrame {
 		String header[] = {"상품 이름", "가격"};
 		
 		String contents[][] = {
-			{"구찌 시계", "7500000" + "원"},
-			{"22", "22"}
 		};
 		
+		DefaultTableModel jtable = new DefaultTableModel(contents, header);
 		
-		JTable jtable = new JTable(contents, header);
-		jtable.setSize(100, 100);
-		panTable.add(jtable);
+		JTable table = new JTable(jtable);
+		panTable.add(table);
 		
-		
-		
-		JScrollPane jp = new JScrollPane(jtable);
+		JScrollPane jp = new JScrollPane(table);
 		panBack.add(jp);
+		
 		
 		
 		try {
@@ -71,19 +64,20 @@ public class reservation extends JFrame {
 			Statement stmt = conn.createStatement();
 			
 			//String logid = loginPage.getid();
+			String id = Id;
 			
+			ResultSet rs = stmt.executeQuery("SELECT itemname, price FROM item WHERE itemid in (SELECT itemid FROM orders where id = '" + id + "')");
 			
-			//ResultSet rs = stmt.executeQuery("SELECT itemname FROM order WHERE id = '" + logid + "'");
-			//ResultSet rs = stmt.executeQuery("SELECT itemname FROM order WHERE id = 'xogus'");
-			ResultSet rs = stmt.executeQuery("SELECT * FROM order");
-			
-			/*if(rs.next()) {
+			while(rs.next()) {
 				
-				String id = rs.getString("itmeid");
-				System.out.println(id);
-				//ResultSet rs = stmt.executeQuery("INSERT into table itemname FROM order WHERE id = 'xogus'");
-			}*/
-			
+				String id1 = rs.getString("itemname");
+				String price = rs.getString("price");
+				
+				String[] col = {id1, price};
+				
+				jtable.addRow(col);
+				
+			}
 			
 			conn.close();
 		} catch (ClassNotFoundException e1) {

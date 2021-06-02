@@ -224,7 +224,7 @@ public class loginPage extends JFrame implements ActionListener, KeyListener {
 		
 		if(ok == 1) {
 			mainFrame pd = new mainFrame("상품목록", 600, 825,this);
-			pd.setTitle("상품목록"+"("+id+")");
+			pd.setTitle("상품목록"+"/"+id);
 			logid = id;
 			dispose();
 		}else if(ok == 2){
