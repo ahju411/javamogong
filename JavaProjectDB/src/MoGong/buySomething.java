@@ -53,7 +53,7 @@ public class buySomething extends JFrame implements ActionListener {
 		setTitle("결제창");
 		setSize(400, 500);
 		setLocationRelativeTo(this);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
 		 
 		
