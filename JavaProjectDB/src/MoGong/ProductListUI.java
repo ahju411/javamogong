@@ -137,6 +137,9 @@ public class ProductListUI extends JFrame implements MouseListener, ActionListen
 			public Class getColumnClass(int column) {
 				return getValueAt(0	, column).getClass();
 			}
+			public boolean isCellEditable(int i, int c) {
+				return false;
+			}
 		};
 		// i는 5의배수로 넣을예정. 총 16개
 		for(int i = n+0; i<n+5; i++) {
