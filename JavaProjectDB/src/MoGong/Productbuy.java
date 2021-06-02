@@ -150,15 +150,6 @@ public class Productbuy extends JFrame implements ActionListener {
 			res--;
 			wait.setText(" 남은 구매 예약자 : " + res + "명 ");
 			buySomething bs = new buySomething();
-			/*if(res > 1) {
-				res--;
-				wait.setText(" 남은 구매 예약자 : " + res + "명 ");
-			}else if(res == 1) {
-				res--;
-				wait.setText(" 남은 구매 예약자 : " + res + "명 ");
-				btnres.setEnabled(true);
-				btnBuy.setEnabled(false);
-			}*/
 		}else if(obj == btnres) {
 			btnres.setEnabled(false);
 			btnBuy.setEnabled(true);
