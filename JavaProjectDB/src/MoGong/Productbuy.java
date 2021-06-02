@@ -156,7 +156,7 @@ public class Productbuy extends JFrame implements ActionListener {
 	}
 	
 	public static void main(String[] args) throws MalformedURLException {
-		new Productbuy("상품정보화면", 650, 800, 4);
+	
 	
 	}
 
