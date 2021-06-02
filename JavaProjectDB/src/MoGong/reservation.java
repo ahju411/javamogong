@@ -63,7 +63,6 @@ public class reservation extends JFrame {
 			
 			Statement stmt = conn.createStatement();
 			
-			//String logid = loginPage.getid();
 			String id = Id;
 			
 			ResultSet rs = stmt.executeQuery("SELECT itemname, price FROM item WHERE itemid in (SELECT itemid FROM orders where id = '" + id + "')");
