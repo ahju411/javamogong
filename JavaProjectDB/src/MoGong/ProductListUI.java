@@ -68,6 +68,7 @@ public class ProductListUI extends JFrame implements MouseListener, ActionListen
 	private JMenuBar menubar;
 	
 	mainFrame mainFrame;
+	private int l;
 
 	public ProductListUI(String title , int width , int height,int n,mainFrame mainFrame) {
 		setTitle(title);
@@ -102,7 +103,7 @@ public class ProductListUI extends JFrame implements MouseListener, ActionListen
 	
 		outputProductList(n);
 		
-		
+		 l = n;
 		
 		//
 		menubar.add(menuUser);
@@ -110,6 +111,7 @@ public class ProductListUI extends JFrame implements MouseListener, ActionListen
 		
 		//
 		//
+		
 		//
 		//
 		
@@ -178,6 +180,7 @@ public class ProductListUI extends JFrame implements MouseListener, ActionListen
 		
 
 		table = new JTable(tModel);
+		
 		resizeColumnWidth(table);
 		table.setFont(new Font("맑온 고딕", Font.PLAIN, 15));
 		table.setRowHeight(200);
@@ -241,6 +244,18 @@ public class ProductListUI extends JFrame implements MouseListener, ActionListen
 		if(obj == price1) {
 			System.out.println("TEst");
 			
+		}
+		
+		if(e.getClickCount() == 2) {
+			int r = table.getSelectedRow();
+			int tmp;
+			tmp = l+r;
+			try {
+				Productbuy pby = new Productbuy("상품정보화면", 650, 800, tmp);
+			} catch (MalformedURLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 		
 	}
