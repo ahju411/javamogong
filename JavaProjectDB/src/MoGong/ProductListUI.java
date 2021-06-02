@@ -14,9 +14,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -128,7 +133,11 @@ public class ProductListUI extends JFrame implements MouseListener, ActionListen
 		
 		String header[] = {"상품번호","상품이름","상품가격","상품브랜드","상품종류","상품URL"};
 		
-		tModel = new DefaultTableModel(header,0);
+		tModel = new DefaultTableModel(header,0) {
+			public Class getColumnClass(int column) {
+				return getValueAt(0	, column).getClass();
+			}
+		};
 		// i는 5의배수로 넣을예정. 총 16개
 		for(int i = n+0; i<n+5; i++) {
 			int itemid = list.get(i).getItemid();
@@ -136,19 +145,29 @@ public class ProductListUI extends JFrame implements MouseListener, ActionListen
 			String itemprice = list.get(i).getItemprice();
 			String itembrand = list.get(i).getItembrand();
 			String itemclass = list.get(i).getItemclass();
-			String itemimage = list.get(i).getItemimage();
+			String itemimage =list.get(i).getItemimage();
+			
+			Icon icon;
+			try {
+				URL url = new URL("https:"+itemimage);
+				icon = new ImageIcon(url);
+				Object [] data = {itemid,itemname,itemprice,itembrand,itemclass,icon};
+				tModel.addRow(data);
+			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		
+		
+				
+				//근데 이렇게 하잖아?
+				
+			
 		
 	
 			
 			
-			Object [] data = {itemid,itemname,itemprice,itembrand,itemclass,itemimage};
-			
-			
-			
-			tModel.addRow(data);
 		}
-		
 		table = new JTable(tModel);
 		table.setFont(new Font("맑온 고딕", Font.PLAIN, 15));
 		table.setRowHeight(30);

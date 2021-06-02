@@ -19,6 +19,7 @@ import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 //asd
 public class Member_List extends JFrame implements MouseListener, ActionListener {
 	private JPanel pan;
@@ -35,7 +36,7 @@ public class Member_List extends JFrame implements MouseListener, ActionListener
 		
 		pan = new JPanel(new BorderLayout());
 		pan.setBorder(new EmptyBorder(5,5,5,5));
-		pan.setBackground(Color.pink);
+		pan.setBackground(Color.decode("#CFFFE5"));
 		setContentPane(pan);
 		
 		lbl = new JLabel("회원 목록");
@@ -74,6 +75,10 @@ public class Member_List extends JFrame implements MouseListener, ActionListener
 		table.getColumn("나이").setPreferredWidth(10);
 		table.setCellSelectionEnabled(false);
 		table.setDragEnabled(false);
+		table.getTableHeader().setBackground(Color.black);
+		table.getTableHeader().setForeground(Color.white);
+		table.setBackground(Color.white);
+		table.setOpaque(false);
 		table.addMouseListener(this);
 		
 		JScrollPane scrollPane = new JScrollPane(table);
