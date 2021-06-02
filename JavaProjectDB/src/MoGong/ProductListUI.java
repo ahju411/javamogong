@@ -123,7 +123,7 @@ public class ProductListUI extends JFrame implements MouseListener, ActionListen
 		pan.setBorder(new EmptyBorder(5,5,5,5));
 		setContentPane(pan);
 		
-		lbl = new JLabel("회원 목록");
+		lbl = new JLabel("상품 목록");
 		lbl.setFont(new Font("맑은 고딕",Font.BOLD,30));
 		lbl.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl.setPreferredSize(new Dimension(400,80));
@@ -212,7 +212,7 @@ public class ProductListUI extends JFrame implements MouseListener, ActionListen
 		final TableColumnModel columnModel = table.getColumnModel(); 
 	for (int column = 0; column < table.getColumnCount(); column++) {
 	
-		int width = 10; // Min width for 
+		int width = 30; // Min width for 
 		for(int row = 0; row < table.getRowCount(); row++) {
 		
 		TableCellRenderer renderer = table.getCellRenderer(row, column);

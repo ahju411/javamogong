@@ -221,7 +221,7 @@ public class mainFrame extends JFrame implements MouseListener, ActionListener {
 		if(obj == btn1) {
 			// 0일때 구찌 시계출력
 			int n = 0;
-			ProductListUI ui = new ProductListUI("목록", 700, 600,n,this);
+			ProductListUI ui = new ProductListUI("목록", 1300, 600,n,this);
 			this.setVisible(false);
 
 		
@@ -229,8 +229,8 @@ public class mainFrame extends JFrame implements MouseListener, ActionListener {
 		if(obj == btn2) {
 			// 5일때 구찌 가방 출력
 			int n = 5;
-			ProductListUI ui = new ProductListUI("목록", 700, 600,n,this);
-			dispose();
+			ProductListUI ui = new ProductListUI("목록", 1300, 600,n,this);
+			this.setVisible(false);
 		}
 
 		
