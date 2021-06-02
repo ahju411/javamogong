@@ -2,6 +2,7 @@ package MoGong;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Container;
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -37,6 +38,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumnModel;
 
 public class ProductListUI extends JFrame implements MouseListener, ActionListener {
 
@@ -63,7 +66,6 @@ public class ProductListUI extends JFrame implements MouseListener, ActionListen
 	private JLabel lbl;
 
 	private JMenuBar menubar;
-	
 	
 	mainFrame mainFrame;
 
@@ -131,7 +133,7 @@ public class ProductListUI extends JFrame implements MouseListener, ActionListen
         ProductDB db = new ProductDB();
 		List<productdto> list = db.getProductList();
 		
-		String header[] = {"상품번호","상품이름","상품가격","상품브랜드","상품종류","상품URL"};
+		String header[] = {"상품이름","상품가격","상품브랜드","상품종류","상품사진"};
 		
 		tModel = new DefaultTableModel(header,0) {
 			public Class getColumnClass(int column) {
@@ -140,6 +142,7 @@ public class ProductListUI extends JFrame implements MouseListener, ActionListen
 			public boolean isCellEditable(int i, int c) {
 				return false;
 			}
+			
 		};
 		// i는 5의배수로 넣을예정. 총 16개
 		for(int i = n+0; i<n+5; i++) {
@@ -154,7 +157,7 @@ public class ProductListUI extends JFrame implements MouseListener, ActionListen
 			try {
 				URL url = new URL("https:"+itemimage);
 				icon = new ImageIcon(url);
-				Object [] data = {itemid,itemname,itemprice,itembrand,itemclass,icon};
+				Object [] data = {itemname,itemprice,itembrand,itemclass,icon};
 				tModel.addRow(data);
 			} catch (MalformedURLException e) {
 				// TODO Auto-generated catch block
@@ -171,10 +174,20 @@ public class ProductListUI extends JFrame implements MouseListener, ActionListen
 			
 			
 		}
+		
+		
+
 		table = new JTable(tModel);
+		resizeColumnWidth(table);
 		table.setFont(new Font("맑온 고딕", Font.PLAIN, 15));
-		table.setRowHeight(30);
-		table.getColumn("상품이름").setPreferredWidth(10);
+		table.setRowHeight(200);
+		/*
+		 * table.getColumn("상품사진").setPreferredWidth(200);
+		 * table.getColumn("상품이름").setPreferredWidth(200);
+		 * table.getColumn("상품종류").setPreferredWidth(3);
+		 * table.getColumn("상품가격").setPreferredWidth(3);
+		 * table.getColumn("상품브랜드").setPreferredWidth(3);
+		 */
 		table.setCellSelectionEnabled(false);
 		table.addMouseListener(this);
 		
@@ -191,7 +204,27 @@ public class ProductListUI extends JFrame implements MouseListener, ActionListen
 	public static void main(String[] args) {
 		
 	}
-
+	
+	
+	public void resizeColumnWidth(JTable table) {
+		
+		
+		final TableColumnModel columnModel = table.getColumnModel(); 
+	for (int column = 0; column < table.getColumnCount(); column++) {
+	
+		int width = 10; // Min width for 
+		for(int row = 0; row < table.getRowCount(); row++) {
+		
+		TableCellRenderer renderer = table.getCellRenderer(row, column);
+		Component comp = table.prepareRenderer(renderer, row, column); 
+		width = Math.max(comp.getPreferredSize().width +1 , width); 
+		
+	}
+		
+		columnModel.getColumn(column).setPreferredWidth(width); 
+		
+	}
+}
 
 
 	ImageIcon imageSetSize(ImageIcon icon, int i, int j) {

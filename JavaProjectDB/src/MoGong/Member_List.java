@@ -2,6 +2,7 @@ package MoGong;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -20,6 +21,8 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumnModel;
 //asd
 public class Member_List extends JFrame implements MouseListener, ActionListener {
 	private JPanel pan;
@@ -51,7 +54,11 @@ public class Member_List extends JFrame implements MouseListener, ActionListener
 		
 		String header[] = {"아이디","비밀번호","이름","나이","전화번호","주소","이메일"};
 		
-		tModel = new DefaultTableModel(header,0);
+		tModel = new DefaultTableModel(header,0) {
+			public boolean isCellEditable(int i, int c) {
+				return false;
+			}
+		};
 		
 		for(int i = 0; i<list.size(); i++) {
 			String id = list.get(i).getId();
@@ -70,9 +77,10 @@ public class Member_List extends JFrame implements MouseListener, ActionListener
 		}
 		
 		table = new JTable(tModel);
+		resizeColumnWidth(table);
 		table.setFont(new Font("맑온 고딕", Font.PLAIN, 15));
 		table.setRowHeight(30);
-		table.getColumn("나이").setPreferredWidth(10);
+		//table.getColumn("나이").setPreferredWidth(10);
 		table.setCellSelectionEnabled(false);
 		table.setDragEnabled(false);
 		table.getTableHeader().setBackground(Color.black);
@@ -109,6 +117,25 @@ public class Member_List extends JFrame implements MouseListener, ActionListener
 	}
 
 
+public void resizeColumnWidth(JTable table) {
+		
+		
+		final TableColumnModel columnModel = table.getColumnModel(); 
+	for (int column = 0; column < table.getColumnCount(); column++) {
+	
+		int width = 50; // Min width for 
+		for(int row = 0; row < table.getRowCount(); row++) {
+		
+		TableCellRenderer renderer = table.getCellRenderer(row, column);
+		Component comp = table.prepareRenderer(renderer, row, column); 
+		width = Math.max(comp.getPreferredSize().width +1 , width); 
+		
+	}
+		
+		columnModel.getColumn(column).setPreferredWidth(width); 
+		
+	}
+}
 
 
 

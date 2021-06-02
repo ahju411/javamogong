@@ -237,6 +237,10 @@ public class loginPage extends JFrame implements ActionListener, KeyListener {
 		}
 	}
 
+	/*public static String getid() {
+		return logid;
+	}*/
+	
 	public String getLogid() {
 		return logid;
 	}
