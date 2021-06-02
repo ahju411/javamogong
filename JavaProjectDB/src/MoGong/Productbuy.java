@@ -49,7 +49,7 @@ public class Productbuy extends JFrame implements ActionListener {
 
 	private Object itemid;
 	
-
+    int m; 
 	public Productbuy(String title , int width , int height, int n) throws MalformedURLException {
 		setTitle(title);
 		setSize(width,height);
@@ -63,8 +63,8 @@ public class Productbuy extends JFrame implements ActionListener {
 		
 		backpan.setLayout(new BorderLayout());
 		
-		outputProductListSpec(n);
-		
+		outputProductListSpec(n); // 선택한 상품 출력
+		m=n; // 다음 buyframe 에 보낼 인자값 저장
 		// 첫번째 팬 (사진넣기)
 		JPanel pan1 = new JPanel();
 		URL ImageURL = new URL("http:"+itemimage);
@@ -87,9 +87,9 @@ public class Productbuy extends JFrame implements ActionListener {
 		JLabel jungga = new JLabel(ch+"원",SwingConstants.CENTER);
 		
 		double saleprice =(double)((Integer.parseInt(itemprice) * 0.9)); // 10%할인 적용
-	
-		ch = dc.format(saleprice);
-		JLabel price = new JLabel(ch+"원 (10% SALE)",SwingConstants.CENTER);
+	    ch = dc.format(saleprice);
+	    
+		JLabel price = new JLabel(ch+"원 (10% SALE)",SwingConstants.CENTER); // 10%할인한 가격 넣기
 		
 		wait = new JLabel(" 남은 구매 예약자 : " + res + "명 ",SwingConstants.CENTER);
 		pan2.add(name);
@@ -225,7 +225,12 @@ public class Productbuy extends JFrame implements ActionListener {
 			btnBuy.setEnabled(false);
 			res--;
 			wait.setText(" 남은 구매 예약자 : " + res + "명 ");
-			buySomething bs = new buySomething();
+			try {
+				BuyFrame bs = new BuyFrame("결제화면",800,800,m);
+			} catch (MalformedURLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}else if(obj == btnres) {
 			btnres.setEnabled(false);
 			btnBuy.setEnabled(true);

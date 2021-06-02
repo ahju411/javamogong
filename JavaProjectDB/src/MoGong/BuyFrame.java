@@ -5,6 +5,10 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.text.DecimalFormat;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -29,8 +33,10 @@ private JComboBox<String> cbStr;
 private String[] strs = {"신용카드","계좌이체","무통장입금"};
 private JButton buy;
 private JLabel notice;
+private int itemid;
+private String itemname,itemclass,itembrand,itemprice,itemimage;
     
-	public BuyFrame(String title , int width , int height) {
+	public BuyFrame(String title , int width , int height, int n) throws MalformedURLException {
 		setTitle(title);
 		setSize(width,height);
 		setLocationRelativeTo(this);
@@ -40,15 +46,15 @@ private JLabel notice;
 	   backpan.setLayout(new GridLayout(4,1));
 		backpan.setBackground(Color.white);
 		
+		outputProductListSpec(n); //선택한 물건 DB불러오기
+		
 		
 		// 사진
 		
-		photopan = new JPanel();
-	
-		photopan.setBackground(Color.white);
-		img = new ImageIcon("images/gucci.png");
-		img = imageSetSize(img, 200, 200);
-		lblimg = new JLabel(img);
+		JPanel photopan = new JPanel();
+		URL ImageURL = new URL("http:"+itemimage);
+	    img = new ImageIcon(ImageURL);
+        lblimg = new JLabel(img);
 		
 		photopan.add(lblimg);
 		
@@ -58,9 +64,17 @@ private JLabel notice;
 		productinfopan.setLayout(new GridLayout(3,1,0,-30));
 		productinfopan.setBackground(Color.white);
 
-	   name = new JLabel("[GG 마몽] 스몰 마틀라세 숄더백",SwingConstants.CENTER);
-		jungga = new JLabel(" 정가 : 3,090,000",SwingConstants.CENTER);
-		price = new JLabel("2,781,000 (10% SALE)",SwingConstants.CENTER);
+		
+		DecimalFormat dc = new DecimalFormat("###,###,###"); // 가격에 반점 넣기 // 가격에 반점넣기
+		String ch = dc.format(Integer.parseInt(itemprice)); // 반점넣기
+		
+	   name = new JLabel(itemname,SwingConstants.CENTER);
+		jungga = new JLabel(itemprice,SwingConstants.CENTER);
+		
+		double saleprice =(double)((Integer.parseInt(itemprice) * 0.9)); // 10%할인 적용
+	    ch = dc.format(saleprice);
+		
+		price = new JLabel(ch+"(10% SALE)",SwingConstants.CENTER);
 		
 		name.setFont(new Font("맑은 고딕",Font.BOLD,20));
 		jungga.setFont(new Font("맑은 고딕",Font.BOLD,15));
@@ -132,8 +146,8 @@ private JLabel notice;
 		
 	}
 	
-	public static void main(String[] args) {
-		new BuyFrame("결제화면",600,800);
+	public static void main(String[] args) throws MalformedURLException {
+
 	}
 
 
@@ -144,4 +158,25 @@ ImageIcon imageSetSize(ImageIcon icon, int i, int j) {
 	ImageIcon xyimg = new ImageIcon(yimg);
 	return xyimg;
 }
+
+private void outputProductListSpec(int n) {
+    ProductDB db = new ProductDB();
+	List<productdto> list = db.getProductList();
+
+	// i는 5의배수로 넣을예정. 총 16개
+	
+		itemid = list.get(n).getItemid();
+	itemname = list.get(n).getItemname();
+	//
+	 itemprice = list.get(n).getItemprice();
+	 itembrand = list.get(n).getItembrand();
+	 itemclass = list.get(n).getItemclass();
+	 itemimage =list.get(n).getItemimage();
+	
+      itemprice = itemprice.replace(",", "");  // ,을 제거하여 나중에 int로 변환하여 할인하기 편하게함.
+
+		}
+
+
 }
+
