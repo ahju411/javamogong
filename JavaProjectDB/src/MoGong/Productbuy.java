@@ -2,22 +2,21 @@ package MoGong;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.DecimalFormat;
 import java.util.List;
 
-import javax.swing.BorderFactory;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -25,8 +24,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
-import javax.swing.border.EmptyBorder;
-import javax.swing.table.DefaultTableModel;
 
 
 public class Productbuy extends JFrame implements ActionListener {
@@ -199,6 +196,31 @@ public class Productbuy extends JFrame implements ActionListener {
 		Object obj = e.getSource();
 		
 		if(obj == btnBuy) {
+			
+			try {
+				Class.forName("oracle.jdbc.driver.OracleDriver");
+				
+				Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@118.217.168.174:1521:xe", "comet", "1234");
+				
+				Statement stmt = conn.createStatement();
+				
+				int itemid = 1;
+				
+				ResultSet rs = stmt.executeQuery("SELECT count(itemid) FROM orders group by '" + itemid + "'");
+				
+				if(rs.next()) {
+					//id = rs.getString("id");
+				}
+				
+				conn.close();
+			} catch (ClassNotFoundException e1) {
+				System.out.println("JDBC드라이버 로드 에러");
+				e1.printStackTrace();
+			} catch (SQLException e1) {
+				System.err.println("DB연결 오류 또는 쿼리 오류 입니다.");
+				e1.printStackTrace();
+			}
+			
 			btnres.setEnabled(true);
 			btnBuy.setEnabled(false);
 			res--;
