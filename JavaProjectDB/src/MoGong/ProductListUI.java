@@ -61,14 +61,14 @@ public class ProductListUI extends JFrame implements MouseListener, ActionListen
 	
 	
 	mainFrame mainFrame;
-	// , loginPage loginPage 넣어야합니다 int height 오른쪽에  프레임 연결시  !!!! -은철-
+
 	public ProductListUI(String title , int width , int height,int n,mainFrame mainFrame) {
 		setTitle(title);
 		setSize(width,height);
 		setLocationRelativeTo(this);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.mainFrame = mainFrame;
-	//	this.loginPage =loginPage; 이것도 풀어주셔야합니다 -은철-
+
 		
 		// 메뉴 
 		menubar = new JMenuBar();
@@ -110,7 +110,7 @@ public class ProductListUI extends JFrame implements MouseListener, ActionListen
 		setVisible(true);
 	}
 	
-
+// 누른  상품종류별로 그 항목이 뜨게하는 메소드
 	private void outputProductList(int n) {
 		pan = new JPanel(new BorderLayout());
 		pan.setBorder(new EmptyBorder(5,5,5,5));
@@ -138,10 +138,13 @@ public class ProductListUI extends JFrame implements MouseListener, ActionListen
 			String itemclass = list.get(i).getItemclass();
 			String itemimage = list.get(i).getItemimage();
 		
-			
+		
+	
 			
 			
 			Object [] data = {itemid,itemname,itemprice,itembrand,itemclass,itemimage};
+			
+			
 			
 			tModel.addRow(data);
 		}
@@ -218,6 +221,8 @@ public class ProductListUI extends JFrame implements MouseListener, ActionListen
 			mainFrame.setVisible(true);
 			dispose();
 			}
+	
+		
 		
 	}
 	
