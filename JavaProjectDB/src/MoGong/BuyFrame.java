@@ -65,16 +65,19 @@ private String itemname,itemclass,itembrand,itemprice,itemimage;
 		productinfopan.setBackground(Color.white);
 
 		
-		DecimalFormat dc = new DecimalFormat("###,###,###"); // 가격에 반점 넣기 // 가격에 반점넣기
+		DecimalFormat dc = new DecimalFormat("###,###,###"); // 가격에 반점 넣기 
+		
+		
 		String ch = dc.format(Integer.parseInt(itemprice)); // 반점넣기
-		
+		double junggaprice =(double)((Integer.parseInt(itemprice))); // 
+		ch = dc.format(junggaprice);
 	   name = new JLabel(itemname,SwingConstants.CENTER);
-		jungga = new JLabel(itemprice,SwingConstants.CENTER);
+		jungga = new JLabel(ch+"원",SwingConstants.CENTER); // 정가에 반점넣기
 		
-		double saleprice =(double)((Integer.parseInt(itemprice) * 0.9)); // 10%할인 적용
+		double saleprice =junggaprice * 0.9; // 10%할인 가격 만들기
 	    ch = dc.format(saleprice);
 		
-		price = new JLabel(ch+"(10% SALE)",SwingConstants.CENTER);
+		price = new JLabel(ch+"원 (10% SALE)",SwingConstants.CENTER); // 10%할인 가격넣기
 		
 		name.setFont(new Font("맑은 고딕",Font.BOLD,20));
 		jungga.setFont(new Font("맑은 고딕",Font.BOLD,15));
