@@ -18,6 +18,7 @@ import java.awt.event.MouseListener;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.List;
 
 import javax.imageio.ImageIO;
@@ -135,7 +136,7 @@ public class ProductListUI extends JFrame implements MouseListener, ActionListen
         ProductDB db = new ProductDB();
 		List<productdto> list = db.getProductList();
 		
-		String header[] = {"상품이름","상품가격","상품브랜드","상품종류","상품사진"};
+		String header[] = {"상품이름","상품할인가격","상품브랜드","상품종류","상품사진"};
 		
 		tModel = new DefaultTableModel(header,0) {
 			public Class getColumnClass(int column) {
@@ -155,11 +156,18 @@ public class ProductListUI extends JFrame implements MouseListener, ActionListen
 			String itemclass = list.get(i).getItemclass();
 			String itemimage =list.get(i).getItemimage();
 			
+			// 할인된가격 표시하기 
+			itemprice = itemprice.replace(",", "");  // 가격에 ' , ' 빼기
+			DecimalFormat dc = new DecimalFormat("###,###,###");  // 점 넣기
+			double SpotDel =(double)((Integer.parseInt(itemprice) * 0.9)); // 10%할인 적용
+			String saleprice = dc.format(SpotDel); // 점 넣기
+			
 			Icon icon;
 			try {
 				URL url = new URL("https:"+itemimage);
 				icon = new ImageIcon(url);
-				Object [] data = {itemname,itemprice,itembrand,itemclass,icon};
+				Object [] data = {itemname,saleprice+" (10% SALE)",itembrand,itemclass,icon};
+				
 				tModel.addRow(data);
 			} catch (MalformedURLException e) {
 				// TODO Auto-generated catch block

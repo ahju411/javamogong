@@ -89,7 +89,7 @@ public class Productbuy extends JFrame implements ActionListener {
 		
 		JLabel jungga = new JLabel(ch+"원",SwingConstants.CENTER);
 		
-		double saleprice =((Integer.parseInt(itemprice) * 0.9)); // 10%할인 적용
+		double saleprice =(double)((Integer.parseInt(itemprice) * 0.9)); // 10%할인 적용
 	
 		ch = dc.format(saleprice);
 		JLabel price = new JLabel(ch+"원 (10% SALE)",SwingConstants.CENTER);
@@ -175,7 +175,7 @@ public class Productbuy extends JFrame implements ActionListener {
 		 itemimage =list.get(n).getItemimage();
 		
 	      itemprice = itemprice.replace(",", "");  // ,을 제거하여 나중에 int로 변환하여 할인하기 편하게함.
-System.out.println("점없앤 itemprice : " +itemprice);
+
 			}
 	
 
