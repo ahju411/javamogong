@@ -199,14 +199,18 @@ public class Productbuy extends JFrame implements ActionListener {
 			
 			try {
 				Class.forName("oracle.jdbc.driver.OracleDriver");
-				
 				Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@118.217.168.174:1521:xe", "comet", "1234");
-				
 				Statement stmt = conn.createStatement();
+				
+				
+				String iD = getTitle();
+				int ss = iD.length();
+				iD = iD.substring(5, ss);
 				
 				int itemid = 1;
 				
 				ResultSet rs = stmt.executeQuery("SELECT count(itemid) FROM orders group by '" + itemid + "'");
+				
 				
 				if(rs.next()) {
 					//id = rs.getString("id");

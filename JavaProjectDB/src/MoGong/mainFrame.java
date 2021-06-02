@@ -224,8 +224,11 @@ public class mainFrame extends JFrame implements MouseListener, ActionListener {
 		
 		if(obj == btn1) {
 			// 0일때 구찌 시계출력
+			String id = getTitle();
+			int ss = id.length();
+			id = id.substring(5, ss);
 			int n = 0;
-			ProductListUI ui = new ProductListUI("목록", 1300, 600,n,this);
+			ProductListUI ui = new ProductListUI("목록/" + id, 1300, 600,n,this);
 			this.setVisible(false);
 
 		

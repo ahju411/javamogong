@@ -259,7 +259,10 @@ public class ProductListUI extends JFrame implements MouseListener, ActionListen
 			int tmp;
 			tmp = l+r;
 			try {
-				Productbuy pby = new Productbuy("상품정보화면", 650, 800, tmp);
+				String id = getTitle();
+				int ss = id.length();
+				id = id.substring(3, ss);
+				Productbuy pby = new Productbuy("상품정보화면/" + id, 650, 800, tmp);
 			} catch (MalformedURLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
