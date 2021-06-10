@@ -219,7 +219,7 @@ public class mainFrame extends JFrame implements MouseListener, ActionListener {
 			int ss = iD.length();
 			iD = iD.substring(5, ss);
 			System.out.println(ss);
-			reservation reserv = new reservation("예약현황", 500, 600, iD);
+			reservation reserv = new reservation("예약현황", iD);
 		}
 		
 		if(obj == btn1) {
