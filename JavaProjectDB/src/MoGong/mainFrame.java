@@ -29,6 +29,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
@@ -58,9 +59,15 @@ public class mainFrame extends JFrame implements MouseListener, ActionListener {
 	private JLabel lbl;
 
 	private JMenuBar menubar;
-	private JButton btn1;
-	private JButton btn2;
+	private ImageIcon img;
+	private JLabel lblimg;
 	String id;
+	private JLabel gucciwallet,guccibag,guccinecklace;
+	private JLabel chanelwatch,chanelwallet,chanelbag,chanelnecklace;
+	private JLabel hermeswatch,hermeswallet,hermesbag,hermesnecklace;
+	private JLabel diorwatch,diorwallet,diorbag,diornecklace;
+	private JButton gucciwatch;
+	private EtchedBorder eborder;
 	
 	public mainFrame(String title , int width , int height, loginPage loginPage,String id) {
 		setTitle(title);
@@ -144,15 +151,234 @@ public class mainFrame extends JFrame implements MouseListener, ActionListener {
 		
 		// 
 		//
-		//
-		//
-		btn1 = new JButton("구찌시계");
-		btn1.addActionListener(this);
-		add(btn1);
 		
-		btn2 = new JButton("구찌가방");
-		btn2.addActionListener(this);
-		add(btn2);
+		// 배경패널 설정
+		
+		JPanel backpan = new JPanel();
+		
+		backpan.setLayout(new GridLayout(4,1));
+		backpan.setBackground(Color.WHITE);;
+		scrollpane = new JScrollPane(backpan);
+		
+		// 구찌브랜드
+		
+	
+		
+		JPanel pan1 = new JPanel();
+		pan1.setBackground(Color.WHITE);
+		JPanel pan1_1 = new JPanel();
+		pan1_1.setBackground(Color.WHITE);
+		JPanel pan1_2 = new JPanel();
+		pan1_2.setBackground(Color.WHITE);
+		pan1_2.setLayout(new GridLayout(4,1));
+		eborder=new EtchedBorder(EtchedBorder.LOWERED);
+		
+		img = new ImageIcon("image/brandgucci.png");
+		img = imageSetSize(img, 450, 200);
+		lblimg = new JLabel(img);
+		 lblimg.setBorder(eborder);
+		pan1_1.add(lblimg);
+		
+		
+		
+		img  = new ImageIcon("image/watch.png");
+		img = imageSetSize(img, 140, 47);
+		gucciwatch = new JButton(img);
+		gucciwatch.setPreferredSize(new Dimension(100, 45));
+		gucciwatch.setOpaque(true);
+		gucciwatch.setBackground(null);
+		gucciwatch.setBorderPainted(false);
+		gucciwatch.setBorder(eborder);
+		pan1_2.add(gucciwatch);
+		
+		img = new ImageIcon("image/wallet.png");
+		img = imageSetSize(img, 140, 47);
+		gucciwallet = new JLabel(img);
+		 gucciwallet.setBorder(eborder);
+		pan1_2.add(gucciwallet);
+		
+		img = new ImageIcon("image/bag.png");
+		img = imageSetSize(img, 140, 47);
+		guccibag = new JLabel(img);
+		 guccibag.setBorder(eborder);
+		pan1_2.add(guccibag);
+		
+		
+		img = new ImageIcon("image/necklace.png");
+		img = imageSetSize(img, 140, 47);
+		guccinecklace = new JLabel(img);
+		 guccinecklace.setBorder(eborder);
+		pan1_2.add(guccinecklace);
+		
+		pan1.add(pan1_1);
+		pan1.add(pan1_2);
+		backpan.add(pan1);
+		
+		
+		
+		
+		
+		// 샤넬파트
+		 pan1 = new JPanel();
+		pan1.setBackground(Color.WHITE);
+	 pan1_1 = new JPanel();
+		pan1_1.setBackground(Color.WHITE);
+	 pan1_2 = new JPanel();
+		pan1_2.setBackground(Color.WHITE);
+		pan1_2.setLayout(new GridLayout(4,1));
+		eborder=new EtchedBorder(EtchedBorder.LOWERED);
+		
+		img = new ImageIcon("image/brandchanel.png");
+		img = imageSetSize(img, 450, 200);
+		lblimg = new JLabel(img);
+		 lblimg.setBorder(eborder);
+		pan1_1.add(lblimg);
+		
+		
+		
+		img  = new ImageIcon("image/watch.png");
+		img = imageSetSize(img, 140, 47);
+		chanelwatch = new JLabel(img);
+		chanelwatch.setBorder(eborder);
+		pan1_2.add(chanelwatch);
+		
+		img = new ImageIcon("image/wallet.png");
+		img = imageSetSize(img, 140, 47);
+		chanelwallet = new JLabel(img);
+		chanelwallet.setBorder(eborder);
+		pan1_2.add(chanelwallet);
+		
+		img = new ImageIcon("image/bag.png");
+		img = imageSetSize(img, 140, 47);
+		chanelbag = new JLabel(img);
+		chanelbag.setBorder(eborder);
+		pan1_2.add(chanelbag);
+		
+		
+		img = new ImageIcon("image/necklace.png");
+		img = imageSetSize(img, 140, 47);
+		chanelnecklace = new JLabel(img);
+		chanelnecklace.setBorder(eborder);
+		pan1_2.add(chanelnecklace);
+		
+		pan1.add(pan1_1);
+		pan1.add(pan1_2);
+		backpan.add(pan1);
+		
+		
+		add(backpan);
+		
+		
+		// 에르메스파트
+		
+		 pan1 = new JPanel();
+		pan1.setBackground(Color.WHITE);
+		 pan1_1 = new JPanel();
+		pan1_1.setBackground(Color.WHITE);
+		 pan1_2 = new JPanel();
+		pan1_2.setBackground(Color.WHITE);
+		pan1_2.setLayout(new GridLayout(4,1));
+		eborder=new EtchedBorder(EtchedBorder.LOWERED);
+		
+		img = new ImageIcon("image/hermes1.png");
+		img = imageSetSize(img, 450, 200);
+		lblimg = new JLabel(img);
+		 lblimg.setBorder(eborder);
+		pan1_1.add(lblimg);
+		
+		
+		
+		img  = new ImageIcon("image/watch.png");
+		img = imageSetSize(img, 140, 47);
+		hermeswatch = new JLabel(img);
+		hermeswatch.setBorder(eborder);
+		pan1_2.add(hermeswatch);
+		
+		img = new ImageIcon("image/wallet.png");
+		img = imageSetSize(img, 140, 47);
+		hermeswallet = new JLabel(img);
+		hermeswallet.setBorder(eborder);
+		pan1_2.add(hermeswallet);
+		
+		img = new ImageIcon("image/bag.png");
+		img = imageSetSize(img, 140, 47);
+		hermesbag = new JLabel(img);
+		hermesbag.setBorder(eborder);
+		pan1_2.add(hermesbag);
+		
+		
+		img = new ImageIcon("image/necklace.png");
+		img = imageSetSize(img, 140, 47);
+		hermesnecklace = new JLabel(img);
+		 hermesnecklace.setBorder(eborder);
+		pan1_2.add(hermesnecklace);
+		
+		pan1.add(pan1_1);
+		pan1.add(pan1_2);
+		backpan.add(pan1);
+		
+		
+		add(backpan);
+		
+		
+		// 디올파트
+		
+		 pan1 = new JPanel();
+		pan1.setBackground(Color.WHITE);
+		 pan1_1 = new JPanel();
+		pan1_1.setBackground(Color.WHITE);
+		 pan1_2 = new JPanel();
+		pan1_2.setBackground(Color.WHITE);
+		pan1_2.setLayout(new GridLayout(4,1));
+		eborder=new EtchedBorder(EtchedBorder.LOWERED);
+		
+		img = new ImageIcon("image/dior.png");
+		img = imageSetSize(img, 450, 200);
+		lblimg = new JLabel(img);
+		 lblimg.setBorder(eborder);
+		pan1_1.add(lblimg);
+		
+		
+		
+		img  = new ImageIcon("image/watch.png");
+		img = imageSetSize(img, 140, 47);
+		diorwatch = new JLabel(img);
+		 diorwatch.setBorder(eborder);
+		pan1_2.add(diorwatch);
+		
+		img = new ImageIcon("image/wallet.png");
+		img = imageSetSize(img, 140, 47);
+		diorwallet = new JLabel(img);
+		diorwallet.setBorder(eborder);
+		pan1_2.add(diorwallet);
+		
+		img = new ImageIcon("image/bag.png");
+		img = imageSetSize(img, 140, 47);
+		diorbag = new JLabel(img);
+		diorbag.setBorder(eborder);
+		pan1_2.add(diorbag);
+		
+		
+		img = new ImageIcon("image/necklace.png");
+		img = imageSetSize(img, 140, 47);
+		diornecklace = new JLabel(img);
+		diornecklace.setBorder(eborder);
+		pan1_2.add(diornecklace);
+		
+		pan1.add(pan1_1);
+		pan1.add(pan1_2);
+		backpan.add(pan1);
+		
+		
+		
+		
+		//
+		
+		
+	
+		add(scrollpane);
+		
+		
 	
 		setVisible(true);
 	}
@@ -181,7 +407,8 @@ public class mainFrame extends JFrame implements MouseListener, ActionListener {
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-	
+		
+		
 	}
 
 	@Override
@@ -223,21 +450,13 @@ public class mainFrame extends JFrame implements MouseListener, ActionListener {
 			reservation reserv = new reservation("예약현황", iD);
 		}
 		
-		if(obj == btn1) {
-			// 0일때 구찌 시계출력
-			int n = 0;
-			ProductListUI ui = new ProductListUI("목록/" + id, 1300, 600,n,this,id);
-			this.setVisible(false);
-
+		if(obj == gucciwatch) {
+			 // 0일때 구찌 시계출력
+	         int n = 0;
+	         ProductListUI ui = new ProductListUI("목록/" + id, 1300, 600,n,this,id);
+	         this.setVisible(false);
+		}
 		
-		}
-		if(obj == btn2) {
-			// 5일때 구찌 가방 출력
-			int n = 5;
-			ProductListUI ui = new ProductListUI("목록", 1300, 600,n,this,id);
-			this.setVisible(false);
-		}
-
 		
 		
 	}
