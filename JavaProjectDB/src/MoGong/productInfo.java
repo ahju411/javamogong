@@ -26,38 +26,22 @@ import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
 
-public class Productbuy extends JFrame implements ActionListener {
+public class productInfo extends JFrame implements ActionListener {
 
-	private int res = 10;
-	
-	private JButton btnBuy,btnres;
-	private JLabel lblimg,lblinfoimg;
+	private int res = 10, m;
+	private JButton btnBuy, btnres;
+	private JLabel lblimg, lblinfoimg, jungga, wait;
 	private ImageIcon img, back, infoimg;
-
-	JLabel wait;
-	private JLabel jungga;
-
-	private String itemname;
-
-	private String itemprice;
-
-	private String itembrand;
-
-	private String itemclass;
-
-	private String itemimage;
-
+	private String itemname, itemprice, itembrand, itemclass, itemimage;
 	private Object itemid;
 	String id;
 	
-    int m; 
-	public Productbuy(String title , int width , int height, int n, String id) throws MalformedURLException {
+	public productInfo(String title , int width , int height, int n, String id) throws MalformedURLException {
 		setTitle(title);
 		setSize(width,height);
 		setLocationRelativeTo(this);
 		this.id = id;
 		//setLocation(250, 150);
-	
 		
 		JPanel backpan = new JPanel();
 		backpan.setBackground(Color.WHITE);
@@ -93,6 +77,27 @@ public class Productbuy extends JFrame implements ActionListener {
 	    
 		JLabel price = new JLabel(ch+"원 (10% SALE)",SwingConstants.CENTER); // 10%할인한 가격 넣기
 		
+		//몇명 남았는지 표기 위한 DB 작성중
+		/*try {
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@118.217.168.174:1521:xe", "comet", "1234");
+			Statement stmt = conn.createStatement();
+			
+			ResultSet rs = stmt.executeQuery("SELECT count(itemid) FROM orders WHERE ITEMID = '" + itemid +  "' group by");
+			
+			if(rs.next()) {
+				res = 10 - rs.getInt(1);
+			}
+			conn.close();
+		} catch (ClassNotFoundException e1) {
+			System.out.println("JDBC드라이버 로드 에러");
+			e1.printStackTrace();
+		} catch (SQLException e1) {
+			System.err.println("DB연결 오류 또는 쿼리 오류 입니다.");
+			e1.printStackTrace();
+		}
+		*/
+		//몇명 남았는지 표기
 		wait = new JLabel(" 남은 구매 예약자 : " + res + "명 ",SwingConstants.CENTER);
 		pan2.add(name);
 		pan2.add(jungga);
@@ -126,8 +131,6 @@ public class Productbuy extends JFrame implements ActionListener {
 		
 		pan2.setOpaque(false);
 		
-		
-	
 		
 		// 상품정보 pan3
 		JPanel pan3 = new JPanel();
@@ -199,25 +202,54 @@ public class Productbuy extends JFrame implements ActionListener {
 		
 		if(obj == btnBuy) {
 			
-			try {
+			//입력 DB 작성중
+			/*try {
 				Class.forName("oracle.jdbc.driver.OracleDriver");
 				Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@118.217.168.174:1521:xe", "comet", "1234");
 				Statement stmt = conn.createStatement();
 				
-				
-				String iD = getTitle();
-				int ss = iD.length();
-				iD = iD.substring(5, ss);
-				
-				int itemid = 1;
-				
-				ResultSet rs = stmt.executeQuery("SELECT count(itemid) FROM orders group by '" + itemid + "'");
-				
+				ResultSet rs = stmt.executeQuery("SELECT count(itemid) FROM orders WHERE ITEMID = '" + itemid +  "' group by");
 				
 				if(rs.next()) {
-					//id = rs.getString("id");
+					res = 10 - rs.getInt(1);
 				}
+				conn.close();
+			} catch (ClassNotFoundException e1) {
+				System.out.println("JDBC드라이버 로드 에러");
+				e1.printStackTrace();
+			} catch (SQLException e1) {
+				System.err.println("DB연결 오류 또는 쿼리 오류 입니다.");
+				e1.printStackTrace();
+			}*/
+			
+			btnres.setEnabled(true);
+			btnBuy.setEnabled(false);
+			
+			//res--;
+			
+			wait.setText(" 남은 구매 예약자 : " + res + "명 ");
+			try {
+				BuyFrame bs = new BuyFrame("결제화면/" + id, 800, 800, m, id);
+			} catch (MalformedURLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}else if(obj == btnres) {
+			btnres.setEnabled(false);
+			btnBuy.setEnabled(true);
+			
+			
+			//삭제 DB 작성중
+			/*try {
+				Class.forName("oracle.jdbc.driver.OracleDriver");
+				Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@118.217.168.174:1521:xe", "comet", "1234");
+				Statement stmt = conn.createStatement();
 				
+				ResultSet rs = stmt.executeQuery("DELETE FROM ORDERS WHERE ID = '" + id + "' AND ITEMID = (SELECT itemid FROM item WHERE itemname = '" + itemname + "')");
+				
+				if(rs.next()) {
+					res = 10 - rs.getInt(1);
+				}
 				conn.close();
 			} catch (ClassNotFoundException e1) {
 				System.out.println("JDBC드라이버 로드 에러");
@@ -226,23 +258,14 @@ public class Productbuy extends JFrame implements ActionListener {
 				System.err.println("DB연결 오류 또는 쿼리 오류 입니다.");
 				e1.printStackTrace();
 			}
-			
-			btnres.setEnabled(true);
-			btnBuy.setEnabled(false);
-			res--;
-			wait.setText(" 남은 구매 예약자 : " + res + "명 ");
-			try {
-				BuyFrame bs = new BuyFrame("결제화면",800,800,m,id);
-			} catch (MalformedURLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-		}else if(obj == btnres) {
-			btnres.setEnabled(false);
-			btnBuy.setEnabled(true);
-			res++;
+			*/
+			//res++;
 			wait.setText(" 남은 구매 예약자 : " + res + "명 ");
 		}
+		
+	}
+	
+	public void DBProdu(){
 		
 	}
 

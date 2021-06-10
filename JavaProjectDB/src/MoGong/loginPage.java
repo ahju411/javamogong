@@ -7,17 +7,10 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -29,7 +22,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
 
@@ -37,7 +29,7 @@ public class loginPage extends JFrame implements ActionListener, KeyListener {
 	
 	JButton btnlogin, btnSignUp, btnSearchID, btnSearchPW;
 	JTextField tfID, tfPassword;
-	JMenuItem jmiteam;
+	JMenuItem menuitem;
 	
 	public String logid ="";
 	
@@ -47,44 +39,46 @@ public class loginPage extends JFrame implements ActionListener, KeyListener {
 		setLocationRelativeTo(this);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
+		//메뉴 부분
 		JMenuBar jb = new JMenuBar();
 		setJMenuBar(jb);
 		
 		JMenu infor = new JMenu("개발자 정보");
 		jb.add(infor);
 		
-		jmiteam = new JMenuItem("팀원소개");
-		jmiteam.addActionListener(this);
-		infor.add(jmiteam);
+		menuitem = new JMenuItem("팀원소개");
+		menuitem.addActionListener(this);
+		infor.add(menuitem);
 		
-
+		//맨 뒤 중앙에 붙는 패널
 		JPanel plMain = new JPanel();
 		plMain.setBackground(Color.white);
 		plMain.setLayout(new BorderLayout());
 		add(plMain);
 		
+		//맨위에 로고와 함께 붙는 패널
 		JPanel northpan = new JPanel();
 		northpan.setBackground(Color.white);
 		add(northpan, BorderLayout.NORTH);
 		
+		//모공 로고 표시
 		ImageIcon imglogo = new ImageIcon("image\\logo.png");
 		JLabel logo = new JLabel(imglogo);
 		northpan.add(logo);
 		
-		//JPanel panLogInfo = new JPanel();
-		
-		
+		//로고 밑login 표시
 		JLabel lbllogin = new JLabel("Log in", JLabel.CENTER);
 		lbllogin.setFont(new Font("", Font.ITALIC, 30));
 		plMain.add(lbllogin, BorderLayout.NORTH);
 		
-		
+		//아이디 비밀번호 입력받을 패널
 		JPanel panInput = new JPanel();
 		panInput.setBackground(Color.white);
 		panInput.setBorder(new EmptyBorder(20, 0, 0, 80));
 		panInput.setLayout(new GridLayout(2, 2, 20, 30));
 		plMain.add(panInput);
 		
+		//아이디 비밀번호 입력
 		JLabel lblID = new JLabel("ID : ", JLabel.RIGHT);
 		panInput.add(lblID, BorderLayout.WEST);
 		
@@ -99,26 +93,13 @@ public class loginPage extends JFrame implements ActionListener, KeyListener {
 
 		panInput.add(tfPassword);
 		
-		
-		JPanel plPassword = new JPanel();
-		plPassword.setLayout(new BorderLayout());
-		plMain.add(plPassword, BorderLayout.SOUTH);
-		
-		JPanel plPasswordWest = new JPanel();
-		plPasswordWest.setBackground(Color.white);
-		plPasswordWest.setBorder(new EmptyBorder(0, 10, 0, 0));
-		plPassword.add(plPasswordWest, BorderLayout.WEST);
-		
-		JPanel plPasswordCenter = new JPanel();
-		plPasswordCenter.setBackground(Color.white);
-		plPassword.add(plPasswordCenter);
-		
-		
+		//맨 밑에서 로그인 회원가입 ID/PW찾기 버튼이 존재하는 패널
 		JPanel pansouth = new JPanel();
 		pansouth.setLayout(new GridLayout(3,1));
 		pansouth.setBackground(Color.white);
 		add(pansouth, BorderLayout.SOUTH);
 		
+		//로그인 버튼이 있는 패널
 		JPanel plLog = new JPanel();
 		plLog.setBackground(Color.white);
 		pansouth.add(plLog);
@@ -135,14 +116,12 @@ public class loginPage extends JFrame implements ActionListener, KeyListener {
 		btnlogin.addActionListener(this);
 		btnlogin.addKeyListener(this);
 		
-		
+		//회원가입 패널
 		JPanel plSignUP = new JPanel();
 		plSignUP.setBackground(Color.white);
 		pansouth.add(plSignUP);
 		
-		
 		ImageIcon iconSignUp = new ImageIcon("image\\signUpIcon.png");
-		
 		
 		btnSignUp = new JButton("회원가입", iconSignUp);
 		btnSignUp.setFont(new Font("맑은 고딕", Font.BOLD, 15));
@@ -153,7 +132,7 @@ public class loginPage extends JFrame implements ActionListener, KeyListener {
 		
 		btnSignUp.addActionListener(this);
 		
-		
+		//ID/PW찾는 패널
 		JPanel panSearch = new JPanel();
 		panSearch.setBackground(Color.white);
 		pansouth.add(panSearch);
@@ -207,19 +186,10 @@ public class loginPage extends JFrame implements ActionListener, KeyListener {
 			Member mem = new Member();
 			String ip = mem.getId();
 			System.out.println(ip);
-		}else if(obj == jmiteam) {
+		}else if(obj == menuitem) {
 			JOptionPane.showMessageDialog(null, "201845020 유은철\n201845024 이태현\n201845026 이혜성", "개발자 소개", 1);
 		}
-		
-		
-		//if(obj == jmiteam) {
-		//	JOptionPane.showMessageDialog(null, "!", "2", ABORT);
-		//}
-		
-		/*if(obj == jmiteam) {
-			JOptionPane.showMessageDialog(null, "e", "getTitle()", JOptionPane.INFORMATION_MESSAGE);
-		}*/
-		
+
 	}
 	private void loginMember(){
 		String id = tfID.getText();
@@ -240,10 +210,6 @@ public class loginPage extends JFrame implements ActionListener, KeyListener {
 			JOptionPane.showMessageDialog(this, "아이디나 비밀번호를 확인해보세요");
 		}
 	}
-
-	/*public static String getid() {
-		return logid;
-	}*/
 	
 	public String getLogid() {
 		return logid;
