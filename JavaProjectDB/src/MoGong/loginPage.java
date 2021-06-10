@@ -181,11 +181,6 @@ public class loginPage extends JFrame implements ActionListener, KeyListener {
 		}
 		else if(obj == btnlogin) {
 			loginMember();
-			ordersdto od = new ordersdto();
-			String id = od.getId();
-			Member mem = new Member();
-			String ip = mem.getId();
-			System.out.println(ip);
 		}else if(obj == menuitem) {
 			JOptionPane.showMessageDialog(null, "201845020 유은철\n201845024 이태현\n201845026 이혜성", "개발자 소개", 1);
 		}
