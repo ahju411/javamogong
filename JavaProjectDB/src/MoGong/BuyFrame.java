@@ -35,12 +35,14 @@ private JButton buy;
 private JLabel notice;
 private int itemid;
 private String itemname,itemclass,itembrand,itemprice,itemimage;
+String id;
     
-	public BuyFrame(String title , int width , int height, int n) throws MalformedURLException {
+	public BuyFrame(String title , int width , int height, int n, String id) throws MalformedURLException {
 		setTitle(title);
 		setSize(width,height);
 		setLocationRelativeTo(this);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.id = id;
 		
 		backpan = new JPanel();
 	   backpan.setLayout(new GridLayout(4,1));
@@ -143,6 +145,9 @@ private String itemname,itemclass,itembrand,itemprice,itemimage;
 		backpan.add(paypan);
 		scrollpane = new JScrollPane(backpan);
 		add(scrollpane);
+		MemberDB db = new MemberDB();
+		Member mem = db.getMember(id);
+		Customerinfo(mem);
 		
 		setVisible(true);
 		
@@ -179,6 +184,15 @@ private void outputProductListSpec(int n) {
       itemprice = itemprice.replace(",", "");  // ,을 제거하여 나중에 int로 변환하여 할인하기 편하게함.
 
 		}
+private void Customerinfo(Member mem) {
+	String name = mem.getName();
+	String addr = mem.getAddr();
+	String tel = mem.getTel();
+	
+	address.setText(addr);
+	user.setText(name);
+	phone.setText(tel);
+}
 
 
 }

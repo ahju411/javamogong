@@ -202,6 +202,11 @@ public class loginPage extends JFrame implements ActionListener, KeyListener {
 		}
 		else if(obj == btnlogin) {
 			loginMember();
+			ordersdto od = new ordersdto();
+			String id = od.getId();
+			Member mem = new Member();
+			String ip = mem.getId();
+			System.out.println(ip);
 		}else if(obj == jmiteam) {
 			JOptionPane.showMessageDialog(null, "201845020 유은철\n201845024 이태현\n201845026 이혜성", "개발자 소개", 1);
 		}
@@ -223,9 +228,8 @@ public class loginPage extends JFrame implements ActionListener, KeyListener {
 		int ok = db.loginMemeber(id, pw);
 		
 		if(ok == 1) {
-			mainFrame pd = new mainFrame("상품목록", 600, 825,this);
+			mainFrame pd = new mainFrame("상품목록", 600, 825,this,id);
 			pd.setTitle("상품목록"+"/"+id);
-			logid = id;
 			dispose();
 		}else if(ok == 2){
 			Member_List mem = new Member_List("회원관리창", 700, 500);

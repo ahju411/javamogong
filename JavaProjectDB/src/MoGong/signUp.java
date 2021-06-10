@@ -271,14 +271,14 @@ public class signUp extends JFrame implements ActionListener {
         //1. 화면의 정보를 얻는다.
         Member mem = getViewData();     
         //2. 그정보로 DB를 수정
-        MemberDB db = new MemberDB();
-        int ok = db.updateMember(mem);
         String pw = tfPassword.getText();
         if(pw.length()==0){ //길이가 0이면
 	           
             JOptionPane.showMessageDialog(this, "수정하려면 비밀번호가 필요합니다");
             return; //메소드 끝
         }
+        MemberDB db = new MemberDB();
+        int ok = db.updateMember(mem);
        
         if(ok == 1){
             JOptionPane.showMessageDialog(this, "수정되었습니다.");

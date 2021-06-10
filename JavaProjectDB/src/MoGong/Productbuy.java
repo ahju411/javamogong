@@ -48,12 +48,14 @@ public class Productbuy extends JFrame implements ActionListener {
 	private String itemimage;
 
 	private Object itemid;
+	String id;
 	
     int m; 
-	public Productbuy(String title , int width , int height, int n) throws MalformedURLException {
+	public Productbuy(String title , int width , int height, int n, String id) throws MalformedURLException {
 		setTitle(title);
 		setSize(width,height);
 		setLocationRelativeTo(this);
+		this.id = id;
 		//setLocation(250, 150);
 	
 		
@@ -230,7 +232,7 @@ public class Productbuy extends JFrame implements ActionListener {
 			res--;
 			wait.setText(" 남은 구매 예약자 : " + res + "명 ");
 			try {
-				BuyFrame bs = new BuyFrame("결제화면",800,800,m);
+				BuyFrame bs = new BuyFrame("결제화면",800,800,m,id);
 			} catch (MalformedURLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();

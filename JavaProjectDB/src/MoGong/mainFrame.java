@@ -60,14 +60,16 @@ public class mainFrame extends JFrame implements MouseListener, ActionListener {
 	private JMenuBar menubar;
 	private JButton btn1;
 	private JButton btn2;
+	String id;
 	
-	public mainFrame(String title , int width , int height, loginPage loginPage) {
+	public mainFrame(String title , int width , int height, loginPage loginPage,String id) {
 		setTitle(title);
 		setSize(width,height);
 		setLocationRelativeTo(this);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLayout(new FlowLayout());
 		this.loginPage =loginPage;
+		this.id = id;
 		
 		menubar = new JMenuBar();
 		menubar.setBackground(Color.PINK);
@@ -205,7 +207,7 @@ public class mainFrame extends JFrame implements MouseListener, ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		Object obj = e.getSource();
 		if(obj == MyInfo){
-			String id =loginPage.getLogid();
+			
 			signUp su = new signUp();
 			su.signUp(id, this);
 			su.setTitle("회원정보");
@@ -223,11 +225,8 @@ public class mainFrame extends JFrame implements MouseListener, ActionListener {
 		
 		if(obj == btn1) {
 			// 0일때 구찌 시계출력
-			String id = getTitle();
-			int ss = id.length();
-			id = id.substring(5, ss);
 			int n = 0;
-			ProductListUI ui = new ProductListUI("목록/" + id, 1300, 600,n,this);
+			ProductListUI ui = new ProductListUI("목록/" + id, 1300, 600,n,this,id);
 			this.setVisible(false);
 
 		
@@ -235,7 +234,7 @@ public class mainFrame extends JFrame implements MouseListener, ActionListener {
 		if(obj == btn2) {
 			// 5일때 구찌 가방 출력
 			int n = 5;
-			ProductListUI ui = new ProductListUI("목록", 1300, 600,n,this);
+			ProductListUI ui = new ProductListUI("목록", 1300, 600,n,this,id);
 			this.setVisible(false);
 		}
 

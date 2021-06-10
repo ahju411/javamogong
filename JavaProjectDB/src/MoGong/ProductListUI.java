@@ -62,7 +62,6 @@ public class ProductListUI extends JFrame implements MouseListener, ActionListen
 	
 	private JMenu menuUser;
 	private JMenuItem BuyList,basket,MyInfo,Reservation,Logout;
-	loginPage loginPage;
 	private JPanel pan;
 	private JLabel lbl;
 
@@ -70,13 +69,15 @@ public class ProductListUI extends JFrame implements MouseListener, ActionListen
 	
 	mainFrame mainFrame;
 	private int l;
+	String id;
 
-	public ProductListUI(String title , int width , int height,int n,mainFrame mainFrame) {
+	public ProductListUI(String title , int width , int height,int n,mainFrame mainFrame,String id) {
 		setTitle(title);
 		setSize(width,height);
 		setLocationRelativeTo(this);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.mainFrame = mainFrame;
+		this.id = id;
 
 		
 		// 메뉴 
@@ -259,10 +260,7 @@ public class ProductListUI extends JFrame implements MouseListener, ActionListen
 			int tmp;
 			tmp = l+r;
 			try {
-				String id = getTitle();
-				int ss = id.length();
-				id = id.substring(3, ss);
-				Productbuy pby = new Productbuy("상품정보화면/" + id, 650, 800, tmp);
+				Productbuy pby = new Productbuy("상품정보화면/" + id, 650, 800, tmp,id);
 			} catch (MalformedURLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
