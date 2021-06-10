@@ -186,6 +186,7 @@ public class mainFrame extends JFrame implements MouseListener, ActionListener {
 		img  = new ImageIcon("image/watch.png");
 		img = imageSetSize(img, 140, 47);
 		gucciwatch = new JButton(img);
+		gucciwatch.addActionListener(this);
 		gucciwatch.setPreferredSize(new Dimension(100, 45));
 		gucciwatch.setOpaque(true);
 		gucciwatch.setBackground(null);
