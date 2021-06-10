@@ -218,7 +218,6 @@ public class mainFrame extends JFrame implements MouseListener, ActionListener {
 			String iD = getTitle();
 			int ss = iD.length();
 			iD = iD.substring(5, ss);
-			System.out.println(ss);
 			reservation reserv = new reservation("예약현황", iD);
 		}
 		
