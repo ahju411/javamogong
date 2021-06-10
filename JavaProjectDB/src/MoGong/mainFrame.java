@@ -27,6 +27,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
@@ -74,7 +75,7 @@ public class mainFrame extends JFrame implements MouseListener, ActionListener {
 		setSize(width,height);
 		setLocationRelativeTo(this);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setLayout(new FlowLayout());
+		setLayout(new BorderLayout());
 		this.loginPage =loginPage;
 		this.id = id;
 		
@@ -158,7 +159,8 @@ public class mainFrame extends JFrame implements MouseListener, ActionListener {
 		
 		backpan.setLayout(new GridLayout(4,1));
 		backpan.setBackground(Color.WHITE);;
-		scrollpane = new JScrollPane(backpan);
+		
+		
 		
 		// 구찌브랜드
 		
@@ -266,7 +268,6 @@ public class mainFrame extends JFrame implements MouseListener, ActionListener {
 		backpan.add(pan1);
 		
 		
-		add(backpan);
 		
 		
 		// 에르메스파트
@@ -318,7 +319,6 @@ public class mainFrame extends JFrame implements MouseListener, ActionListener {
 		backpan.add(pan1);
 		
 		
-		add(backpan);
 		
 		
 		// 디올파트
@@ -373,9 +373,7 @@ public class mainFrame extends JFrame implements MouseListener, ActionListener {
 		
 		
 		//
-		
-		
-	
+		scrollpane = new JScrollPane(backpan);
 		add(scrollpane);
 		
 		

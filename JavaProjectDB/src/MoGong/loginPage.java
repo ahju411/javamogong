@@ -198,7 +198,7 @@ public class loginPage extends JFrame implements ActionListener, KeyListener {
 		int ok = db.loginMemeber(id, pw);
 		
 		if(ok == 1) {
-			mainFrame pd = new mainFrame("상품목록", 640, 825,this,id);
+			mainFrame pd = new mainFrame("상품목록", 700, 825,this,id);
 			pd.setTitle("상품목록"+"/"+id);
 			dispose();
 		}else if(ok == 2){
