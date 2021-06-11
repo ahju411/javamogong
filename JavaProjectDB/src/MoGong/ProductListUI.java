@@ -173,7 +173,7 @@ public class ProductListUI extends JFrame implements MouseListener, ActionListen
 
 		}
 
-		table = new JTable(tModel) {
+		table = new JTable(tModel) { 
 			@Override
 			public Component prepareRenderer(TableCellRenderer renderer, int row , int column) {
 			

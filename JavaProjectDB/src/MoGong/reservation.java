@@ -7,6 +7,9 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.net.MalformedURLException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -22,10 +25,13 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
-public class reservation extends JFrame implements ActionListener {
+public class reservation extends JFrame implements ActionListener, MouseListener {
 
 	JButton btnBack;
-	
+	private JTable table;
+    private	int itemid;
+	private String id;
+	private JScrollPane jp;
 	public reservation(String title, String Id) {
 		
 		resUI(Id);
@@ -60,17 +66,25 @@ public class reservation extends JFrame implements ActionListener {
 		panBack.add(btnBack, BorderLayout.SOUTH);
 		
 		//테이블 첫행
-		String header[] = {"수취인", "상품 이름", "가격","주소", "핸드폰 번호", "구매 여부"};
+		String header[] = {"수취인", "상품 이름", "가격","주소", "핸드폰 번호", "구매 여부","상품아이디"};
 		
 		String contents[][] = {};
 		
 		//테이블 생성
-		DefaultTableModel jtable = new DefaultTableModel(contents, header);
+		DefaultTableModel jtable = new DefaultTableModel(contents, header) { // 내용수정금지
+			public boolean isCellEditable(int i, int c) {
+				return false;
+			}
+		};
 		
-		JTable table = new JTable(jtable);
+		 table = new JTable(jtable);
+		table.addMouseListener(this);
+		
 		panTable.add(table);
 		
-		JScrollPane jp = new JScrollPane(table);
+		 jp = new JScrollPane(table);
+		jp.addMouseListener(this);
+		
 		panBack.add(jp);
 		
 		//DB연동
@@ -81,7 +95,7 @@ public class reservation extends JFrame implements ActionListener {
 			Statement stmt = conn.createStatement();
 			String id = Id;
 			//쿼리문 이름, 가격, 구매상태가 표시됨
-			ResultSet rs = stmt.executeQuery("SELECT orders.name, item.ITEMNAME, item.PRICE, orders.address, orders.phone, orders.state from item, ORDERS WHERE ORDERS.ITEMID = ITEM.ITEMID and id = '" + id + "'");
+			ResultSet rs = stmt.executeQuery("SELECT orders.name, item.ITEMNAME, item.PRICE, orders.address, orders.phone, orders.state,item.itemid from item, ORDERS WHERE ORDERS.ITEMID = ITEM.ITEMID and id = '" + id + "'");
 			//SELECT orders.NAME, item.ITEMNAME, item.PRICE, orders.ADDRESS, orders.PHONE, orders.STATE from item, ORDERS WHERE ORDERS.ITEMID = ITEM.ITEMID;
 			
 			//테이블에 행 삽입
@@ -92,6 +106,7 @@ public class reservation extends JFrame implements ActionListener {
 				String address = rs.getString("address");
 				String phone = rs.getString("phone");
 				String state = "예약완료";
+			 itemid = rs.getInt("itemid");
 				
 				if(rs.getInt("state") == 0) {
 					state = "예약완료";
@@ -102,7 +117,7 @@ public class reservation extends JFrame implements ActionListener {
 				}
 					
 				
-				String[] col = {name1, id1, price, address, phone, state};
+				Object[] col = {name1, id1, price, address, phone, state,itemid};
 				
 				jtable.addRow(col);
 			}
@@ -130,6 +145,44 @@ public class reservation extends JFrame implements ActionListener {
 		if(obj == btnBack) {
 			dispose();
 		}
+		
+		
+	}
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		if (e.getClickCount() == 2) {
+			int row = table.getSelectedRow();
+			int col = table.getSelectedColumn();
+			
+			String tmp =  String.valueOf(table.getValueAt(row, col));
+           int tmp2 = Integer.parseInt(tmp)-1;
+			System.out.println(itemid);
+			try {
+				productInfo pby = new productInfo("상품정보화면/" + id, 650, 800, tmp2, id);
+			} catch (MalformedURLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+	}
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
 		
 	}
 
