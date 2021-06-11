@@ -82,51 +82,6 @@ public class mainFrame extends JFrame implements MouseListener, ActionListener {
 		menubar = new JMenuBar();
 		menubar.setBackground(Color.PINK);
 	
-		JMenu menuProduct = new JMenu("상품목록");
-		// 구찌 탭 // 시계 가방 지갑 목걸이
-		MENUBRAND = new JMenu("구찌");
-		WATCH = new JMenuItem("시계");
-		BAG = new JMenuItem("가방");
-		WALLET = new JMenuItem("지갑");
-		NECKLACE = new JMenuItem("목걸이");
-		MENUBRAND.add(WATCH);
-		MENUBRAND.add(BAG);
-		MENUBRAND.add(WALLET);
-		MENUBRAND.add(NECKLACE);
-		menuProduct.add(MENUBRAND);
-		
-		MENUBRAND = new JMenu("샤넬");
-		WATCH = new JMenuItem("시계");
-		BAG = new JMenuItem("가방");
-		WALLET = new JMenuItem("지갑");
-		NECKLACE = new JMenuItem("목걸이");
-		MENUBRAND.add(WATCH);
-		MENUBRAND.add(BAG);
-		MENUBRAND.add(WALLET);
-		MENUBRAND.add(NECKLACE);
-		menuProduct.add(MENUBRAND);
-		
-		MENUBRAND = new JMenu("에르메스");
-		WATCH = new JMenuItem("시계");
-		BAG = new JMenuItem("가방");
-		WALLET = new JMenuItem("지갑");
-		NECKLACE = new JMenuItem("목걸이");
-		MENUBRAND.add(WATCH);
-		MENUBRAND.add(BAG);
-		MENUBRAND.add(WALLET);
-		MENUBRAND.add(NECKLACE);
-		menuProduct.add(MENUBRAND);
-		
-		MENUBRAND = new JMenu("디올");
-		WATCH = new JMenuItem("시계");
-		BAG = new JMenuItem("가방");
-		WALLET = new JMenuItem("지갑");
-		NECKLACE = new JMenuItem("목걸이");
-		MENUBRAND.add(WATCH);
-		MENUBRAND.add(BAG);
-		MENUBRAND.add(WALLET);
-		MENUBRAND.add(NECKLACE);
-		menuProduct.add(MENUBRAND);
 		
 
 
@@ -135,18 +90,15 @@ public class mainFrame extends JFrame implements MouseListener, ActionListener {
 		MyInfo.addActionListener(this);
 		Reservation = new JMenuItem("예약현황");
 		Reservation.addActionListener(this);
-		basket = new JMenuItem("장바구니");
-		BuyList = new JMenuItem("구매목록");
 		Logout = new JMenuItem("로그아웃");
 		Logout.addActionListener(this);
 	
 		menuUser.add(MyInfo);
 		menuUser.add(Reservation);
-		menuUser.add(basket);
-		menuUser.add(BuyList);
+
 		menuUser.add(Logout);
 	
-		menubar.add(menuProduct);
+		
 		menubar.add(menuUser);
 		setJMenuBar(menubar);	
 		
