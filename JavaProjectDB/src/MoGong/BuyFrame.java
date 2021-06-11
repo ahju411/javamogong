@@ -199,6 +199,13 @@ public class BuyFrame extends JFrame implements ActionListener {
 				
 				ResultSet os = stmt.executeQuery("select count(*) from orders");
 				
+				int ord = 0;
+				
+				if(os.next()) {
+					ord = os.getInt(1);
+				}
+				
+				ord++;
 				
 				String address = tfaddress.getText();
 				String phone = tfphone.getText();
