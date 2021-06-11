@@ -280,9 +280,22 @@ public class productInfo extends JFrame implements ActionListener {
 				Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@118.217.168.174:1521:xe", "comet",
 						"1234");
 				Statement stmt = conn.createStatement();
+				Statement stmt2 = conn.createStatement();
 
+				//오더 아이디를 알아오는 쿼리
+				ResultSet rs = stmt2.executeQuery("SELECT orderid FROM ORDERS WHERE id = '" + id + "' AND  ITEMID = '" + itemid + "'");
+				
 				//구매예약한 것을 삭제하는 쿼리
 				stmt.executeQuery("DELETE FROM ORDERS WHERE ID = '" + id + "' AND ITEMID = '" + itemid + "'");
+				
+				int ord = -1;
+				
+				if(rs.next()) {
+					ord = rs.getInt(1);
+				}
+				
+				//orderid를 한칸씩 앞으로 땡기는 쿼리
+				stmt.executeQuery("UPDATE ORDERS SET ORDERID = ORDERID - 1 WHERE ORDERID > '" + ord +  "'");
 				
 				//res에 반영하는 쿼리
 				Statement stmt3 = conn.createStatement();
