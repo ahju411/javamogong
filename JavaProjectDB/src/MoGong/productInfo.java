@@ -84,10 +84,24 @@ public class productInfo extends JFrame implements ActionListener {
 
 			ResultSet rs = stmt
 					.executeQuery("SELECT count(itemid) FROM orders WHERE itemid = '" + itemid + "' group by itemid");
-
-			if (rs.next()) {
-				res = 10 - rs.getInt(1);
+			ResultSet rs2 = stmt
+					.executeQuery("SELECT count(state) FROM orders WHERE itemid = '" + itemid + "' AND STATE = 2");
+			
+			int state = 0, show = 0;
+			
+			if (rs2.next()) {
+				state = rs2.getInt(1);
 			}
+			
+			if (rs.next()) {
+				//show가 값을 못가져오는 오류 발생 해결 아직 안됨
+				show = rs.getInt(1);
+				res = 10 - show + state;
+			}
+			System.out.println(res);//지울것
+			System.out.println(state);
+			System.out.println(show);
+			System.out.println(itemid);
 			conn.close();
 		} catch (ClassNotFoundException e1) {
 			System.out.println("JDBC드라이버 로드 에러");
@@ -186,7 +200,6 @@ public class productInfo extends JFrame implements ActionListener {
 		if (obj == btnBuy) {
 
 			// 입력 DB 작성중
-
 			try {
 				Class.forName("oracle.jdbc.driver.OracleDriver");
 				Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@118.217.168.174:1521:xe", "comet",
@@ -211,41 +224,49 @@ public class productInfo extends JFrame implements ActionListener {
 			btnres.setEnabled(true);
 			btnBuy.setEnabled(false);
 
-			// res--;
-
 			wait.setText(" 남은 구매 예약자 : " + res + "명 ");
+
+			// 프레임 띄우기
 			try {
 				BuyFrame bs = new BuyFrame("결제화면/" + id, 800, 800, m, id);
 			} catch (MalformedURLException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+
 		} else if (obj == btnres) {
 			btnres.setEnabled(false);
 			btnBuy.setEnabled(true);
 
 			// 삭제 DB 작성중
-			/*
-			 * try { Class.forName("oracle.jdbc.driver.OracleDriver"); Connection conn =
-			 * DriverManager.getConnection("jdbc:oracle:thin:@118.217.168.174:1521:xe",
-			 * "comet", "1234"); Statement stmt = conn.createStatement();
-			 * 
-			 * ResultSet rs = stmt.executeQuery("DELETE FROM ORDERS WHERE ID = '" + id +
-			 * "' AND ITEMID = (SELECT itemid FROM item WHERE itemname = '" + itemname +
-			 * "')");
-			 * 
-			 * if(rs.next()) { res = 10 - rs.getInt(1); } conn.close(); } catch
-			 * (ClassNotFoundException e1) { System.out.println("JDBC드라이버 로드 에러");
-			 * e1.printStackTrace(); } catch (SQLException e1) {
-			 * System.err.println("DB연결 오류 또는 쿼리 오류 입니다."); e1.printStackTrace(); }
-			 */
+			/*try {
+				Class.forName("oracle.jdbc.driver.OracleDriver");
+				Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@118.217.168.174:1521:xe", "comet",
+						"1234");
+				Statement stmt = conn.createStatement();
+
+				//구매예약을 구매 취소로 바꾸는 쿼리
+				stmt.executeQuery("DELETE FROM ORDERS WHERE ID = '" + id
+						+ "' AND ITEMID = (SELECT itemid FROM item WHERE itemname = '" + itemname + "')");
+				
+				//res에 반영하는 쿼리
+				ResultSet rs = stmt.executeQuery("DELETE FROM ORDERS WHERE ID = '" + id
+						+ "' AND ITEMID = (SELECT itemid FROM item WHERE itemname = '" + itemname + "')");
+
+				if (rs.next()) {
+					res = 10 - rs.getInt(1);
+				}
+				conn.close();
+			} catch (ClassNotFoundException e1) {
+				System.out.println("JDBC드라이버 로드 에러");
+				e1.printStackTrace();
+			} catch (SQLException e1) {
+				System.err.println("DB연결 오류 또는 쿼리 오류 입니다.");
+				e1.printStackTrace();
+			}*/
+
 			// res++;
 			wait.setText(" 남은 구매 예약자 : " + res + "명 ");
 		}
-
-	}
-
-	public void DBProdu() {
 
 	}
 

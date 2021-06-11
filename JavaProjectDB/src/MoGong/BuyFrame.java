@@ -187,7 +187,7 @@ public class BuyFrame extends JFrame implements ActionListener {
 		Object obj = e.getSource();
 		
 		if(obj == btnBuy) {
-			
+			/*
 			try {
 				Class.forName("oracle.jdbc.driver.OracleDriver");
 				
@@ -222,7 +222,7 @@ public class BuyFrame extends JFrame implements ActionListener {
 				System.err.println("DB연결 오류 또는 쿼리 오류 입니다.");
 				e1.printStackTrace();
 			}
-		
+		*/
 		}
 		
 		dispose();

@@ -35,16 +35,16 @@ public class searchFrameID extends JFrame implements ActionListener {
 		setSize(width, height);
 		setLocationRelativeTo(this);
 		
-		
 		JPanel panNorth = new JPanel();
 		panNorth.setBackground(Color.white);
 		add(panNorth, BorderLayout.NORTH);
 		
+		//맨위 로고
 		ImageIcon imglogo = new ImageIcon("image\\logo.png");
 		JLabel logo = new JLabel(imglogo);
 		panNorth.add(logo);
 		
-		
+		//이름과 핸드폰 번호 입력받는 부분
 		JPanel panMid = new JPanel();
 		panMid.setBackground(Color.white);
 		panMid.setBorder(new EmptyBorder(70, 0, 40, 10));
@@ -79,7 +79,7 @@ public class searchFrameID extends JFrame implements ActionListener {
 		
 		panMid.add(panPhone);
 		
-		
+		//버튼 붙는 패널
 		JPanel panSouth = new JPanel();
 		panSouth.setBackground(Color.white);
 		add(panSouth, BorderLayout.SOUTH);
@@ -97,23 +97,22 @@ public class searchFrameID extends JFrame implements ActionListener {
 		
 		Object obj = e.getSource();
 		
+		//DB파트
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			
 			Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@118.217.168.174:1521:xe", "comet", "1234");
 			
 			Statement stmt = conn.createStatement();
 			
-			
 			String findName = tfName.getText();
 			String findPhone = tfPhone1.getText() + "-" + tfPhone2.getText() + "-" + tfPhone3.getText();
-			
+
+			//이름과 전화번호로 customer 테이블에서 id를 가져오는 쿼리 
 			ResultSet rs = stmt.executeQuery("SELECT * FROM customer where name = '" + findName + "' and tel = '" + findPhone + "'");
 			
 			if(rs.next()) {
 				id = rs.getString("id");
 			}
-			
 			
 			conn.close();
 		} catch (ClassNotFoundException e1) {

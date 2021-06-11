@@ -86,10 +86,16 @@ public class reservation extends JFrame implements ActionListener {
 				String price = rs.getString("price");
 				String address = rs.getString("address");
 				String phone = rs.getString("phone");
-				String state = "예약중";
+				String state = "예약완료";
 				
-				if(rs.getInt("state") == 1)
-					state = "구매 완료";
+				if(rs.getInt("state") == 0) {
+					state = "예약완료";
+				}else if(rs.getInt("state") == 1) {
+					state = "구매완료/배송중";
+				}else if(rs.getInt("state") == 2) {
+					state = "구매취소";
+				}
+					
 				
 				String[] col = {name1, id1, price, address, phone, state};
 				

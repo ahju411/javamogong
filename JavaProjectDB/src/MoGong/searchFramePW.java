@@ -28,13 +28,12 @@ public class searchFramePW extends JFrame implements ActionListener {
 	JTextField tfID, tfPhone1, tfPhone2, tfPhone3, tfName;
 	JButton btn;
 	
-	String pw;//
+	String pw;
 	
 	public searchFramePW(String title, int width, int height) {
 		setTitle(title);
 		setSize(width, height);
 		setLocationRelativeTo(this);
-		
 		
 		JPanel panNorth = new JPanel();
 		panNorth.setBackground(Color.white);
@@ -43,7 +42,6 @@ public class searchFramePW extends JFrame implements ActionListener {
 		ImageIcon imglogo = new ImageIcon("image\\logo.png");
 		JLabel logo = new JLabel(imglogo);
 		panNorth.add(logo);
-		
 		
 		JPanel panMid = new JPanel();
 		panMid.setBackground(Color.white);
