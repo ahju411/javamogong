@@ -41,6 +41,7 @@ public class reservation extends JFrame implements ActionListener, MouseListener
 		setSize(700, 500);
 		setLocationRelativeTo(this);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		this.id =Id;
 		
 
 		//맨 뒤에 붙는 분홍 팬
