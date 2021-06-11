@@ -79,6 +79,8 @@ public class productInfo extends JFrame implements ActionListener {
 
 		int notice = 0;
 		
+		JPanel subpan2 = new JPanel();
+		
 		//버튼 설정
 		btnBuy = new JButton("구매예약");
 		btnBuy.addActionListener(this);
@@ -129,6 +131,14 @@ public class productInfo extends JFrame implements ActionListener {
 				btnCancel.setEnabled(true);
 			}
 			
+			//10개가 다 매진되었다면
+			if(res == 0) {
+				btnBuy.setVisible(false);
+				btnCancel.setVisible(false);
+				JLabel lblSell = new JLabel("본 제품의 판매가 완료되었습니다.");
+				subpan2.add(lblSell);
+			}
+			
 			conn.close();
 		} catch (ClassNotFoundException e1) {
 			System.out.println("JDBC드라이버 로드 에러");
@@ -154,12 +164,12 @@ public class productInfo extends JFrame implements ActionListener {
 		wait.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 		wait.setForeground(Color.RED);
 
-		JPanel subpan2_1 = new JPanel();
+		
 
-		subpan2_1.add(btnBuy);
-		subpan2_1.add(btnCancel);
-		subpan2_1.setOpaque(false);
-		pan2.add(subpan2_1);
+		subpan2.add(btnBuy);
+		subpan2.add(btnCancel);
+		subpan2.setOpaque(false);
+		pan2.add(subpan2);
 
 		pan2.setOpaque(false);
 
@@ -234,7 +244,7 @@ public class productInfo extends JFrame implements ActionListener {
 				ResultSet rs = stmt.executeQuery("SELECT state FROM orders WHERE ITEMID = '" + itemid + "' AND ID = '" + id + "'");
 				
 				while (rs.next()) {
-					notice = rs.getInt("state");//오류 문장
+					notice = rs.getInt("state");
 				}
 				
 				conn.close();
