@@ -29,7 +29,7 @@ import javax.swing.SwingConstants;
 public class productInfo extends JFrame implements ActionListener {
 
 	private int res = 10, m;
-	private JButton btnBuy, btnres;
+	private JButton btnBuy, btnCancel;
 	private JLabel lblimg, lblinfoimg, jungga, wait;
 	private ImageIcon img, back, infoimg;
 	private String itemname, itemprice, itembrand, itemclass, itemimage;
@@ -77,14 +77,28 @@ public class productInfo extends JFrame implements ActionListener {
 
 		JLabel price = new JLabel(ch + "원 (15% SALE)", SwingConstants.CENTER); // 15%할인한 가격 넣기
 
+		int notice = 0;
+		
+		//버튼 설정
+		btnBuy = new JButton("구매예약");
+		btnBuy.addActionListener(this);
+
+		btnCancel = new JButton("예약취소");
+		btnCancel.addActionListener(this);
+		btnCancel.setEnabled(false);
+		
 		// 몇명 남았는지 표기 위한 DB
 		try {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@118.217.168.174:1521:xe", "comet", "1234");
 			Statement stmt = conn.createStatement();
 			Statement stmt2 = conn.createStatement();
+			Statement stmt3 = conn.createStatement();
 
+			//몇명이 예약했는지 반환하는 쿼리
 			ResultSet rs = stmt.executeQuery("SELECT count(itemid) FROM orders WHERE itemid = '" + itemid + "' group by itemid");
+			
+			//몇명이 예약취소를 했는지 반환하는 쿼리
 			ResultSet rs2 = stmt2.executeQuery("SELECT count(state) FROM orders WHERE itemid = '" + itemid + "' AND STATE = 2");
 			
 			int state = 0;
@@ -96,6 +110,26 @@ public class productInfo extends JFrame implements ActionListener {
 			if (rs.next()) {
 				res = 10 - rs.getInt(1) + state;
 			}
+			
+			//내가 구매를 했는지 반환하는 쿼리
+			ResultSet rs3 = stmt3
+					.executeQuery("SELECT state FROM orders WHERE ITEMID = '" + itemid + "' AND ID = '" + id + "'");
+
+			if (rs3.next()) {
+				notice = rs3.getInt(1);
+			}
+			
+			//DB에서 state 값이 존재한다면
+			if(notice < 2) {
+				JOptionPane.showMessageDialog(null, "이미 구매한 상품입니다.", "알림", JOptionPane.INFORMATION_MESSAGE);
+				btnBuy.setEnabled(false);
+				btnCancel.setEnabled(true);
+			//전에 구매한 상품이 아니라면
+			}else {
+				btnCancel.setEnabled(true);
+				btnBuy.setEnabled(false);
+			}
+			
 			conn.close();
 		} catch (ClassNotFoundException e1) {
 			System.out.println("JDBC드라이버 로드 에러");
@@ -123,15 +157,8 @@ public class productInfo extends JFrame implements ActionListener {
 
 		JPanel subpan2_1 = new JPanel();
 
-		btnBuy = new JButton("구매예약");
-		btnBuy.addActionListener(this);
-
-		btnres = new JButton("예약취소");
-		btnres.addActionListener(this);
-		btnres.setEnabled(false);
-
 		subpan2_1.add(btnBuy);
-		subpan2_1.add(btnres);
+		subpan2_1.add(btnCancel);
 		subpan2_1.setOpaque(false);
 		pan2.add(subpan2_1);
 
@@ -223,7 +250,7 @@ public class productInfo extends JFrame implements ActionListener {
 				JOptionPane.showMessageDialog(null, "이미 구매한 상품입니다.", "알림", JOptionPane.INFORMATION_MESSAGE);
 			//전에 구매한 상품이 아니라면
 			}else {
-				btnres.setEnabled(true);
+				btnCancel.setEnabled(true);
 				btnBuy.setEnabled(false);
 				
 				wait.setText(" 남은 구매 예약자 : " + res + "명 ");
@@ -236,9 +263,9 @@ public class productInfo extends JFrame implements ActionListener {
 				}
 			}
 
-		} else if (obj == btnres) {
+		} else if (obj == btnCancel) {
 			
-			// 삭제 DB 작성중
+			//구매 취소 DB
 			try {
 				Class.forName("oracle.jdbc.driver.OracleDriver");
 				Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@118.217.168.174:1521:xe", "comet",
@@ -274,7 +301,7 @@ public class productInfo extends JFrame implements ActionListener {
 				e1.printStackTrace();
 			}
 			
-			btnres.setEnabled(false);
+			btnCancel.setEnabled(false);
 			btnBuy.setEnabled(true);
 			
 			wait.setText(" 남은 구매 예약자 : " + res + "명 ");
