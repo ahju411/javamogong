@@ -21,6 +21,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -225,6 +226,9 @@ public class BuyFrame extends JFrame implements ActionListener {
 			productInfo.getBtnBuy().setEnabled(false);
 			productInfo.getBtnCancel().setEnabled(true);
 			productInfo.getWait().setText(" 남은 구매 예약자 : " + (productInfo.getRes()-1) + "명 ");
+			if(productInfo.getRes() == 1) {
+				JOptionPane.showMessageDialog(null, "마지막 예약자입니다.배송 시작하겠습니다");
+			}
 		}
 		
 		dispose();
