@@ -63,11 +63,11 @@ public class mainFrame extends JFrame implements MouseListener, ActionListener {
 	private ImageIcon img;
 	private JLabel lblimg;
 	String id;
-	private JLabel gucciwallet,guccibag,guccinecklace;
-	private JLabel chanelwatch,chanelwallet,chanelbag,chanelnecklace;
-	private JLabel hermeswatch,hermeswallet,hermesbag,hermesnecklace;
-	private JLabel diorwatch,diorwallet,diorbag,diornecklace;
-	private JButton gucciwatch;
+	private JButton gucciwatch,gucciwallet,guccibag,guccinecklace;
+	private JButton chanelwatch,chanelwallet,chanelbag,chanelnecklace;
+	private JButton hermeswatch,hermeswallet,hermesbag,hermesnecklace;
+	private JButton diorwatch,diorwallet,diorbag,diornecklace;
+
 	private EtchedBorder eborder;
 	
 	public mainFrame(String title , int width , int height, loginPage loginPage,String id) {
@@ -164,7 +164,6 @@ public class mainFrame extends JFrame implements MouseListener, ActionListener {
 		
 		// 구찌브랜드
 		
-	
 		
 		JPanel pan1 = new JPanel();
 		pan1.setBackground(Color.WHITE);
@@ -196,20 +195,23 @@ public class mainFrame extends JFrame implements MouseListener, ActionListener {
 		
 		img = new ImageIcon("image/wallet.png");
 		img = imageSetSize(img, 140, 47);
-		gucciwallet = new JLabel(img);
+		gucciwallet = new JButton(img);
+		gucciwallet.addActionListener(this);
 		 gucciwallet.setBorder(eborder);
 		pan1_2.add(gucciwallet);
 		
 		img = new ImageIcon("image/bag.png");
 		img = imageSetSize(img, 140, 47);
-		guccibag = new JLabel(img);
+		guccibag = new JButton(img);
+		guccibag.addActionListener(this);
 		 guccibag.setBorder(eborder);
 		pan1_2.add(guccibag);
 		
 		
 		img = new ImageIcon("image/necklace.png");
 		img = imageSetSize(img, 140, 47);
-		guccinecklace = new JLabel(img);
+		guccinecklace =new JButton(img);
+		guccinecklace.addActionListener(this);
 		 guccinecklace.setBorder(eborder);
 		pan1_2.add(guccinecklace);
 		
@@ -241,26 +243,30 @@ public class mainFrame extends JFrame implements MouseListener, ActionListener {
 		
 		img  = new ImageIcon("image/watch.png");
 		img = imageSetSize(img, 140, 47);
-		chanelwatch = new JLabel(img);
+		chanelwatch = new JButton(img);
+		chanelwatch.addActionListener(this);
 		chanelwatch.setBorder(eborder);
 		pan1_2.add(chanelwatch);
 		
 		img = new ImageIcon("image/wallet.png");
 		img = imageSetSize(img, 140, 47);
-		chanelwallet = new JLabel(img);
+		chanelwallet = new JButton(img);
+		chanelwallet.addActionListener(this);
 		chanelwallet.setBorder(eborder);
 		pan1_2.add(chanelwallet);
 		
 		img = new ImageIcon("image/bag.png");
 		img = imageSetSize(img, 140, 47);
-		chanelbag = new JLabel(img);
+		chanelbag = new JButton(img);
+		chanelbag.addActionListener(this);
 		chanelbag.setBorder(eborder);
 		pan1_2.add(chanelbag);
 		
 		
 		img = new ImageIcon("image/necklace.png");
 		img = imageSetSize(img, 140, 47);
-		chanelnecklace = new JLabel(img);
+		chanelnecklace =new JButton(img);
+		chanelnecklace.addActionListener(this);
 		chanelnecklace.setBorder(eborder);
 		pan1_2.add(chanelnecklace);
 		
@@ -292,26 +298,30 @@ public class mainFrame extends JFrame implements MouseListener, ActionListener {
 		
 		img  = new ImageIcon("image/watch.png");
 		img = imageSetSize(img, 140, 47);
-		hermeswatch = new JLabel(img);
+		hermeswatch = new JButton(img);
+		hermeswatch.addActionListener(this);
 		hermeswatch.setBorder(eborder);
 		pan1_2.add(hermeswatch);
 		
 		img = new ImageIcon("image/wallet.png");
 		img = imageSetSize(img, 140, 47);
-		hermeswallet = new JLabel(img);
+		hermeswallet = new JButton(img);
+		hermeswallet.addActionListener(this);
 		hermeswallet.setBorder(eborder);
 		pan1_2.add(hermeswallet);
 		
 		img = new ImageIcon("image/bag.png");
 		img = imageSetSize(img, 140, 47);
-		hermesbag = new JLabel(img);
+		hermesbag = new JButton(img);
+		hermesbag.addActionListener(this);
 		hermesbag.setBorder(eborder);
 		pan1_2.add(hermesbag);
 		
 		
 		img = new ImageIcon("image/necklace.png");
 		img = imageSetSize(img, 140, 47);
-		hermesnecklace = new JLabel(img);
+		hermesnecklace = new JButton(img);
+		hermesnecklace.addActionListener(this);
 		 hermesnecklace.setBorder(eborder);
 		pan1_2.add(hermesnecklace);
 		
@@ -343,26 +353,30 @@ public class mainFrame extends JFrame implements MouseListener, ActionListener {
 		
 		img  = new ImageIcon("image/watch.png");
 		img = imageSetSize(img, 140, 47);
-		diorwatch = new JLabel(img);
+		diorwatch = new JButton(img);
+		diorwatch.addActionListener(this);
 		 diorwatch.setBorder(eborder);
 		pan1_2.add(diorwatch);
 		
 		img = new ImageIcon("image/wallet.png");
 		img = imageSetSize(img, 140, 47);
-		diorwallet = new JLabel(img);
+		diorwallet = new JButton(img);
+		diorwallet.addActionListener(this);
 		diorwallet.setBorder(eborder);
 		pan1_2.add(diorwallet);
 		
 		img = new ImageIcon("image/bag.png");
 		img = imageSetSize(img, 140, 47);
-		diorbag = new JLabel(img);
+		diorbag = new JButton(img);
+		diorbag.addActionListener(this);
 		diorbag.setBorder(eborder);
 		pan1_2.add(diorbag);
 		
 		
 		img = new ImageIcon("image/necklace.png");
 		img = imageSetSize(img, 140, 47);
-		diornecklace = new JLabel(img);
+		diornecklace =new JButton(img);
+		diornecklace.addActionListener(this);
 		diornecklace.setBorder(eborder);
 		pan1_2.add(diornecklace);
 		
@@ -386,6 +400,12 @@ public class mainFrame extends JFrame implements MouseListener, ActionListener {
 
 
 
+	
+
+
+
+
+
 	ImageIcon imageSetSize(ImageIcon icon, int i, int j) {
 		Image ximg = icon.getImage();
 		Image yimg = ximg.getScaledInstance(i, j, java.awt.Image.SCALE_SMOOTH);
@@ -401,6 +421,9 @@ public class mainFrame extends JFrame implements MouseListener, ActionListener {
 			System.out.println("TEst");
 			
 		}
+		
+		
+		
 		
 	}
 
@@ -449,6 +472,8 @@ public class mainFrame extends JFrame implements MouseListener, ActionListener {
 			reservation reserv = new reservation("예약현황", iD);
 		}
 		
+		
+		//구찌파트
 		if(obj == gucciwatch) {
 			 // 0일때 구찌 시계출력
 	         int n = 0;
@@ -456,6 +481,112 @@ public class mainFrame extends JFrame implements MouseListener, ActionListener {
 	         this.setVisible(false);
 		}
 		
+		else if(obj == guccibag) {
+			 // 5일때 구찌 가방출력
+	         int n = 5;
+	         ProductListUI ui = new ProductListUI("목록/" + id, 1300, 600,n,this,id);
+	         this.setVisible(false);
+		}
+		else if(obj == gucciwallet) {
+			 // 10일때 구찌 지갑출력
+	         int n = 10;
+	         ProductListUI ui = new ProductListUI("목록/" + id, 1300, 600,n,this,id);
+	         this.setVisible(false);
+		}
+		else if(obj == guccinecklace) {
+			 // 15일때 구찌 목걸이출력
+	         int n = 15;
+	         ProductListUI ui = new ProductListUI("목록/" + id, 1300, 600,n,this,id);
+	         this.setVisible(false);
+		}
+		
+		
+		//샤넬파트
+		
+		if(obj == chanelwatch) {
+			 // 20일때 샤넬 시계출력
+	         int n = 20;
+	         ProductListUI ui = new ProductListUI("목록/" + id, 1300, 600,n,this,id);
+	         this.setVisible(false);
+		}
+		
+		else if(obj == chanelbag) {
+			 // 25일때 샤넬 가방출력
+	         int n = 25;
+	         ProductListUI ui = new ProductListUI("목록/" + id, 1300, 600,n,this,id);
+	         this.setVisible(false);
+		}
+		else if(obj == chanelwallet) {
+			 // 30일때 샤넬 지갑출력
+	         int n = 30;
+	         ProductListUI ui = new ProductListUI("목록/" + id, 1300, 600,n,this,id);
+	         this.setVisible(false);
+		}
+		else if(obj == chanelnecklace) {
+			 // 35일때 샤넬 목걸이출력
+	         int n = 35;
+	         ProductListUI ui = new ProductListUI("목록/" + id, 1300, 600,n,this,id);
+	         this.setVisible(false);
+		}
+		
+		
+		//헤르메스파트
+		
+		if(obj == hermeswatch) {
+			 // 40일때 헤르메스 시계출력
+	         int n = 40;
+	         ProductListUI ui = new ProductListUI("목록/" + id, 1300, 600,n,this,id);
+	         this.setVisible(false);
+		}
+		
+		else if(obj == hermesbag) {
+			 // 45일때 헤르메스 가방출력
+	         int n = 45;
+	         ProductListUI ui = new ProductListUI("목록/" + id, 1300, 600,n,this,id);
+	         this.setVisible(false);
+		}
+		else if(obj == hermeswallet) {
+			 // 50일때  헤르메스  지갑출력
+	         int n = 50;
+	         ProductListUI ui = new ProductListUI("목록/" + id, 1300, 600,n,this,id);
+	         this.setVisible(false);
+		}
+		else if(obj == hermesnecklace) {
+			 // 55일때  헤르메스  목걸이출력
+	         int n = 55;
+	         ProductListUI ui = new ProductListUI("목록/" + id, 1300, 600,n,this,id);
+	         this.setVisible(false);
+		}
+		
+		
+		//디올파트
+		
+		
+		if(obj == diorwatch) {
+			 // 60일때 디올 시계출력
+	         int n = 60;
+	         ProductListUI ui = new ProductListUI("목록/" + id, 1300, 600,n,this,id);
+	         this.setVisible(false);
+		}
+		
+		else if(obj ==  diorbag) {
+			 // 65일때 디올 가방출력
+	         int n = 65;
+	         ProductListUI ui = new ProductListUI("목록/" + id, 1300, 600,n,this,id);
+	         this.setVisible(false);
+		}
+		else if(obj ==  diorwallet) {
+			 // 70일때 디올 지갑출력
+	         int n = 70;
+	         ProductListUI ui = new ProductListUI("목록/" + id, 1300, 600,n,this,id);
+	         this.setVisible(false);
+		}
+		else if(obj ==  diornecklace) {
+			 // 75일때 디올 목걸이출력
+	         int n = 75;
+	         ProductListUI ui = new ProductListUI("목록/" + id, 1300, 600,n,this,id);
+	         this.setVisible(false);
+		}
 		
 		
 	}
