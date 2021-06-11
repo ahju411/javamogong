@@ -152,9 +152,8 @@ public class reservation extends JFrame implements ActionListener, MouseListener
 	public void mouseClicked(MouseEvent e) {
 		if (e.getClickCount() == 2) {
 			int row = table.getSelectedRow();
-			int col = table.getSelectedColumn();
 			
-			String tmp =  String.valueOf(table.getValueAt(row, col));
+			String tmp =  String.valueOf(table.getValueAt(row, 6));
            int tmp2 = Integer.parseInt(tmp)-1;
 			System.out.println(itemid);
 			try {
