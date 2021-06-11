@@ -281,8 +281,8 @@ public class productInfo extends JFrame implements ActionListener {
 						"1234");
 				Statement stmt = conn.createStatement();
 
-				//구매예약을 구매 취소로 바꾸는 쿼리
-				stmt.executeQuery("UPDATE ORDERS SET STATE = 3 WHERE ITEMID = '" + itemid + "' AND ID = '" + id + "'");
+				//구매예약한 것을 삭제하는 쿼리
+				stmt.executeQuery("DELETE FROM ORDERS WHERE ID = '" + id + "' AND ITEMID = '" + itemid + "'");
 				
 				//res에 반영하는 쿼리
 				Statement stmt3 = conn.createStatement();

@@ -197,7 +197,7 @@ public class BuyFrame extends JFrame implements ActionListener {
 				
 				Statement stmt = conn.createStatement();
 				
-				ResultSet os = stmt.executeQuery("select count(*) from orders");
+				ResultSet os = stmt.executeQuery("select max(orderid) from orders");
 				
 				int ord = 0;
 				
