@@ -72,10 +72,10 @@ public class productInfo extends JFrame implements ActionListener {
 
 		JLabel jungga = new JLabel(ch + "원", SwingConstants.CENTER);
 
-		double saleprice = (double) ((Integer.parseInt(itemprice) * 0.9)); // 10%할인 적용
+		double saleprice = (double) ((Integer.parseInt(itemprice) * 0.85)); // 15%할인 적용
 		ch = dc.format(saleprice);
 
-		JLabel price = new JLabel(ch + "원 (10% SALE)", SwingConstants.CENTER); // 10%할인한 가격 넣기
+		JLabel price = new JLabel(ch + "원 (15% SALE)", SwingConstants.CENTER); // 15%할인한 가격 넣기
 
 		// 몇명 남았는지 표기 위한 DB
 		try {

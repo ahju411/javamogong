@@ -153,14 +153,14 @@ public class ProductListUI extends JFrame implements MouseListener, ActionListen
 			// 할인된가격 표시하기
 			itemprice = itemprice.replace(",", ""); // 가격에 ' , ' 빼기
 			DecimalFormat dc = new DecimalFormat("###,###,###"); // 점 넣기
-			double SpotDel = (double) ((Integer.parseInt(itemprice) * 0.9)); // 10%할인 적용
+			double SpotDel = (double) ((Integer.parseInt(itemprice) * 0.85)); // 15%할인 적용
 			String saleprice = dc.format(SpotDel); // 점 넣기
 
 			Icon icon;
 			try {
 				URL url = new URL("https:" + itemimage);
 				icon = new ImageIcon(url);
-				Object[] data = { itemname, saleprice + " (10% SALE)", itembrand, itemclass, icon };
+				Object[] data = { itemname, saleprice + " (15% SALE)", itembrand, itemclass, icon };
 
 				tModel.addRow(data);
 			} catch (MalformedURLException e) {

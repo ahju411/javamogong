@@ -74,10 +74,10 @@ public class BuyFrame extends JFrame implements ActionListener {
 		name = new JLabel(itemname, SwingConstants.CENTER);
 		jungga = new JLabel(ch + "원", SwingConstants.CENTER); // 정가에 반점넣기
 
-		double saleprice = junggaprice * 0.9; // 10%할인 가격 만들기
+		double saleprice = junggaprice * 0.85; // 15%할인 가격 만들기
 		ch = dc.format(saleprice);
 
-		price = new JLabel(ch + "원 (10% SALE)", SwingConstants.CENTER); // 10%할인 가격넣기
+		price = new JLabel(ch + "원 (15% SALE)", SwingConstants.CENTER); // 10%할인 가격넣기
 
 		name.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 		jungga.setFont(new Font("맑은 고딕", Font.BOLD, 15));
