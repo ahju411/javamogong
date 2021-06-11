@@ -28,6 +28,7 @@ public class signUp extends JFrame implements ActionListener {
 	JButton btnSignUp,btnConfirm,btnUpdate,btnDelete;
 	mainFrame mainFrame;
 	buySomething buySomething;
+	ProductListUI  ProductListUI ;
 
 	
 	public void signUp() {
@@ -48,6 +49,20 @@ public class signUp extends JFrame implements ActionListener {
 		btnSignUp.setVisible(false);
 		
 		this.mainFrame = mainFrame;
+		MemberDB db = new MemberDB();
+		Member mem = db.getMember(id);
+		viewData(mem);
+		
+	}
+	
+	public void signUp(String id,ProductListUI ProductListUI) {
+		signUpUI();
+		btnConfirm.setEnabled(false);
+		btnConfirm.setVisible(false);
+		btnSignUp.setEnabled(false);
+		btnSignUp.setVisible(false);
+		
+		this.ProductListUI  = ProductListUI ;
 		MemberDB db = new MemberDB();
 		Member mem = db.getMember(id);
 		viewData(mem);

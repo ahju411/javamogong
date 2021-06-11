@@ -85,15 +85,14 @@ public class ProductListUI extends JFrame implements MouseListener, ActionListen
 		MyInfo = new JMenuItem("나의 정보");
 		MyInfo.addActionListener(this);
 		Reservation = new JMenuItem("예약현황");
-		basket = new JMenuItem("장바구니");
-		BuyList = new JMenuItem("구매목록");
+		Reservation.addActionListener(this);
+
 		Logout = new JMenuItem("로그아웃");
 		Logout.addActionListener(this);
 
 		menuUser.add(MyInfo);
 		menuUser.add(Reservation);
-		menuUser.add(basket);
-		menuUser.add(BuyList);
+
 		menuUser.add(Logout);
 		//
 
@@ -288,6 +287,23 @@ public class ProductListUI extends JFrame implements MouseListener, ActionListen
 			dispose();
 		}
 
+if(obj == MyInfo){
+			
+			signUp su = new signUp();
+			su.signUp(id, this);
+			su.setTitle("회원정보");
+			
+		}else if(obj == Logout) {
+			loginPage lg = new loginPage();
+			dispose();
+		}else if(obj == Reservation) {
+			//예약현황 출력
+			
+			reservation reserv = new reservation("예약현황", id);
+		}
+		
+		
+		
 	}
 
 }
