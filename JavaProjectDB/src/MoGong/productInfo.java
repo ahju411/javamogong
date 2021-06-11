@@ -21,6 +21,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
@@ -86,16 +87,14 @@ public class productInfo extends JFrame implements ActionListener {
 			ResultSet rs = stmt.executeQuery("SELECT count(itemid) FROM orders WHERE itemid = '" + itemid + "' group by itemid");
 			ResultSet rs2 = stmt2.executeQuery("SELECT count(state) FROM orders WHERE itemid = '" + itemid + "' AND STATE = 2");
 			
-			int state = 0, show = 0;
+			int state = 0;
 			
 			if (rs2.next()) {
 				state = rs2.getInt(1);
 			}
 			
 			if (rs.next()) {
-				//show가 값을 못가져오는 오류 발생 해결 아직 안됨
-				show = rs.getInt(1);
-				res = 10 - show + state;
+				res = 10 - rs.getInt(1) + state;
 			}
 			conn.close();
 		} catch (ClassNotFoundException e1) {
@@ -193,19 +192,22 @@ public class productInfo extends JFrame implements ActionListener {
 		Object obj = e.getSource();
 
 		if (obj == btnBuy) {
-
+			
+			//state 값 반환받을 변수
+			int notice = 5;
+			
 			// 입력 DB 작성중
-			/*try {
+			try {
 				Class.forName("oracle.jdbc.driver.OracleDriver");
 				Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@118.217.168.174:1521:xe", "comet",
 						"1234");
 				Statement stmt = conn.createStatement();
 
 				ResultSet rs = stmt
-						.executeQuery("SELECT count(itemid) FROM orders WHERE ITEMID = '" + itemid + "' group by");
+						.executeQuery("SELECT state FROM orders WHERE ITEMID = '" + itemid + "' AND ID = '" + id + "'");
 
 				if (rs.next()) {
-					res = 10 - rs.getInt(1);
+					notice = rs.getInt(1);
 				}
 				conn.close();
 			} catch (ClassNotFoundException e1) {
@@ -214,42 +216,55 @@ public class productInfo extends JFrame implements ActionListener {
 			} catch (SQLException e1) {
 				System.err.println("DB연결 오류 또는 쿼리 오류 입니다.");
 				e1.printStackTrace();
-			}*/
+			}
+			
+			//state 값이 존재한다면
+			if(notice < 2) {
+				JOptionPane.showMessageDialog(null, "이미 구매한 상품입니다.", "알림", JOptionPane.INFORMATION_MESSAGE);
+			//전에 구매한 상품이 아니라면
+			}else {
+				btnres.setEnabled(true);
+				btnBuy.setEnabled(false);
+				
+				wait.setText(" 남은 구매 예약자 : " + res + "명 ");
 
-			btnres.setEnabled(true);
-			btnBuy.setEnabled(false);
-
-			wait.setText(" 남은 구매 예약자 : " + res + "명 ");
-
-			// 프레임 띄우기
-			try {
-				BuyFrame bs = new BuyFrame("결제화면/" + id, 800, 800, m, id);
-			} catch (MalformedURLException e1) {
-				e1.printStackTrace();
+				// 프레임 띄우기
+				try {
+					BuyFrame bs = new BuyFrame("결제화면/" + id, 800, 800, m, id);
+				} catch (MalformedURLException e1) {
+					e1.printStackTrace();
+				}
 			}
 
 		} else if (obj == btnres) {
-			btnres.setEnabled(false);
-			btnBuy.setEnabled(true);
-
+			
 			// 삭제 DB 작성중
-			/*try {
+			try {
 				Class.forName("oracle.jdbc.driver.OracleDriver");
 				Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@118.217.168.174:1521:xe", "comet",
 						"1234");
 				Statement stmt = conn.createStatement();
 
 				//구매예약을 구매 취소로 바꾸는 쿼리
-				stmt.executeQuery("DELETE FROM ORDERS WHERE ID = '" + id
-						+ "' AND ITEMID = (SELECT itemid FROM item WHERE itemname = '" + itemname + "')");
+				stmt.executeQuery("UPDATE ORDERS SET STATE = 2 WHERE ITEMID = '" + itemid + "' AND ID = '" + id + "'");
 				
 				//res에 반영하는 쿼리
-				ResultSet rs = stmt.executeQuery("DELETE FROM ORDERS WHERE ID = '" + id
-						+ "' AND ITEMID = (SELECT itemid FROM item WHERE itemname = '" + itemname + "')");
+				Statement stmt3 = conn.createStatement();
+				Statement stmt4 = conn.createStatement();
 
-				if (rs.next()) {
-					res = 10 - rs.getInt(1);
+				ResultSet rs3 = stmt3.executeQuery("SELECT count(itemid) FROM orders WHERE itemid = '" + itemid + "' group by itemid");
+				ResultSet rs4 = stmt4.executeQuery("SELECT count(state) FROM orders WHERE itemid = '" + itemid + "' AND STATE = 2");
+				
+				int state = 0;
+				
+				if (rs4.next()) {
+					state = rs4.getInt(1);
 				}
+				
+				if (rs3.next()) {
+					res = 10 - rs3.getInt(1) + state;
+				}
+
 				conn.close();
 			} catch (ClassNotFoundException e1) {
 				System.out.println("JDBC드라이버 로드 에러");
@@ -257,9 +272,11 @@ public class productInfo extends JFrame implements ActionListener {
 			} catch (SQLException e1) {
 				System.err.println("DB연결 오류 또는 쿼리 오류 입니다.");
 				e1.printStackTrace();
-			}*/
-
-			// res++;
+			}
+			
+			btnres.setEnabled(false);
+			btnBuy.setEnabled(true);
+			
 			wait.setText(" 남은 구매 예약자 : " + res + "명 ");
 		}
 
