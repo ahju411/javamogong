@@ -115,8 +115,8 @@ public class productInfo extends JFrame implements ActionListener {
 			ResultSet rs3 = stmt3
 					.executeQuery("SELECT state FROM orders WHERE ITEMID = '" + itemid + "' AND ID = '" + id + "'");
 
-			if (rs3.next()) {
-				notice = rs3.getInt(1);
+			while (rs3.next()) {
+				notice = rs3.getInt("state");
 			}
 			
 			//DB에서 state 값이 0은 값 없음 1은 예약 2는 구매완료 3은 구매취소
@@ -228,13 +228,15 @@ public class productInfo extends JFrame implements ActionListener {
 				Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@118.217.168.174:1521:xe", "comet",
 						"1234");
 				Statement stmt = conn.createStatement();
+				Statement stmt2 = conn.createStatement();
 
-				ResultSet rs = stmt
-						.executeQuery("SELECT state FROM orders WHERE ITEMID = '" + itemid + "' AND ID = '" + id + "'");
-
-				if (rs.next()) {
-					notice = rs.getInt(1);
+				//구매한 열 반환
+				ResultSet rs = stmt.executeQuery("SELECT state FROM orders WHERE ITEMID = '" + itemid + "' AND ID = '" + id + "'");
+				
+				while (rs.next()) {
+					notice = rs.getInt("state");//오류 문장
 				}
+				
 				conn.close();
 			} catch (ClassNotFoundException e1) {
 				System.out.println("JDBC드라이버 로드 에러");
