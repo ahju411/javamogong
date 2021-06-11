@@ -81,11 +81,10 @@ public class productInfo extends JFrame implements ActionListener {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@118.217.168.174:1521:xe", "comet", "1234");
 			Statement stmt = conn.createStatement();
+			Statement stmt2 = conn.createStatement();
 
-			ResultSet rs = stmt
-					.executeQuery("SELECT count(itemid) FROM orders WHERE itemid = '" + itemid + "' group by itemid");
-			ResultSet rs2 = stmt
-					.executeQuery("SELECT count(state) FROM orders WHERE itemid = '" + itemid + "' AND STATE = 2");
+			ResultSet rs = stmt.executeQuery("SELECT count(itemid) FROM orders WHERE itemid = '" + itemid + "' group by itemid");
+			ResultSet rs2 = stmt2.executeQuery("SELECT count(state) FROM orders WHERE itemid = '" + itemid + "' AND STATE = 2");
 			
 			int state = 0, show = 0;
 			
@@ -98,10 +97,6 @@ public class productInfo extends JFrame implements ActionListener {
 				show = rs.getInt(1);
 				res = 10 - show + state;
 			}
-			System.out.println(res);//지울것
-			System.out.println(state);
-			System.out.println(show);
-			System.out.println(itemid);
 			conn.close();
 		} catch (ClassNotFoundException e1) {
 			System.out.println("JDBC드라이버 로드 에러");
@@ -200,7 +195,7 @@ public class productInfo extends JFrame implements ActionListener {
 		if (obj == btnBuy) {
 
 			// 입력 DB 작성중
-			try {
+			/*try {
 				Class.forName("oracle.jdbc.driver.OracleDriver");
 				Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@118.217.168.174:1521:xe", "comet",
 						"1234");
@@ -219,7 +214,7 @@ public class productInfo extends JFrame implements ActionListener {
 			} catch (SQLException e1) {
 				System.err.println("DB연결 오류 또는 쿼리 오류 입니다.");
 				e1.printStackTrace();
-			}
+			}*/
 
 			btnres.setEnabled(true);
 			btnBuy.setEnabled(false);
