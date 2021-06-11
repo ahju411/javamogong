@@ -209,9 +209,9 @@ public class ProductListUI extends JFrame implements MouseListener, ActionListen
 
 	}
 
-	public static void main(String[] args) {
+	//public static void main(String[] args) {
 
-	}
+	//}
 
 	public void resizeColumnWidth(JTable table) {
 

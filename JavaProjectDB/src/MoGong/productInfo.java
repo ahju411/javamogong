@@ -99,7 +99,7 @@ public class productInfo extends JFrame implements ActionListener {
 			ResultSet rs = stmt.executeQuery("SELECT count(itemid) FROM orders WHERE itemid = '" + itemid + "' group by itemid");
 			
 			//몇명이 예약취소를 했는지 반환하는 쿼리
-			ResultSet rs2 = stmt2.executeQuery("SELECT count(state) FROM orders WHERE itemid = '" + itemid + "' AND STATE = 2");
+			ResultSet rs2 = stmt2.executeQuery("SELECT count(state) FROM orders WHERE itemid = '" + itemid + "' AND STATE = 3");
 			
 			int state = 0;
 			
@@ -120,7 +120,7 @@ public class productInfo extends JFrame implements ActionListener {
 			}
 			
 			//DB에서 state 값이 0은 값 없음 1은 예약 2는 구매완료 3은 구매취소
-			if(notice == 0) {
+			if(notice == 0 || notice == 3) {
 				btnBuy.setEnabled(true);
 				btnCancel.setEnabled(false);
 			//전에 구매한 상품이 라면
@@ -220,7 +220,7 @@ public class productInfo extends JFrame implements ActionListener {
 		if (obj == btnBuy) {
 			
 			//state 값 반환받을 변수
-			int notice = 5;
+			int notice = 0;
 			
 			// 입력 DB 작성중
 			try {
@@ -244,8 +244,8 @@ public class productInfo extends JFrame implements ActionListener {
 				e1.printStackTrace();
 			}
 			
-			//state 값이 존재한다면
-			if(notice < 2) {
+			//notice변수에 state 값이 존재한다면
+			if(notice > 0) {
 				JOptionPane.showMessageDialog(null, "이미 구매한 상품입니다.", "알림", JOptionPane.INFORMATION_MESSAGE);
 			//전에 구매한 상품이 아니라면
 			}else {
