@@ -245,7 +245,7 @@ public class productInfo extends JFrame implements ActionListener {
 			}
 			
 			//notice변수에 state 값이 존재한다면
-			if(notice > 0) {
+			if(notice > 0 && notice < 3) {
 				JOptionPane.showMessageDialog(null, "이미 구매한 상품입니다.", "알림", JOptionPane.INFORMATION_MESSAGE);
 			//전에 구매한 상품이 아니라면
 			}else {
