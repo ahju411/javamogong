@@ -91,9 +91,9 @@ public class ReservationAll extends JFrame implements ActionListener {
 				String phone = rs.getString("phone");
 				String state = "예약완료";
 				
-				if(rs.getInt("state") == 0) {
+				if(rs.getInt("state") == 1) {
 					state = "예약완료";
-				}else if(rs.getInt("state") == 1) {
+				}else if(rs.getInt("state") == 2) {
 					state = "구매완료/배송중";
 				}
 					
