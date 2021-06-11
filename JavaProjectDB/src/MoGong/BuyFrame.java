@@ -39,11 +39,13 @@ public class BuyFrame extends JFrame implements ActionListener {
 	private int itemid;
 	private String itemname, itemclass, itembrand, itemprice, itemimage;
 	String id;
+	productInfo productInfo;
 
-	public BuyFrame(String title, int width, int height, int n, String id) throws MalformedURLException {
+	public BuyFrame(String title, int width, int height, int n, String id, productInfo productInfo) throws MalformedURLException {
 		setTitle(title);
 		setSize(width, height);
 		setLocationRelativeTo(this);
+		this.productInfo = productInfo;
 		this.id = id;
 
 		//맨 뒤에 붙는 패널
@@ -220,7 +222,9 @@ public class BuyFrame extends JFrame implements ActionListener {
 				System.err.println("DB연결 오류 또는 쿼리 오류 입니다.");
 				e1.printStackTrace();
 			}
-		
+			productInfo.getBtnBuy().setEnabled(false);
+			productInfo.getBtnCancel().setEnabled(true);
+			productInfo.getWait().setText(" 남은 구매 예약자 : " + (productInfo.getRes()-1) + "명 ");
 		}
 		
 		dispose();

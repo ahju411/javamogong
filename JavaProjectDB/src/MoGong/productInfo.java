@@ -251,14 +251,12 @@ public class productInfo extends JFrame implements ActionListener {
 				JOptionPane.showMessageDialog(null, "이미 구매한 상품입니다.", "알림", JOptionPane.INFORMATION_MESSAGE);
 			//전에 구매한 상품이 아니라면
 			}else {
-				btnCancel.setEnabled(true);
-				btnBuy.setEnabled(false);
 				
-				wait.setText(" 남은 구매 예약자 : " + res + "명 ");
+				
 
 				// 프레임 띄우기
 				try {
-					BuyFrame bs = new BuyFrame("결제화면/" + id, 800, 800, m, id);
+					BuyFrame bs = new BuyFrame("결제화면/" + id, 800, 800, m, id,this);
 				} catch (MalformedURLException e1) {
 					e1.printStackTrace();
 				}
@@ -308,6 +306,38 @@ public class productInfo extends JFrame implements ActionListener {
 			wait.setText(" 남은 구매 예약자 : " + res + "명 ");
 		}
 
+	}
+
+	public int getRes() {
+		return res;
+	}
+
+	public void setRes(int res) {
+		this.res = res;
+	}
+
+	public JButton getBtnBuy() {
+		return btnBuy;
+	}
+
+	public void setBtnBuy(JButton btnBuy) {
+		this.btnBuy = btnBuy;
+	}
+
+	public JButton getBtnCancel() {
+		return btnCancel;
+	}
+
+	public void setBtnCancel(JButton btnCancel) {
+		this.btnCancel = btnCancel;
+	}
+
+	public JLabel getWait() {
+		return wait;
+	}
+
+	public void setWait(JLabel wait) {
+		this.wait = wait;
 	}
 
 }

@@ -35,12 +35,12 @@ public class ReservationAll extends JFrame implements ActionListener {
 
 		//맨 뒤에 붙는 분홍 팬
 		JPanel panBack = new JPanel();
-		panBack.setBackground(Color.pink);
+		panBack.setBackground(Color.decode("#AAF0D1"));
 		panBack.setLayout(new BorderLayout());
 		add(panBack);
 		
 		//맨위에 붙는 분홍 예약현황 레이블
-		JLabel lblreser = new JLabel("예약현황", JLabel.CENTER);
+		JLabel lblreser = new JLabel("총예약현황", JLabel.CENTER);
 		lblreser.setFont(new Font("맑은 고딕",Font.BOLD,40));
 		panBack.add(lblreser, BorderLayout.NORTH);
 		

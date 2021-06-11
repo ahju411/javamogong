@@ -8,6 +8,8 @@ import java.awt.Font;
 import java.awt.MenuBar;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.List;
@@ -23,10 +25,12 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.TableModelEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
+
 //asd
 public class Member_List extends JFrame implements MouseListener, ActionListener {
 	private JPanel pan;
@@ -35,8 +39,9 @@ public class Member_List extends JFrame implements MouseListener, ActionListener
 	private JButton btnback;
 	private DefaultTableModel tModel;
 	private JMenuBar menubar;
-	private JMenu menures;
+	private JMenu menures,refreshtable;
 	private JMenuItem resall;
+	
 	
 	public Member_List(String title, int width, int height) {
 		setTitle(title);
@@ -50,7 +55,16 @@ public class Member_List extends JFrame implements MouseListener, ActionListener
 		setJMenuBar(menubar);
 		
 		menures = new JMenu("예약현황");
+		refreshtable = new JMenu("새로고침");
+		
+		
+		
+		
+		
+		
+		menubar.add(refreshtable);
 		menubar.add(menures);
+		
 		resall = new JMenuItem("보기");
 		menures.add(resall);
 		resall.addActionListener(this);
@@ -95,6 +109,7 @@ public class Member_List extends JFrame implements MouseListener, ActionListener
 			tModel.addRow(data);
 		}
 		
+		
 		table = new JTable(tModel);
 		resizeColumnWidth(table);
 		table.setFont(new Font("맑온 고딕", Font.PLAIN, 15));
@@ -107,7 +122,6 @@ public class Member_List extends JFrame implements MouseListener, ActionListener
 		table.setBackground(Color.white);
 		table.setOpaque(false);
 		table.addMouseListener(this);
-		
 		JScrollPane scrollPane = new JScrollPane(table);
 		pan.add(scrollPane,BorderLayout.CENTER);
 		
@@ -120,6 +134,18 @@ public class Member_List extends JFrame implements MouseListener, ActionListener
 		btnback.addActionListener(this);
 		pan.add(btnback,BorderLayout.SOUTH);
 		
+		refreshtable.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Object obj = e.getSource();
+				if(refreshtable == obj) {
+				table.invalidate();
+				validate();
+				}
+			}
+			
+		});
 		
 		setVisible(true);
 	}
@@ -228,4 +254,20 @@ public void resizeColumnWidth(JTable table) {
 			ReservationAll ra = new ReservationAll("예약현황");
 		}
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
 }
