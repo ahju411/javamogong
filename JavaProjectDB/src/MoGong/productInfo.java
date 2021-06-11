@@ -119,15 +119,14 @@ public class productInfo extends JFrame implements ActionListener {
 				notice = rs3.getInt(1);
 			}
 			
-			//DB에서 state 값이 존재한다면
-			if(notice < 2) {
-				JOptionPane.showMessageDialog(null, "이미 구매한 상품입니다.", "알림", JOptionPane.INFORMATION_MESSAGE);
-				btnBuy.setEnabled(false);
-				btnCancel.setEnabled(true);
-			//전에 구매한 상품이 아니라면
+			//DB에서 state 값이 0은 값 없음 1은 예약 2는 구매완료 3은 구매취소
+			if(notice == 0) {
+				btnBuy.setEnabled(true);
+				btnCancel.setEnabled(false);
+			//전에 구매한 상품이 라면
 			}else {
-				btnCancel.setEnabled(true);
 				btnBuy.setEnabled(false);
+				btnCancel.setEnabled(true);
 			}
 			
 			conn.close();
@@ -273,14 +272,14 @@ public class productInfo extends JFrame implements ActionListener {
 				Statement stmt = conn.createStatement();
 
 				//구매예약을 구매 취소로 바꾸는 쿼리
-				stmt.executeQuery("UPDATE ORDERS SET STATE = 2 WHERE ITEMID = '" + itemid + "' AND ID = '" + id + "'");
+				stmt.executeQuery("UPDATE ORDERS SET STATE = 3 WHERE ITEMID = '" + itemid + "' AND ID = '" + id + "'");
 				
 				//res에 반영하는 쿼리
 				Statement stmt3 = conn.createStatement();
 				Statement stmt4 = conn.createStatement();
 
 				ResultSet rs3 = stmt3.executeQuery("SELECT count(itemid) FROM orders WHERE itemid = '" + itemid + "' group by itemid");
-				ResultSet rs4 = stmt4.executeQuery("SELECT count(state) FROM orders WHERE itemid = '" + itemid + "' AND STATE = 2");
+				ResultSet rs4 = stmt4.executeQuery("SELECT count(state) FROM orders WHERE itemid = '" + itemid + "' AND STATE = 3");
 				
 				int state = 0;
 				

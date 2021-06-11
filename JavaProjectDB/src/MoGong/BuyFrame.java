@@ -142,9 +142,9 @@ public class BuyFrame extends JFrame implements ActionListener {
 
 	}
 
-	public static void main(String[] args) throws MalformedURLException {
+	//public static void main(String[] args) throws MalformedURLException {
 
-	}
+	//}
 
 	ImageIcon imageSetSize(ImageIcon icon, int i, int j) {
 		Image ximg = icon.getImage();
@@ -190,7 +190,6 @@ public class BuyFrame extends JFrame implements ActionListener {
 			
 			try {
 				Class.forName("oracle.jdbc.driver.OracleDriver");
-				
 				Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@118.217.168.174:1521:xe", "comet", "1234");
 				
 				Statement stmt = conn.createStatement();
@@ -201,7 +200,6 @@ public class BuyFrame extends JFrame implements ActionListener {
 				
 				if(os.next()) {
 					ord = os.getInt(1);
-					System.out.println(os);//삭제할것
 				}
 				
 				ord++;
@@ -210,7 +208,7 @@ public class BuyFrame extends JFrame implements ActionListener {
 				String phone = tfphone.getText();
 				String name = tfuser.getText();
 				
-				ResultSet rs = stmt.executeQuery("INSERT INTO ORDERS(ORDERID, NAME, ID, ITEMID, ADDRESS, PHONE, STATE) VALUES ('" + ord + "', '" + name + "', '" + id + "', '" + itemid + "', '" + address + "', '" + phone + "', 0)");
+				ResultSet rs = stmt.executeQuery("INSERT INTO ORDERS(ORDERID, NAME, ID, ITEMID, ADDRESS, PHONE, STATE) VALUES ('" + ord + "', '" + name + "', '" + id + "', '" + itemid + "', '" + address + "', '" + phone + "', 1)");
 
 				
 				
