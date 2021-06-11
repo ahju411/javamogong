@@ -2,21 +2,13 @@ package MoGong;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Container;
-import java.awt.Cursor;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.List;
-
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -27,37 +19,16 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.ScrollPaneConstants;
-import javax.swing.SwingConstants;
-import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
-import javax.swing.border.LineBorder;
-import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
-public class mainFrame extends JFrame implements MouseListener, ActionListener {
+public class mainFrame extends JFrame implements ActionListener {
 
-	private ImageIcon background,img1,buyimg;
-	private JLabel lblimg1;
-	private JLabel price1;
 	private JScrollPane scrollpane;
-	private JLabel buy1,buy2,buy3,buy4,buy5;
-	private JTable table;
-	private DefaultTableModel tModel;
-	private JButton btnback;
 
-
-	private JMenu menuProduct;
-	private JMenu  MENUBRAND;
-	private JMenuItem WATCH,BAG,WALLET,NECKLACE;
-	
-
-	
 	private JMenu menuUser;
-	private JMenuItem BuyList,basket,MyInfo,Reservation,Logout;
+	private JMenuItem MyInfo,Reservation,Logout;
 	loginPage loginPage;
-	private JPanel pan;
-	private JLabel lbl;
 
 	private JMenuBar menubar;
 	private ImageIcon img;
@@ -79,44 +50,34 @@ public class mainFrame extends JFrame implements MouseListener, ActionListener {
 		this.loginPage =loginPage;
 		this.id = id;
 		
+		//메뉴 설정
 		menubar = new JMenuBar();
 		menubar.setBackground(Color.PINK);
 	
-		
-
-
 		menuUser = new JMenu("My");
 		MyInfo = new JMenuItem("나의 정보");
 		MyInfo.addActionListener(this);
+		
 		Reservation = new JMenuItem("예약현황");
 		Reservation.addActionListener(this);
+		
 		Logout = new JMenuItem("로그아웃");
 		Logout.addActionListener(this);
 	
 		menuUser.add(MyInfo);
 		menuUser.add(Reservation);
-
 		menuUser.add(Logout);
 	
-		
 		menubar.add(menuUser);
 		setJMenuBar(menubar);	
 		
-		// 
-		//
-		
 		// 배경패널 설정
-		
 		JPanel backpan = new JPanel();
 		
 		backpan.setLayout(new GridLayout(4,1));
 		backpan.setBackground(Color.WHITE);;
 		
-		
-		
 		// 구찌브랜드
-		
-		
 		JPanel pan1 = new JPanel();
 		pan1.setBackground(Color.WHITE);
 		JPanel pan1_1 = new JPanel();
@@ -124,14 +85,13 @@ public class mainFrame extends JFrame implements MouseListener, ActionListener {
 		JPanel pan1_2 = new JPanel();
 		pan1_2.setBackground(Color.WHITE);
 		pan1_2.setLayout(new GridLayout(4,1));
-		eborder=new EtchedBorder(EtchedBorder.LOWERED);
+		eborder = new EtchedBorder(EtchedBorder.LOWERED);
 		
 		img = new ImageIcon("image/brandgucci.png");
 		img = imageSetSize(img, 450, 200);
 		lblimg = new JLabel(img);
-		 lblimg.setBorder(eborder);
+		lblimg.setBorder(eborder);
 		pan1_1.add(lblimg);
-		
 		
 		
 		img  = new ImageIcon("image/watch.png");
@@ -149,7 +109,7 @@ public class mainFrame extends JFrame implements MouseListener, ActionListener {
 		img = imageSetSize(img, 140, 47);
 		gucciwallet = new JButton(img);
 		gucciwallet.addActionListener(this);
-		 gucciwallet.setBorder(eborder);
+		gucciwallet.setBorder(eborder);
 		pan1_2.add(gucciwallet);
 		
 		img = new ImageIcon("image/bag.png");
@@ -173,14 +133,12 @@ public class mainFrame extends JFrame implements MouseListener, ActionListener {
 		
 		
 		
-		
-		
 		// 샤넬파트
-		 pan1 = new JPanel();
+		pan1 = new JPanel();
 		pan1.setBackground(Color.WHITE);
-	 pan1_1 = new JPanel();
+		pan1_1 = new JPanel();
 		pan1_1.setBackground(Color.WHITE);
-	 pan1_2 = new JPanel();
+		pan1_2 = new JPanel();
 		pan1_2.setBackground(Color.WHITE);
 		pan1_2.setLayout(new GridLayout(4,1));
 		eborder=new EtchedBorder(EtchedBorder.LOWERED);
@@ -188,7 +146,7 @@ public class mainFrame extends JFrame implements MouseListener, ActionListener {
 		img = new ImageIcon("image/brandchanel.png");
 		img = imageSetSize(img, 450, 200);
 		lblimg = new JLabel(img);
-		 lblimg.setBorder(eborder);
+		lblimg.setBorder(eborder);
 		pan1_1.add(lblimg);
 		
 		
@@ -230,7 +188,6 @@ public class mainFrame extends JFrame implements MouseListener, ActionListener {
 		
 		
 		// 에르메스파트
-		
 		 pan1 = new JPanel();
 		pan1.setBackground(Color.WHITE);
 		 pan1_1 = new JPanel();
@@ -243,7 +200,7 @@ public class mainFrame extends JFrame implements MouseListener, ActionListener {
 		img = new ImageIcon("image/hermes1.png");
 		img = imageSetSize(img, 450, 200);
 		lblimg = new JLabel(img);
-		 lblimg.setBorder(eborder);
+		lblimg.setBorder(eborder);
 		pan1_1.add(lblimg);
 		
 		
@@ -283,7 +240,6 @@ public class mainFrame extends JFrame implements MouseListener, ActionListener {
 		
 		
 		
-		
 		// 디올파트
 		
 		 pan1 = new JPanel();
@@ -298,9 +254,8 @@ public class mainFrame extends JFrame implements MouseListener, ActionListener {
 		img = new ImageIcon("image/dior.png");
 		img = imageSetSize(img, 450, 200);
 		lblimg = new JLabel(img);
-		 lblimg.setBorder(eborder);
+		lblimg.setBorder(eborder);
 		pan1_1.add(lblimg);
-		
 		
 		
 		img  = new ImageIcon("image/watch.png");
@@ -337,25 +292,13 @@ public class mainFrame extends JFrame implements MouseListener, ActionListener {
 		backpan.add(pan1);
 		
 		
-		
-		
-		//
 		scrollpane = new JScrollPane(backpan);
+		scrollpane.getVerticalScrollBar().setUnitIncrement(16);
 		add(scrollpane);
-		
 		
 	
 		setVisible(true);
 	}
-	
-
-
-
-
-	
-
-
-
 
 
 	ImageIcon imageSetSize(ImageIcon icon, int i, int j) {
@@ -366,49 +309,9 @@ public class mainFrame extends JFrame implements MouseListener, ActionListener {
 	}
 
 	@Override
-	public void mouseClicked(MouseEvent e) {
-		Object obj = e.getSource();
-		
-		if(obj == price1) {
-			System.out.println("TEst");
-			
-		}
-		
-		
-		
-		
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		
-		
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-	
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-	
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-	
-	}
-
-
-	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object obj = e.getSource();
 		if(obj == MyInfo){
-			
 			signUp su = new signUp();
 			su.signUp(id, this);
 			su.setTitle("회원정보");
@@ -416,21 +319,20 @@ public class mainFrame extends JFrame implements MouseListener, ActionListener {
 		}else if(obj == Logout) {
 			loginPage lg = new loginPage();
 			dispose();
+			
 		}else if(obj == Reservation) {
 			//예약현황 출력
-			
 			reservation reserv = new reservation("예약현황", id);
 		}
 		
-		
 		//구찌파트
+		
 		if(obj == gucciwatch) {
 			 // 0일때 구찌 시계출력
 	         int n = 0;
 	         ProductListUI ui = new ProductListUI("목록/" + id, 1300, 600,n,this,id);
 	         this.setVisible(false);
 		}
-		
 		else if(obj == guccibag) {
 			 // 5일때 구찌 가방출력
 	         int n = 5;
@@ -459,7 +361,6 @@ public class mainFrame extends JFrame implements MouseListener, ActionListener {
 	         ProductListUI ui = new ProductListUI("목록/" + id, 1300, 600,n,this,id);
 	         this.setVisible(false);
 		}
-		
 		else if(obj == chanelbag) {
 			 // 25일때 샤넬 가방출력
 	         int n = 25;
@@ -488,7 +389,6 @@ public class mainFrame extends JFrame implements MouseListener, ActionListener {
 	         ProductListUI ui = new ProductListUI("목록/" + id, 1300, 600,n,this,id);
 	         this.setVisible(false);
 		}
-		
 		else if(obj == hermesbag) {
 			 // 45일때 헤르메스 가방출력
 	         int n = 45;
@@ -511,14 +411,12 @@ public class mainFrame extends JFrame implements MouseListener, ActionListener {
 		
 		//디올파트
 		
-		
 		if(obj == diorwatch) {
 			 // 60일때 디올 시계출력
 	         int n = 60;
 	         ProductListUI ui = new ProductListUI("목록/" + id, 1300, 600,n,this,id);
 	         this.setVisible(false);
 		}
-		
 		else if(obj ==  diorbag) {
 			 // 65일때 디올 가방출력
 	         int n = 65;
@@ -537,7 +435,6 @@ public class mainFrame extends JFrame implements MouseListener, ActionListener {
 	         ProductListUI ui = new ProductListUI("목록/" + id, 1300, 600,n,this,id);
 	         this.setVisible(false);
 		}
-		
 		
 	}
 	
