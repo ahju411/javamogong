@@ -97,7 +97,6 @@ public class reservation extends JFrame implements ActionListener, MouseListener
 			String id = Id;
 			//쿼리문 이름, 가격, 구매상태가 표시됨
 			ResultSet rs = stmt.executeQuery("SELECT orders.name, item.ITEMNAME, item.PRICE, orders.address, orders.phone, orders.state,item.itemid from item, ORDERS WHERE ORDERS.ITEMID = ITEM.ITEMID and id = '" + id + "'");
-			//SELECT orders.NAME, item.ITEMNAME, item.PRICE, orders.ADDRESS, orders.PHONE, orders.STATE from item, ORDERS WHERE ORDERS.ITEMID = ITEM.ITEMID;
 			
 			//테이블에 행 삽입
 			while(rs.next()) {
@@ -109,12 +108,10 @@ public class reservation extends JFrame implements ActionListener, MouseListener
 				String state = "예약완료";
 			 itemid = rs.getInt("itemid");
 				
-				if(rs.getInt("state") == 0) {
+				if(rs.getInt("state") == 1) {
 					state = "예약완료";
-				}else if(rs.getInt("state") == 1) {
-					state = "구매완료/배송중";
 				}else if(rs.getInt("state") == 2) {
-					state = "구매취소";
+					state = "구매완료/배송중";
 				}
 					
 				
