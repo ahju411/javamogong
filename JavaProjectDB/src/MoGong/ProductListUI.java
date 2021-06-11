@@ -26,6 +26,7 @@ import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -75,7 +76,7 @@ public class ProductListUI extends JFrame implements MouseListener, ActionListen
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.mainFrame = mainFrame;
 		this.id = id;
-
+        setBackground(Color.WHITE);
 		// 메뉴
 		menubar = new JMenuBar();
 		menubar.setBackground(Color.PINK);
@@ -116,6 +117,7 @@ public class ProductListUI extends JFrame implements MouseListener, ActionListen
 // 누른  상품종류별로 그 항목이 뜨게하는 메소드
 	private void outputProductList(int n) {
 		pan = new JPanel(new BorderLayout());
+		pan.setBackground(Color.WHITE);
 		pan.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(pan);
 
@@ -172,7 +174,17 @@ public class ProductListUI extends JFrame implements MouseListener, ActionListen
 
 		}
 
-		table = new JTable(tModel);
+		table = new JTable(tModel) {
+			@Override
+			public Component prepareRenderer(TableCellRenderer renderer, int row , int column) {
+			
+				JComponent component = (JComponent) super.prepareRenderer(renderer, row,column);
+				
+				component.setBackground(Color.white);
+				
+				return component;
+			}
+		};
 
 		resizeColumnWidth(table);
 		table.setFont(new Font("맑온 고딕", Font.PLAIN, 15));
@@ -191,6 +203,7 @@ public class ProductListUI extends JFrame implements MouseListener, ActionListen
 		pan.add(scrollPane, BorderLayout.CENTER);
 
 		btnback = new JButton("뒤로가기");
+		btnback.setBackground(Color.WHITE);
 		btnback.addActionListener(this);
 		pan.add(btnback, BorderLayout.SOUTH);
 
