@@ -22,16 +22,12 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
-public class reservation extends JFrame implements ActionListener {
+public class ReservationAll extends JFrame implements ActionListener {
 
 	JButton btnBack;
 	
-	public reservation(String title, String Id) {
-		
-		resUI(Id);
-	}
-	private void resUI(String Id) {
-		setTitle("예약현황");
+	public ReservationAll(String title) {
+		setTitle(title);
 		setSize(700, 500);
 		setLocationRelativeTo(this);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -79,10 +75,12 @@ public class reservation extends JFrame implements ActionListener {
 			Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@118.217.168.174:1521:xe", "comet", "1234");
 			
 			Statement stmt = conn.createStatement();
-			String id = Id;
 			//쿼리문 이름, 가격, 구매상태가 표시됨
-			ResultSet rs = stmt.executeQuery("SELECT orders.name, item.ITEMNAME, item.PRICE, orders.address, orders.phone, orders.state from item, ORDERS WHERE ORDERS.ITEMID = ITEM.ITEMID and id = '" + id + "'");
-			//SELECT orders.NAME, item.ITEMNAME, item.PRICE, orders.ADDRESS, orders.PHONE, orders.STATE from item, ORDERS WHERE ORDERS.ITEMID = ITEM.ITEMID;
+			ResultSet rs = stmt.executeQuery("select c.name,i.itemname,i.price,o.address,o.phone,o.state "
+					+ "from customer c,orders o,item i "
+					+ "where c.id=o.id and i.itemid=o.itemid "
+					+ "order by c.id");
+					
 			
 			//테이블에 행 삽입
 			while(rs.next()) {
@@ -97,8 +95,6 @@ public class reservation extends JFrame implements ActionListener {
 					state = "예약완료";
 				}else if(rs.getInt("state") == 1) {
 					state = "구매완료/배송중";
-				}else if(rs.getInt("state") == 2) {
-					state = "구매취소";
 				}
 					
 				
@@ -118,9 +114,11 @@ public class reservation extends JFrame implements ActionListener {
 		
 		setVisible(true);
 	}
+	public static void main(String[] args) {
+		new ReservationAll("총예약현황");
+	}
 	
-	
-	
+		
 
 	@Override
 	public void actionPerformed(ActionEvent e) {

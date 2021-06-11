@@ -466,10 +466,8 @@ public class mainFrame extends JFrame implements MouseListener, ActionListener {
 			dispose();
 		}else if(obj == Reservation) {
 			//예약현황 출력
-			String iD = getTitle();
-			int ss = iD.length();
-			iD = iD.substring(5, ss);
-			reservation reserv = new reservation("예약현황", iD);
+			
+			reservation reserv = new reservation("예약현황", id);
 		}
 		
 		

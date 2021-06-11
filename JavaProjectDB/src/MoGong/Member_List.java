@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.MenuBar;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -14,6 +15,9 @@ import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -30,6 +34,9 @@ public class Member_List extends JFrame implements MouseListener, ActionListener
 	private JLabel lbl;
 	private JButton btnback;
 	private DefaultTableModel tModel;
+	private JMenuBar menubar;
+	private JMenu menures;
+	private JMenuItem resall;
 	
 	public Member_List(String title, int width, int height) {
 		setTitle(title);
@@ -37,11 +44,23 @@ public class Member_List extends JFrame implements MouseListener, ActionListener
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
+		menubar = new JMenuBar();
+		menubar.setBackground(Color.decode("#AAF0D1"));
+		menubar.setBorderPainted(false);
+		setJMenuBar(menubar);
+		
+		menures = new JMenu("예약현황");
+		menubar.add(menures);
+		resall = new JMenuItem("보기");
+		menures.add(resall);
+		resall.addActionListener(this);
+		
 		pan = new JPanel(new BorderLayout());
 		pan.setBorder(new EmptyBorder(5,5,5,5));
 		pan.setBackground(Color.decode("#CFFFE5"));
 		setContentPane(pan);
 		
+		setJMenuBar(menubar);
 		lbl = new JLabel("회원 목록");
 		lbl.setFont(new Font("맑은 고딕",Font.BOLD,30));
 		lbl.setHorizontalAlignment(SwingConstants.CENTER);
@@ -205,6 +224,8 @@ public void resizeColumnWidth(JTable table) {
 		if(btnback == obj) {
 			System.exit(0);
 		}
-		
+		if(resall == obj) {
+			ReservationAll ra = new ReservationAll("예약현황");
+		}
 	}
 }
