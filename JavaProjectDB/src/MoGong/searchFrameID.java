@@ -40,7 +40,7 @@ public class searchFrameID extends JFrame implements ActionListener {
 		add(panNorth, BorderLayout.NORTH);
 		
 		//맨위 로고
-		ImageIcon imglogo = new ImageIcon("image\\logo.png");
+		ImageIcon imglogo = new ImageIcon("image\\logo2.png");
 		JLabel logo = new JLabel(imglogo);
 		panNorth.add(logo);
 		
@@ -85,6 +85,9 @@ public class searchFrameID extends JFrame implements ActionListener {
 		add(panSouth, BorderLayout.SOUTH);
 		
 		btn = new JButton("완료");
+		btn.setOpaque(false);
+		btn.setFocusPainted(false);
+		btn.setContentAreaFilled(false);
 		btn.addActionListener(this);
 		panSouth.add(btn);
 		
