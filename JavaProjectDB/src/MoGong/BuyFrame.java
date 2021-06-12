@@ -49,7 +49,7 @@ public class BuyFrame extends JFrame implements ActionListener {
 		this.productInfo = productInfo;
 		this.id = id;
 
-		//맨 뒤에 붙는 패널
+		//맨 뒤에 붙는 패널 4개
 		JPanel panback = new JPanel();
 		panback.setLayout(new GridLayout(4, 1));
 		panback.setBackground(Color.white);
@@ -58,15 +58,16 @@ public class BuyFrame extends JFrame implements ActionListener {
 
 		// 사진
 		JPanel photopan = new JPanel();
+		photopan.setBackground(Color.white);
 		URL ImageURL = new URL("http:" + itemimage);
 		img = new ImageIcon(ImageURL);
 		lblimg = new JLabel(img);
 
 		photopan.add(lblimg);
 
-		// 상품정보
+		// 상품정보 3개
 		productinfopan = new JPanel();
-		productinfopan.setLayout(new GridLayout(3, 1, 0, -30));
+		productinfopan.setLayout(new GridLayout(3, 1));
 		productinfopan.setBackground(Color.white);
 
 		DecimalFormat dc = new DecimalFormat("###,###,###"); // 가격에 반점 넣기
@@ -91,20 +92,20 @@ public class BuyFrame extends JFrame implements ActionListener {
 		productinfopan.add(jungga);
 		productinfopan.add(price);
 
-		// 개인정보
+		// 개인정보 4개
 		userinfopan = new JPanel();
-		userinfopan.setLayout(new GridLayout(4, 2, -100, 30));
+		userinfopan.setLayout(new GridLayout(4, 2, 0, 30));
 		userinfopan.setBackground(Color.white);
 
-		lbladdress = new JLabel("                                  주소");
-		lbluser = new JLabel("                                  수신자");
-		lblphone = new JLabel("                                  전화번호");
+		lbladdress = new JLabel("                          주소");
+		lbluser = new JLabel("                          수신자");
+		lblphone = new JLabel("                          전화번호");
 
 		tfaddress = new JTextField();
 		tfuser = new JTextField();
 		tfphone = new JTextField();
 
-		lblpay = new JLabel("                                  결제방법 : ");
+		lblpay = new JLabel("                          결제방법 : ");
 		cbStr = new JComboBox<String>(strs);
 
 		userinfopan.add(lbluser);
@@ -146,9 +147,6 @@ public class BuyFrame extends JFrame implements ActionListener {
 
 	}
 
-	//public static void main(String[] args) throws MalformedURLException {
-
-	//}
 
 	ImageIcon imageSetSize(ImageIcon icon, int i, int j) {
 		Image ximg = icon.getImage();

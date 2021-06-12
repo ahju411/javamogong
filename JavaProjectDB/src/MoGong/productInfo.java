@@ -193,10 +193,6 @@ public class productInfo extends JFrame implements ActionListener {
 
 	}
 
-	// public static void main(String[] args) throws MalformedURLException {
-
-	// }
-
 	private void outputProductListSpec(int n) {
 		ProductDB db = new ProductDB();
 		List<productdto> list = db.getProductList();

@@ -78,12 +78,12 @@ public class reservation extends JFrame implements ActionListener, MouseListener
 			}
 		};
 		
-		 table = new JTable(jtable);
+		table = new JTable(jtable);
 		table.addMouseListener(this);
 		
 		panTable.add(table);
 		
-		 jp = new JScrollPane(table);
+		jp = new JScrollPane(table);
 		jp.addMouseListener(this);
 		
 		panBack.add(jp);

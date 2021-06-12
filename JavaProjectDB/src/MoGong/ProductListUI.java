@@ -45,23 +45,12 @@ import javax.swing.table.TableColumnModel;
 
 public class ProductListUI extends JFrame implements MouseListener, ActionListener {
 
-	private ImageIcon background, img1, buyimg;
-	private JLabel lblimg1;
-	private JLabel price1;
-	private JScrollPane scrollpane;
-	private JLabel buy1, buy2, buy3, buy4, buy5;
 	private JTable table;
 	private DefaultTableModel tModel;
 	private JButton btnback;
 
-	private JMenu menuProduct;
-	private JMenu MENUBRAND;
-	private JMenuItem WATCH, BAG, WALLET, NECKLACE;
-
 	private JMenu menuUser;
-	private JMenuItem BuyList, basket, MyInfo, Reservation, Logout;
-	private JPanel pan;
-	private JLabel lbl;
+	private JMenuItem MyInfo, Reservation, Logout;
 
 	private JMenuBar menubar;
 
@@ -94,33 +83,28 @@ public class ProductListUI extends JFrame implements MouseListener, ActionListen
 		menuUser.add(Reservation);
 
 		menuUser.add(Logout);
-		//
+		
 
 		outputProductList(n);
 
 		l = n;
 
-		//
+		
 		menubar.add(menuUser);
 		setJMenuBar(menubar);
 
-		//
-		//
-
-		//
-		//
 
 		setVisible(true);
 	}
 
 // 누른  상품종류별로 그 항목이 뜨게하는 메소드
 	private void outputProductList(int n) {
-		pan = new JPanel(new BorderLayout());
+		JPanel pan = new JPanel(new BorderLayout());
 		pan.setBackground(Color.WHITE);
 		pan.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(pan);
 
-		lbl = new JLabel("상품 목록");
+		JLabel lbl = new JLabel("상품 목록");
 		lbl.setFont(new Font("맑은 고딕", Font.BOLD, 30));
 		lbl.setHorizontalAlignment(SwingConstants.CENTER);
 		lbl.setPreferredSize(new Dimension(400, 80));
@@ -208,9 +192,6 @@ public class ProductListUI extends JFrame implements MouseListener, ActionListen
 
 	}
 
-	//public static void main(String[] args) {
-
-	//}
 
 	public void resizeColumnWidth(JTable table) {
 
@@ -247,7 +228,7 @@ public class ProductListUI extends JFrame implements MouseListener, ActionListen
 			int tmp;
 			tmp = l + r;
 			try {
-				productInfo pby = new productInfo("상품정보화면/" + id, 650, 800, tmp, id);
+				productInfo pby = new productInfo("상품정보화면/" + id, 500, 650, tmp, id);
 			} catch (MalformedURLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -287,7 +268,7 @@ public class ProductListUI extends JFrame implements MouseListener, ActionListen
 			dispose();
 		}
 
-if(obj == MyInfo){
+		if(obj == MyInfo){
 			
 			signUp su = new signUp();
 			su.signUp(id, this);
