@@ -18,6 +18,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -27,6 +28,7 @@ public class firstpage extends JFrame implements ActionListener{
 	JButton btnstart;
 	JMenuBar jbar;
 	JMenu ourinfo;
+	JMenuItem ourinfolook;
 
 	public firstpage(String title, int width, int height) {
 		setTitle(title);
@@ -41,9 +43,12 @@ public class firstpage extends JFrame implements ActionListener{
 		setJMenuBar(jbar);
 		ourinfo = new JMenu("개발자 정보");
 		ourinfo.setFont(new Font("맑은 고딕", Font.BOLD, 12));
-		ourinfo.addActionListener(this);
 		
 		jbar.add(ourinfo);
+		ourinfolook = new JMenuItem("보기");
+		ourinfo.add(ourinfolook);
+		ourinfolook.addActionListener(this);
+		
 		
 		
 		ImageIcon img = new ImageIcon("image\\background.png");
@@ -93,9 +98,9 @@ public class firstpage extends JFrame implements ActionListener{
 		if(obj == btnstart) {
 			loginPage lp = new loginPage();
 			dispose();
-		}if(obj == ourinfo) {
+		}if(obj == ourinfolook) {
+			JOptionPane.showMessageDialog(null, "201845020 유은철\n201845024 이태현\n201845026 이혜성");
 			
-		System.out.println("하이");
 		}
 		
 		
