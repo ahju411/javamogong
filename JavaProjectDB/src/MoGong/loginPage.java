@@ -59,9 +59,10 @@ public class loginPage extends JFrame implements ActionListener, KeyListener {
 		northpan.add(logo);
 		
 		//로고 밑login 표시
-		JLabel lbllogin = new JLabel("Log in", JLabel.CENTER);
-		lbllogin.setFont(new Font("", Font.ITALIC, 30));
-		plMain.add(lbllogin, BorderLayout.NORTH);
+		
+		JLabel emptylbl = new JLabel(" ", JLabel.CENTER);
+		emptylbl.setFont(new Font("Bradley Hand ITC", Font.ITALIC, 30));
+		plMain.add(emptylbl, BorderLayout.NORTH);
 		
 		//아이디 비밀번호 입력받을 패널
 		JPanel panInput = new JPanel();
@@ -96,13 +97,14 @@ public class loginPage extends JFrame implements ActionListener, KeyListener {
 		plLog.setBackground(Color.white);
 		pansouth.add(plLog);
 		
-		ImageIcon iconLogin = new ImageIcon("image\\loginButton.png");
+		ImageIcon iconLogin = new ImageIcon("image\\loginButton1.png");
 		
 		btnlogin = new JButton(iconLogin);
-		btnlogin.setPreferredSize(new Dimension(100, 45));
+		btnlogin.setPreferredSize(new Dimension(200, 45));
 		btnlogin.setOpaque(true);
 		btnlogin.setBackground(null);
 		btnlogin.setBorderPainted(false);
+		btnlogin.setFocusPainted(false);
 		plLog.add(btnlogin);
 		
 		btnlogin.addActionListener(this);
