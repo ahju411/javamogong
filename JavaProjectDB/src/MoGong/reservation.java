@@ -63,6 +63,11 @@ public class reservation extends JFrame implements ActionListener, MouseListener
 		
 		//맨 밑 뒤로가기 버튼
 		btnBack = new JButton("뒤로가기");
+		btnBack.setOpaque(false);
+		btnBack.setFocusPainted(false);
+		btnBack.setBorderPainted(false);
+		btnBack.setContentAreaFilled(false);
+		btnBack.addActionListener(this);
 		btnBack.addActionListener(this);
 		panBack.add(btnBack, BorderLayout.SOUTH);
 		
