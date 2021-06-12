@@ -136,6 +136,7 @@ public class BuyFrame extends JFrame implements ActionListener {
 		panback.add(paypan);
 		
 		scrollpane = new JScrollPane(panback);
+		scrollpane.getVerticalScrollBar().setUnitIncrement(16);
 		add(scrollpane);
 		MemberDB db = new MemberDB();
 		Member mem = db.getMember(id);
