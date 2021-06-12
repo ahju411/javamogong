@@ -46,12 +46,13 @@ public class reservation extends JFrame implements ActionListener, MouseListener
 
 		//맨 뒤에 붙는 분홍 팬
 		JPanel panBack = new JPanel();
-		panBack.setBackground(Color.pink);
+		panBack.setBackground(Color.BLACK);
 		panBack.setLayout(new BorderLayout());
 		add(panBack);
 		
 		//맨위에 붙는 분홍 예약현황 레이블
 		JLabel lblreser = new JLabel("예약현황", JLabel.CENTER);
+		lblreser.setForeground(Color.WHITE);
 		lblreser.setFont(new Font("맑은 고딕",Font.BOLD,40));
 		panBack.add(lblreser, BorderLayout.NORTH);
 		
@@ -63,6 +64,7 @@ public class reservation extends JFrame implements ActionListener, MouseListener
 		
 		//맨 밑 뒤로가기 버튼
 		btnBack = new JButton("뒤로가기");
+		btnBack.setForeground(Color.WHITE);
 		btnBack.setOpaque(false);
 		btnBack.setFocusPainted(false);
 		btnBack.setBorderPainted(false);
