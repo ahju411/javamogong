@@ -109,12 +109,17 @@ public class BuyFrame extends JFrame implements ActionListener {
 		lbladdress = new JLabel("                  주소");
 		lbluser = new JLabel("                  수신자");
 		lblphone = new JLabel("                  전화번호");
-
+		
+		lbladdress.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+		lbluser.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+		lblphone.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+		
 		tfaddress = new JTextField();
 		tfuser = new JTextField();
 		tfphone = new JTextField();
 
 		lblpay = new JLabel("                  결제방법 : ");
+		lblpay.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		cbStr = new JComboBox<String>(strs);
 
 		userinfopan.add(lbluser);
@@ -134,6 +139,7 @@ public class BuyFrame extends JFrame implements ActionListener {
 
 		btnBuy = new JButton("결제하기");
 		btnBuy.setBackground(Color.black);
+		btnBuy.setFont(new Font("맑은 고딕", Font.BOLD, 30));
 		btnBuy.setForeground(Color.white);
 		btnBuy.setPreferredSize(new Dimension(400, 80));
 		btnBuy.addActionListener(this);
