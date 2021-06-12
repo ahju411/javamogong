@@ -40,6 +40,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
 
@@ -183,6 +184,9 @@ public class ProductListUI extends JFrame implements MouseListener, ActionListen
 		resizeColumnWidth(table);
 		table.setFont(new Font("맑온 고딕", Font.PLAIN, 15));
 		table.setRowHeight(200);
+		
+		JTableHeader Jheader = table.getTableHeader(); // 헤더부분 배경 설정
+		Jheader.setBackground(Color.white); // 헤더부분 배경설정
 		/*
 		 * table.getColumn("상품사진").setPreferredWidth(200);
 		 * table.getColumn("상품이름").setPreferredWidth(200);
@@ -197,8 +201,7 @@ public class ProductListUI extends JFrame implements MouseListener, ActionListen
 		pan.add(scrollPane, BorderLayout.CENTER);
 
 		btnback = new JButton("뒤로가기");
-		btnback.setBackground(Color.BLACK);
-		btnback.setForeground(Color.WHITE);
+		btnback.setBackground(Color.WHITE);
 		btnback.addActionListener(this);
 		pan.add(btnback, BorderLayout.SOUTH);
 
