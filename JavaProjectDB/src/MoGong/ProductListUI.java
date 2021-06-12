@@ -197,7 +197,8 @@ public class ProductListUI extends JFrame implements MouseListener, ActionListen
 		pan.add(scrollPane, BorderLayout.CENTER);
 
 		btnback = new JButton("뒤로가기");
-		btnback.setBackground(Color.WHITE);
+		btnback.setBackground(Color.BLACK);
+		btnback.setForeground(Color.WHITE);
 		btnback.addActionListener(this);
 		pan.add(btnback, BorderLayout.SOUTH);
 
