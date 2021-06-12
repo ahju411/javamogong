@@ -30,7 +30,7 @@ public class productInfo extends JFrame implements ActionListener {
 
 	private int res = 10, m;
 	private JButton btnBuy, btnCancel;
-	private JLabel lblimg, lblinfoimg, jungga, wait;
+	private JLabel lblimg, lblinfoimg, wait;
 	private ImageIcon img, back, infoimg;
 	private String itemname, itemprice, itembrand, itemclass, itemimage;
 	private Object itemid;
