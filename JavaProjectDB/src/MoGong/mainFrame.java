@@ -102,10 +102,7 @@ public class mainFrame extends JFrame implements ActionListener {
 		img = imageSetSize(img, 140, 47);
 		gucciwatch = new JButton(img);
 		gucciwatch.addActionListener(this);
-		gucciwatch.setPreferredSize(new Dimension(100, 45));
-		gucciwatch.setOpaque(true);
-		gucciwatch.setBackground(null);
-		gucciwatch.setBorderPainted(false);
+		
 		gucciwatch.setBorder(eborder);
 		pan1_2.add(gucciwatch);
 		
