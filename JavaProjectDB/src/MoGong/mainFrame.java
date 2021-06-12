@@ -79,15 +79,15 @@ public class mainFrame extends JFrame implements ActionListener {
 		JPanel backpan = new JPanel();
 		
 		backpan.setLayout(new GridLayout(4,1));
-		backpan.setBackground(Color.WHITE);;
+		backpan.setBackground(Color.black);;
 		
 		// 구찌브랜드
 		JPanel pan1 = new JPanel();
-		pan1.setBackground(Color.WHITE);
+		pan1.setBackground(Color.black);
 		JPanel pan1_1 = new JPanel();
-		pan1_1.setBackground(Color.WHITE);
+		pan1_1.setBackground(Color.black);
 		JPanel pan1_2 = new JPanel();
-		pan1_2.setBackground(Color.WHITE);
+		pan1_2.setBackground(Color.black);
 		pan1_2.setLayout(new GridLayout(4,1));
 		eborder = new EtchedBorder(EtchedBorder.LOWERED);
 		
@@ -139,11 +139,11 @@ public class mainFrame extends JFrame implements ActionListener {
 		
 		// 샤넬파트
 		pan1 = new JPanel();
-		pan1.setBackground(Color.WHITE);
+		pan1.setBackground(Color.black);
 		pan1_1 = new JPanel();
-		pan1_1.setBackground(Color.WHITE);
+		pan1_1.setBackground(Color.black);
 		pan1_2 = new JPanel();
-		pan1_2.setBackground(Color.WHITE);
+		pan1_2.setBackground(Color.black);
 		pan1_2.setLayout(new GridLayout(4,1));
 		eborder=new EtchedBorder(EtchedBorder.LOWERED);
 		
@@ -193,11 +193,11 @@ public class mainFrame extends JFrame implements ActionListener {
 		
 		// 에르메스파트
 		 pan1 = new JPanel();
-		pan1.setBackground(Color.WHITE);
+		pan1.setBackground(Color.black);
 		 pan1_1 = new JPanel();
-		pan1_1.setBackground(Color.WHITE);
+		pan1_1.setBackground(Color.black);
 		 pan1_2 = new JPanel();
-		pan1_2.setBackground(Color.WHITE);
+		pan1_2.setBackground(Color.black);
 		pan1_2.setLayout(new GridLayout(4,1));
 		eborder=new EtchedBorder(EtchedBorder.LOWERED);
 		
@@ -247,11 +247,11 @@ public class mainFrame extends JFrame implements ActionListener {
 		// 디올파트
 		
 		 pan1 = new JPanel();
-		pan1.setBackground(Color.WHITE);
+		pan1.setBackground(Color.black);
 		 pan1_1 = new JPanel();
-		pan1_1.setBackground(Color.WHITE);
+		pan1_1.setBackground(Color.black);
 		 pan1_2 = new JPanel();
-		pan1_2.setBackground(Color.WHITE);
+		pan1_2.setBackground(Color.black);
 		pan1_2.setLayout(new GridLayout(4,1));
 		eborder=new EtchedBorder(EtchedBorder.LOWERED);
 		
