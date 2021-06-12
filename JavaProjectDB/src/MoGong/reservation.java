@@ -23,6 +23,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 
 public class reservation extends JFrame implements ActionListener, MouseListener {
@@ -87,7 +88,8 @@ public class reservation extends JFrame implements ActionListener, MouseListener
 		
 		table = new JTable(jtable);
 		table.addMouseListener(this);
-		
+		JTableHeader Jheader = table.getTableHeader(); // 헤더부분 배경 설정
+		Jheader.setBackground(Color.white); // 헤더부분 배경설정
 		panTable.add(table);
 		
 		jp = new JScrollPane(table);
