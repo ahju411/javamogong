@@ -92,7 +92,7 @@ public class BuyFrame extends JFrame implements ActionListener {
 		productinfopan.add(jungga);
 		productinfopan.add(price);
 
-		// 개인정보 4개
+		// 개인정보 4개/
 		userinfopan = new JPanel();
 		userinfopan.setLayout(new GridLayout(4, 2, 0, 30));
 		userinfopan.setBackground(Color.white);
