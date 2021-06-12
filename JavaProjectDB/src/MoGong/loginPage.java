@@ -175,7 +175,7 @@ public class loginPage extends JFrame implements ActionListener, KeyListener {
 		}
 		else if(obj == btnlogin) {
 			loginMember();
-			ordersdto od = new ordersdto();
+			
 		}
 
 	}
