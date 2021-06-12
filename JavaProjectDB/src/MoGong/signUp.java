@@ -153,7 +153,7 @@ public class signUp extends JFrame implements ActionListener {
 		add(northpan, BorderLayout.NORTH);
 		
 		
-		ImageIcon imglogo = new ImageIcon("image\\logo.png");
+		ImageIcon imglogo = new ImageIcon("image\\logo2.png");
 		JLabel logo = new JLabel(imglogo);
 		northpan.add(logo, BorderLayout.NORTH);
 		
