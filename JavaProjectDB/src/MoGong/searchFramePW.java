@@ -39,7 +39,7 @@ public class searchFramePW extends JFrame implements ActionListener {
 		panNorth.setBackground(Color.white);
 		add(panNorth, BorderLayout.NORTH);
 		
-		ImageIcon imglogo = new ImageIcon("image\\logo.png");
+		ImageIcon imglogo = new ImageIcon("image\\logo2.png");
 		JLabel logo = new JLabel(imglogo);
 		panNorth.add(logo);
 		
@@ -89,6 +89,10 @@ public class searchFramePW extends JFrame implements ActionListener {
 		add(panSouth, BorderLayout.SOUTH);
 		
 		btn = new JButton("완료");
+		btn.setOpaque(false);
+		btn.setFocusPainted(false);
+		btn.setContentAreaFilled(false);
+		btn.addActionListener(this);
 		btn.addActionListener(this);
 		panSouth.add(btn);
 		
