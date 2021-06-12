@@ -16,12 +16,17 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 public class firstpage extends JFrame implements ActionListener{
 
 	JButton btnstart;
+	JMenuBar jbar;
+	JMenu ourinfo;
 
 	public firstpage(String title, int width, int height) {
 		setTitle(title);
@@ -30,11 +35,22 @@ public class firstpage extends JFrame implements ActionListener{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLayout(new BorderLayout());
 
+		jbar = new JMenuBar();
+		jbar.setBorderPainted(false);
+		jbar.setBackground(Color.decode("#FF9F9F"));
+		setJMenuBar(jbar);
+		ourinfo = new JMenu("개발자 정보");
+		ourinfo.setFont(new Font("맑은 고딕", Font.BOLD, 12));
+		ourinfo.addActionListener(this);
+		
+		jbar.add(ourinfo);
+		
+		
 		ImageIcon img = new ImageIcon("image\\background.png");
 
 		JLabel lbl1 = new JLabel(img);
 
-		lbl1.setBounds(-8, 0, 500, 700);
+		lbl1.setBounds(-8, 0, 495, 700);
 
 		Panel p = new Panel();
 
@@ -64,7 +80,7 @@ public class firstpage extends JFrame implements ActionListener{
 
 
 	public static void main(String[] args) {
-		new firstpage("시작 페이지", 500, 700);
+		new firstpage("시작 페이지", 490, 700);
 
 	}
 
@@ -77,6 +93,9 @@ public class firstpage extends JFrame implements ActionListener{
 		if(obj == btnstart) {
 			loginPage lp = new loginPage();
 			dispose();
+		}if(obj == ourinfo) {
+			
+		System.out.println("하이");
 		}
 		
 		

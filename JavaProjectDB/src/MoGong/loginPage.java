@@ -29,7 +29,6 @@ public class loginPage extends JFrame implements ActionListener, KeyListener {
 	
 	JButton btnlogin, btnSignUp, btnSearchID, btnSearchPW;
 	JTextField tfID, tfPassword;
-	JMenuItem menuitem;
 	
 	public String logid ="";
 	
@@ -40,15 +39,8 @@ public class loginPage extends JFrame implements ActionListener, KeyListener {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		//메뉴 부분
-		JMenuBar jb = new JMenuBar();
-		setJMenuBar(jb);
 		
-		JMenu infor = new JMenu("개발자 정보");
-		jb.add(infor);
 		
-		menuitem = new JMenuItem("팀원소개");
-		menuitem.addActionListener(this);
-		infor.add(menuitem);
 		
 		//맨 뒤 중앙에 붙는 패널
 		JPanel plMain = new JPanel();
@@ -182,8 +174,6 @@ public class loginPage extends JFrame implements ActionListener, KeyListener {
 		else if(obj == btnlogin) {
 			loginMember();
 			ordersdto od = new ordersdto();
-		}else if(obj == menuitem) {
-			JOptionPane.showMessageDialog(null, "201845020 유은철\n201845024 이태현\n201845026 이혜성", "개발자 소개", 1);
 		}
 
 	}
