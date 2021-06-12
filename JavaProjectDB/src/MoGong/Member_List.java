@@ -39,7 +39,7 @@ public class Member_List extends JFrame implements MouseListener, ActionListener
 	private JButton btnback;
 	private DefaultTableModel tModel;
 	private JMenuBar menubar;
-	private JMenu menures,refreshtable;
+	private JMenu menures;
 	private JMenuItem resall;
 	
 	
@@ -55,14 +55,12 @@ public class Member_List extends JFrame implements MouseListener, ActionListener
 		setJMenuBar(menubar);
 		
 		menures = new JMenu("예약현황");
-		refreshtable = new JMenu("새로고침");
 		
 		
 		
 		
 		
 		
-		menubar.add(refreshtable);
 		menubar.add(menures);
 		
 		resall = new JMenuItem("보기");
@@ -94,6 +92,7 @@ public class Member_List extends JFrame implements MouseListener, ActionListener
 		};
 		
 		for(int i = 0; i<list.size(); i++) {
+			
 			String id = list.get(i).getId();
 			String pw = list.get(i).getPw();
 			String name = list.get(i).getName();
@@ -134,18 +133,7 @@ public class Member_List extends JFrame implements MouseListener, ActionListener
 		btnback.addActionListener(this);
 		pan.add(btnback,BorderLayout.SOUTH);
 		
-		refreshtable.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				Object obj = e.getSource();
-				if(refreshtable == obj) {
-				table.invalidate();
-				validate();
-				}
-			}
-			
-		});
+		
 		
 		setVisible(true);
 	}
