@@ -275,6 +275,9 @@ public class productInfo extends JFrame implements ActionListener {
 		} else if (obj == btnCancel) {
 			
 			//구매 취소 DB
+int x = JOptionPane.showConfirmDialog(this, "예약취소 하시겠습니까?" , "결제알림",JOptionPane.YES_NO_OPTION);
+			
+			if(x == JOptionPane.OK_OPTION) {
 			try {
 				Class.forName("oracle.jdbc.driver.OracleDriver");
 				Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@118.217.168.174:1521:xe", "comet",
@@ -327,6 +330,7 @@ public class productInfo extends JFrame implements ActionListener {
 			btnBuy.setEnabled(true);
 			
 			wait.setText(" 남은 구매 예약자 : " + res + "명 ");
+		}
 		}
 
 	}
