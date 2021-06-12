@@ -204,6 +204,9 @@ public class BuyFrame extends JFrame implements ActionListener {
 		Object obj = e.getSource();
 		
 		if(obj == btnBuy) {
+			int x = JOptionPane.showConfirmDialog(this, "결제하시겠습니까?" , "결제알림",JOptionPane.YES_NO_OPTION);
+			
+			if(x == JOptionPane.OK_OPTION) {
 			
 			try {
 				Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -237,16 +240,20 @@ public class BuyFrame extends JFrame implements ActionListener {
 				System.err.println("DB연결 오류 또는 쿼리 오류 입니다.");
 				e1.printStackTrace();
 			}
+			
 			productInfo.getBtnBuy().setEnabled(false);
 			productInfo.getBtnCancel().setEnabled(true);
 			productInfo.getWait().setText(" 남은 구매 예약자 : " + (productInfo.getRes()-1) + "명 ");
 			
-			JOptionPane.showMessageDialog(null, "결제가 완료되었습니다." , "결제알림",1);
+			
 			
 			if(productInfo.getRes() == 1) {
 				JOptionPane.showMessageDialog(null, "마지막 예약자입니다.배송 시작하겠습니다");
 			}
-			
+			}
+			else {
+				JOptionPane.showMessageDialog(this, "결제를 취소하셨습니다.");
+			}
 			
 		}
 		
