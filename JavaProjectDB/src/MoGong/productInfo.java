@@ -83,9 +83,13 @@ public class productInfo extends JFrame implements ActionListener {
 		
 		//버튼 설정
 		btnBuy = new JButton("구매예약");
+		btnBuy.setBackground(Color.white);
+		btnBuy.setForeground(Color.black);
 		btnBuy.addActionListener(this);
 
 		btnCancel = new JButton("예약취소");
+		btnCancel.setBackground(Color.white);
+		btnCancel.setForeground(Color.black);
 		btnCancel.addActionListener(this);
 		btnCancel.setEnabled(false);
 		

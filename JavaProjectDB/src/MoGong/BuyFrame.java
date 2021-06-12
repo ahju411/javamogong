@@ -1,6 +1,9 @@
 package MoGong;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Image;
@@ -31,7 +34,7 @@ public class BuyFrame extends JFrame implements ActionListener {
 
 	private ImageIcon img;
 	private JLabel lblimg, jungga, price, name, lbluser, lbladdress, lblphone, lblpay;
-	private JPanel photopan, productinfopan, userinfopan, paypan;
+	private JPanel paypan;
 	private JTextField tfaddress, tfuser, tfphone;
 	private JScrollPane scrollpane;
 	private JComboBox<String> cbStr;
@@ -51,7 +54,7 @@ public class BuyFrame extends JFrame implements ActionListener {
 
 		//맨 뒤에 붙는 패널 4개
 		JPanel panback = new JPanel();
-		panback.setLayout(new GridLayout(4, 1));
+		panback.setLayout(new BorderLayout());
 		panback.setBackground(Color.white);
 
 		outputProductListSpec(n); // 선택한 물건 DB불러오기
@@ -65,8 +68,13 @@ public class BuyFrame extends JFrame implements ActionListener {
 
 		photopan.add(lblimg);
 
+		JPanel panMid = new JPanel();
+		panMid.setLayout(new GridLayout(2, 1));
+		panMid.setBackground(Color.white);
+		panback.add(panMid);
+		
 		// 상품정보 3개
-		productinfopan = new JPanel();
+		JPanel productinfopan = new JPanel();
 		productinfopan.setLayout(new GridLayout(3, 1));
 		productinfopan.setBackground(Color.white);
 
@@ -76,6 +84,7 @@ public class BuyFrame extends JFrame implements ActionListener {
 		double junggaprice = (double) ((Integer.parseInt(itemprice))); //
 		ch = dc.format(junggaprice);
 		name = new JLabel(itemname, SwingConstants.CENTER);
+		
 		jungga = new JLabel(ch + "원", SwingConstants.CENTER); // 정가에 반점넣기
 
 		double saleprice = junggaprice * 0.85; // 15%할인 가격 만들기
@@ -93,19 +102,19 @@ public class BuyFrame extends JFrame implements ActionListener {
 		productinfopan.add(price);
 
 		// 개인정보 4개/
-		userinfopan = new JPanel();
-		userinfopan.setLayout(new GridLayout(4, 2, 0, 30));
+		JPanel userinfopan = new JPanel();
+		userinfopan.setLayout(new GridLayout(4, 2, 0, 20));
 		userinfopan.setBackground(Color.white);
 
-		lbladdress = new JLabel("                          주소");
-		lbluser = new JLabel("                          수신자");
-		lblphone = new JLabel("                          전화번호");
+		lbladdress = new JLabel("                  주소");
+		lbluser = new JLabel("                  수신자");
+		lblphone = new JLabel("                  전화번호");
 
 		tfaddress = new JTextField();
 		tfuser = new JTextField();
 		tfphone = new JTextField();
 
-		lblpay = new JLabel("                          결제방법 : ");
+		lblpay = new JLabel("                  결제방법 : ");
 		cbStr = new JComboBox<String>(strs);
 
 		userinfopan.add(lbluser);
@@ -119,22 +128,22 @@ public class BuyFrame extends JFrame implements ActionListener {
 
 		// 결제방법
 		paypan = new JPanel();
-		paypan.setLayout(new GridLayout(2, 1));
+		paypan.setLayout(new FlowLayout());
 		paypan.setBackground(Color.white);
+		
 
 		btnBuy = new JButton("결제하기");
+		btnBuy.setBackground(Color.black);
+		btnBuy.setForeground(Color.white);
+		btnBuy.setPreferredSize(new Dimension(400, 80));
 		btnBuy.addActionListener(this);
-		JLabel notice = new JLabel("본 예약구매는 취소가 가능합니다.", SwingConstants.CENTER);
-		notice.setForeground(Color.red);
-		notice.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 
-		paypan.add(notice);
 		paypan.add(btnBuy);
-
-		panback.add(photopan);
-		panback.add(productinfopan);
-		panback.add(userinfopan);
-		panback.add(paypan);
+		
+		panback.add(photopan, BorderLayout.NORTH);
+		panMid.add(productinfopan);
+		panMid.add(userinfopan);
+		panback.add(paypan, BorderLayout.SOUTH);
 		
 		scrollpane = new JScrollPane(panback);
 		scrollpane.getVerticalScrollBar().setUnitIncrement(16);
