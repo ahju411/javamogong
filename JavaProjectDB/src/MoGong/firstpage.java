@@ -3,9 +3,15 @@ package MoGong;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Frame;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -14,6 +20,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 
 public class firstpage extends JFrame implements ActionListener{
 
@@ -34,20 +42,17 @@ public class firstpage extends JFrame implements ActionListener{
 		jbar.setBackground(Color.black);
 		setJMenuBar(jbar);
 		ourinfo = new JMenu("개발자 정보");
-		ourinfo.setFont(new Font("맑은 고딕", Font.BOLD, 12));
 		ourinfo.setForeground(Color.white);
+		ourinfo.setFont(new Font("맑은 고딕", Font.BOLD, 12));
 		
 		jbar.add(ourinfo);
-		
 		ourinfolook = new JMenuItem("보기");
-		ourinfolook.setBackground(Color.black);
-		ourinfolook.setForeground(Color.white);
+		ourinfo.add(ourinfolook);
 		ourinfolook.addActionListener(this);
 		
-		ourinfo.add(ourinfolook);
 		
 		
-		ImageIcon img = new ImageIcon("image\\background.png");
+		ImageIcon img = new ImageIcon("image\\background2.png");
 
 		JLabel lbl1 = new JLabel(img);
 
@@ -60,8 +65,9 @@ public class firstpage extends JFrame implements ActionListener{
 
 
 		btnstart = new JButton("시작하기");
-		btnstart.setFont(new Font("맑은 고딕",Font.BOLD,15));
-		btnstart.setBounds(200, 350, 100, 50);
+		btnstart.setFont(new Font("한컴 쿨재즈 M",Font.BOLD,23));
+		btnstart.setForeground(Color.black);
+		btnstart.setBounds(180, 400, 150, 50);
 		btnstart.setOpaque(false);
 		btnstart.setFocusPainted(false);
 		btnstart.setBorderPainted(false);
