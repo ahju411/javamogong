@@ -20,6 +20,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 
 public class ReservationAll extends JFrame implements ActionListener {
@@ -68,7 +69,10 @@ public class ReservationAll extends JFrame implements ActionListener {
 		DefaultTableModel jtable = new DefaultTableModel(contents, header);
 		
 		JTable table = new JTable(jtable);
+		JTableHeader jHeader = table.getTableHeader();
+		jHeader.setBackground(Color.black);
 		panTable.add(table);
+		
 		
 		JScrollPane jp = new JScrollPane(table);
 		panBack.add(jp);
