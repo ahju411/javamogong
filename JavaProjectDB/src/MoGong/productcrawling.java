@@ -66,7 +66,7 @@ public class productcrawling {
 		
 		// 에르메스 파트
 				crawlingproduct(pl,
-						"https://www.coupang.com/np/search?rocketAll=false&q=%EC%97%90%EB%A5%B4%EB%A9%94%EC%8A%A4+%EC%8B%9C%EA%B3%84&brand=&offerCondition=&filter=&availableDeliveryFilter=&filterType=&isPriceRange=false&priceRange=&minPrice=&maxPrice=&page=1&trcid=&traid=&filterSetByUser=true&channel=user&backgroundColor=&component=&rating=0&sorter=salePriceDesc&listSize=36",
+						"https://www.coupang.com/np/search?rocketAll=false&q=%EC%97%90%EB%A5%B4%EB%A9%94%EC%8A%A4+%EC%8B%9C%EA%B3%84&brand=&offerCondition=&filter=&availableDeliveryFilter=&filterType=&isPriceRange=false&priceRange=&minPrice=&maxPrice=&page=1&trcid=&traid=&filterSetByUser=true&channel=user&backgroundColor=&component=&rating=0&sorter=latestAsc&listSize=36",
 						"에르메스",
 						"시계"
 						);
