@@ -249,6 +249,22 @@ public class BuyFrame extends JFrame implements ActionListener {
 			
 			if(productInfo.getRes() == 1) {
 				JOptionPane.showMessageDialog(null, "마지막 예약자입니다.배송 시작하겠습니다");
+				try {
+					Class.forName("oracle.jdbc.driver.OracleDriver");
+					Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@118.217.168.174:1521:xe", "comet", "1234");
+					
+					Statement stmt = conn.createStatement();
+					
+					stmt.executeQuery("UPDATE ORDERS SET STATE = 2 WHERE ITEMID = '" + itemid + "'");
+					
+					conn.close();
+				} catch (ClassNotFoundException e1) {
+					System.out.println("JDBC드라이버 로드 에러");
+					e1.printStackTrace();
+				} catch (SQLException e1) {
+					System.err.println("DB연결 오류 또는 쿼리 오류 입니다.");
+					e1.printStackTrace();
+				}
 			}
 			}
 			else {
