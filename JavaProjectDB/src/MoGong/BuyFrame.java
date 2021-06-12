@@ -234,9 +234,14 @@ public class BuyFrame extends JFrame implements ActionListener {
 			productInfo.getBtnBuy().setEnabled(false);
 			productInfo.getBtnCancel().setEnabled(true);
 			productInfo.getWait().setText(" 남은 구매 예약자 : " + (productInfo.getRes()-1) + "명 ");
+			
+			JOptionPane.showMessageDialog(null, "결제가 완료되었습니다." , "결제알림", 1);
+			
 			if(productInfo.getRes() == 1) {
 				JOptionPane.showMessageDialog(null, "마지막 예약자입니다.배송 시작하겠습니다");
 			}
+			
+			
 		}
 		
 		dispose();
