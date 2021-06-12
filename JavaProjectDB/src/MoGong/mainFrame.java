@@ -48,16 +48,24 @@ public class mainFrame extends JFrame implements ActionListener {
 		
 		//메뉴 설정
 		menubar = new JMenuBar();
-		menubar.setBackground(Color.PINK);
+		menubar.setBackground(Color.black);
 	
 		menuUser = new JMenu("My");
+		menuUser.setBackground(Color.black);
+		menuUser.setForeground(Color.white);
 		MyInfo = new JMenuItem("나의 정보");
+		MyInfo.setBackground(Color.black);
+		MyInfo.setForeground(Color.white);
 		MyInfo.addActionListener(this);
 		
 		Reservation = new JMenuItem("예약현황");
+		Reservation.setBackground(Color.black);
+		Reservation.setForeground(Color.white);
 		Reservation.addActionListener(this);
 		
 		Logout = new JMenuItem("로그아웃");
+		Logout.setBackground(Color.black);
+		Logout.setForeground(Color.white);
 		Logout.addActionListener(this);
 	
 		menuUser.add(MyInfo);

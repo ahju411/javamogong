@@ -68,15 +68,26 @@ public class ProductListUI extends JFrame implements MouseListener, ActionListen
         setBackground(Color.WHITE);
 		// 메뉴
 		menubar = new JMenuBar();
-		menubar.setBackground(Color.PINK);
+		menubar.setBackground(Color.black);
+		menubar.setForeground(Color.white);
 
 		menuUser = new JMenu("My");
+		menuUser.setBackground(Color.black);
+		menuUser.setForeground(Color.white);
+		
 		MyInfo = new JMenuItem("나의 정보");
+		MyInfo.setBackground(Color.black);
+		MyInfo.setForeground(Color.white);
 		MyInfo.addActionListener(this);
+		
 		Reservation = new JMenuItem("예약현황");
+		Reservation.setBackground(Color.black);
+		Reservation.setForeground(Color.white);
 		Reservation.addActionListener(this);
 
 		Logout = new JMenuItem("로그아웃");
+		Logout.setBackground(Color.black);
+		Logout.setForeground(Color.white);
 		Logout.addActionListener(this);
 
 		menuUser.add(MyInfo);
