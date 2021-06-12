@@ -54,7 +54,7 @@ public class loginPage extends JFrame implements ActionListener, KeyListener {
 		add(northpan, BorderLayout.NORTH);
 		
 		//모공 로고 표시
-		ImageIcon imglogo = new ImageIcon("image\\logo.png");
+		ImageIcon imglogo = new ImageIcon("image\\logo2.png");
 		JLabel logo = new JLabel(imglogo);
 		northpan.add(logo);
 		
