@@ -87,7 +87,7 @@ public class productcrawling {
 						);
 				
 
-				// 디올 파트//////
+				// 디올 파트////////
 				crawlingproduct(pl,
 						"https://www.coupang.com/np/search?rocketAll=false&q=%EB%94%94%EC%98%AC+%EC%8B%9C%EA%B3%84&brand=&offerCondition=&filter=&availableDeliveryFilter=&filterType=&isPriceRange=false&priceRange=&minPrice=&maxPrice=&page=1&trcid=&traid=&filterSetByUser=true&channel=user&backgroundColor=&component=&rating=0&sorter=salePriceDesc&listSize=36",
 						"디올",
