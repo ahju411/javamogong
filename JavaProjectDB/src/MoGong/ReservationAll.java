@@ -71,6 +71,7 @@ public class ReservationAll extends JFrame implements ActionListener {
 		JTable table = new JTable(jtable);
 		JTableHeader jHeader = table.getTableHeader();
 		jHeader.setBackground(Color.black);
+		jHeader.setForeground(Color.white);
 		panTable.add(table);
 		
 		

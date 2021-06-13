@@ -266,6 +266,7 @@ public class BuyFrame extends JFrame implements ActionListener {
 					e1.printStackTrace();
 				}
 			}
+			JOptionPane.showMessageDialog(this, "결제가 완료되었습니다.");
 			}
 			else {
 				JOptionPane.showMessageDialog(this, "결제를 취소하셨습니다.");

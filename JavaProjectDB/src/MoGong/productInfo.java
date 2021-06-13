@@ -330,6 +330,7 @@ int x = JOptionPane.showConfirmDialog(this, "예약취소 하시겠습니까?" ,
 			btnBuy.setEnabled(true);
 			
 			wait.setText(" 남은 구매 예약자 : " + res + "명 ");
+			JOptionPane.showMessageDialog(this,"예약 취소되었습니다");
 		}
 		}
 
